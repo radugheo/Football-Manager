@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 
-std::ifstream fin ("date.txt");
+std::ifstream fin("date.txt");
 
 class Team;
 
@@ -49,7 +49,6 @@ class Team{
     std::vector<Player> players;
 public:
     Team(const std::string &name, const std::vector<Player> &players) : name(name), players(players) {}
-
     Team(const Team& other) : name(other.name), players(other.players) {}
     Team& operator=(const Team& other){
         name = other.name;
@@ -66,12 +65,38 @@ public:
     ~Team() {}
 };
 
+class Game{
+    Team team1;
+    Team team2;
+    std::pair<int, int> score;
+public:
+    Game(const Team &team1, const Team &team2, const std::pair<int, int> &score) : team1(team1), team2(team2),
+                                                                              score(score) {}
+    Game(const Game& other) : team1(other.team1), team2(other.team2), score(other.score) {}
+    Game& operator=(const Game& other){
+        team1 = other.team1;
+        team2 = other.team2;
+        score = other.score;
+        return *this;
+    }
+    friend std::ostream& operator<<(std::ostream& os, const Game& x){
+        os << "Echipe:\n" << x.team1 << '\n' << x.team2 << '\n' << "Scorul: " << x.score.first << ' ' << x.score.second << '\n';
+        return os;
+    }
+    ~Game() {}
+};
+
 int main() {
     int noOfTeams, noOfPlayers, playerAge, playerDefRating, playerMidRating, playerAttRating, playerValue;
     std::string playerName, playerPosition;
     std::vector<Player>p;
+
+    /*
+    std::fstream fin;
+    fin.open("date.txt", std::ios::in);
+    NU MERGE CITIREA DIN FISIER
+    */
     fin >> noOfTeams;
-    ///std::cout << noOfTeams; NU MERGE CITIREA DIN FISIER
     for (int i=0; i<noOfTeams; i++){
         fin >> noOfPlayers;
         for (int j=0; j<noOfPlayers; j++){
