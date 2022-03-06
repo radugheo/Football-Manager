@@ -35,17 +35,17 @@ std::ostream& operator<<(std::ostream& os, const Player& x){
 
 Player::~Player() {}
 
-int Player::getValue() const {
+/*int Player::getValue() const {
     return value;
-}
+}*/
 
-const std::string &Player::getName() const {
+/*const std::string &Player::getName() const {
     return name;
-}
+}*/
 
-void Player::calculateValue(){
+/*void Player::calculateValue(){
     int val = 0;
     val = (this->rating - 55) * 100000 + (40 - this->age)*50000;
     this->value = val;
-}
+}*/
 

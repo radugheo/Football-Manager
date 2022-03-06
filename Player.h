@@ -20,10 +20,10 @@ public:
 
     virtual ~Player();
 
-    int getValue() const;
-    const std::string &getName() const;
+    //int getValue() const;
+    //const std::string &getName() const;
 
-    void calculateValue();
+    //void calculateValue();
 };
 
 
