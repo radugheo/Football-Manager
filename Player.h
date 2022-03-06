@@ -17,6 +17,11 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Player& x);
 
     virtual ~Player();
+
+    int getValue() const;
+    const std::string &getName() const;
+
+    void calculateValue();
 };
 
 

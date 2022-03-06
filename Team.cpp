@@ -41,11 +41,7 @@ Team& Team::operator=(const Team& other){
     return *this;
 }
 std::ostream& operator<<(std::ostream& os, const Team& x){
-    os << "Nume echipa: " << x.name << "\nRating: " << x.rating << '\n';
-    /*os << "Jucatori:\n";
-    for (auto i : x.players)
-        os << i << ' ';*/
-    os << "Puncte: " << x.points << '\n';
+    os << x.name << ' ' << x.points << '\n';
     return os;
 }
 
@@ -59,10 +55,6 @@ void Team::lose(){
 }
 void Team::draw(){
     this->points = this->points + 1;
-}
-
-int Team::getRanking() const {
-    return ranking;
 }
 
 int Team::getPoints() const {

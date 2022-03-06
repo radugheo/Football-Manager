@@ -30,7 +30,6 @@ public:
     void draw();
 
     int getRating() const;
-    int getRanking() const;
     int getPoints() const;
 
     const std::string &getName() const;

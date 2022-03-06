@@ -68,7 +68,7 @@ void Game::calculateResult(int ratingA, int ratingB){
         if (number <= win1){
             goals1++;
         }
-        else if (number > win1 && number <= win1 + win2){
+        else if (number <= win1 + win2){
             goals2++;
         }
     }
