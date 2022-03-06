@@ -33,7 +33,7 @@ public:
     int getRating() const;
     int getPoints() const;
 
-    const std::string &getName() const;
+    //const std::string &getName() const;
 };
 
 

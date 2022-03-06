@@ -65,9 +65,9 @@ int Team::getRating() const {
     return rating;
 }
 
-const std::string &Team::getName() const {
+/*const std::string &Team::getName() const {
     return name;
-}
+}*/
 
 
 
