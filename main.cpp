@@ -13,7 +13,7 @@ int main() {
     int playerAge, playerRating;
     std::string playerName, playerPosition;
 
-    int noOfTeams;
+    int noOfTeams = 0;
     int teamId, teamSize, teamBudget;
     std::string teamName;
     std::vector<Team>teams;
