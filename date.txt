@@ -1,0 +1,107 @@
+16
+1
+FCSB
+5400000
+7
+Cristea DEF 27 68
+Vinicius DEF 37 72
+Olaru MID 24 73
+Tanase MID 27 73
+Popescu MID 19 71
+Keseru ATT 35 70
+Cordea ATT 22 68
+2
+UCV
+4000000
+3
+Bancu DEF 29 68
+Ivan ATT 25 71
+Baiaram MID 19 64
+3
+Dinamo
+2000000
+2
+Ivanovski ATT 43 63
+Torje MID 33 62
+4
+CFR
+6100000
+3
+Balgradean GK 34 68
+Deac MID 35 72
+Omrani ATT 29 73
+5
+Farul
+0
+3
+Aioani GK 22 69
+Iancu ATT 27 68
+Jefte ATT 28 70
+6
+Voluntari
+0
+2
+Tamas DEF 38 66
+Budescu MID 33 68
+7
+Rapid
+0
+3
+Sapunaru DEF 38 66
+Sefer ATT 21 67
+Balan ATT 31 65
+8
+Sepsi
+0
+2
+Niczuly GK 26 67
+Stefanescu ATT 23 66
+9
+Chindia
+0
+2
+Capusa DEF 23 67
+Popadiuc MID 27 63
+10
+Botosani
+0
+3
+Pap GK 27 65
+Dawa DEF 25 68
+Fili ATT 25 67
+11
+Arges
+0
+2
+Serban DEF 29 64
+Ganea ATT 22 65
+12
+UTA
+0
+2
+Erico DEF 32 65
+Miculescu ATT 20 67
+13
+FCU
+0
+2
+Popa GK 19 65
+Bauza ATT 25 66
+14
+Mioveni
+0
+2
+Trif DEF 24 65
+Rusu ATT 31 65
+15
+Academica
+0
+2
+Ureche GK 23 62
+DeAmorim ATT 30 63
+16
+GazMetan
+0
+2
+Steau DEF 20 60
+Chamed ATT 28 59
