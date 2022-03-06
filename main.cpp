@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <ctime>
 
 #include "Player.h"
 #include "Team.h"
@@ -10,11 +9,11 @@
 int main() {
     std::ifstream fin("date.txt");
 
-    int playerAge = 0, playerRating = 0;
+    int playerAge, playerRating;
     std::string playerName, playerPosition;
 
-    int noOfTeams = 0;
-    int teamId = 0, teamSize = 0, teamBudget = 0;
+    int noOfTeams;
+    int teamId, teamSize, teamBudget;
     std::string teamName;
     std::vector<Team>teams;
     Team emptyTeam;
@@ -32,7 +31,7 @@ int main() {
         int teamRating = sumRating / teamSize;
         teams.emplace_back(Team{teamId, teamName, teamSize, 0, teamRating, teamBudget, 0, p, 0});
     }
-    srand(time(nullptr));
+
     //std::cout << "Meciurile din tur:\n";
     for (int i=0; i<noOfTeams-1; i++){
         for (int j=i+1; j<noOfTeams; j++){

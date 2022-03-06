@@ -1,7 +1,7 @@
 #include <iostream>
-#include <cstdlib>
 #include <cmath>
 #include "Game.h"
+#include "random.hpp"
 
 Game::Game(Team &team1, Team &team2, const std::pair<int, int> &score, char result) :
 team1(team1),
@@ -63,8 +63,9 @@ void Game::calculateResult(int ratingA, int ratingB){
         win2 = ceil(win2);
     else
         win2 = floor(win2);
+    using Random = effolkronium::random_static;
     for (int i=1; i<=10; i++){
-        int number = rand() % 100 + 1;
+        auto number = Random::get(1, 100);
         if (number <= win1){
             goals1++;
         }
