@@ -1,6 +1,8 @@
 #ifndef OOP_PLAYER_H
 #define OOP_PLAYER_H
 
+#include <iostream>
+
 class Team;
 
 class Player{

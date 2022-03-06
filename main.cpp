@@ -32,7 +32,7 @@ int main() {
         int teamRating = sumRating / teamSize;
         teams.emplace_back(Team{teamId, teamName, teamSize, 0, teamRating, teamBudget, 0, p, 0});
     }
-    srand(time(nullptr));
+    srand(time(nullptr)); // NOLINT(cert-msc51-cpp)
     //std::cout << "Meciurile din tur:\n";
     for (int i=0; i<noOfTeams-1; i++){
         for (int j=i+1; j<noOfTeams; j++){
