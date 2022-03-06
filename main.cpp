@@ -10,11 +10,11 @@
 int main() {
     std::ifstream fin("date.txt");
 
-    int playerAge, playerRating;
+    int playerAge = 0, playerRating = 0;
     std::string playerName, playerPosition;
 
     int noOfTeams = 0;
-    int teamId, teamSize, teamBudget;
+    int teamId = 0, teamSize = 0, teamBudget = 0;
     std::string teamName;
     std::vector<Team>teams;
     Team emptyTeam;
