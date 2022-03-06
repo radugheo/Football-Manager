@@ -215,7 +215,7 @@ jobs:
 
       - name: Cppcheck
         if: runner.os == 'Linux' && matrix.cxx == 'clang++-11'
-        run: cppcheck --enable=all --project=build/compile_commands.json -ibuild --suppress='*:build/*' --suppress=missingIncludeSystem --suppress=unmatchedSuppression --error-exitcode=1
+        run: cppcheck --enable=all --project=build/compile_commands.json -ibuild --suppress='*:build/*' --suppress=missingIncludeSystem --suppress=unmatchedSuppression --error-exitcode=1 -iext --suppress='*:ext/*'
 
       - name: Clang-tidy
         if: runner.os == 'Linux' && matrix.cxx == 'clang++-11'

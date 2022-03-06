@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "Game.h"
-#include "random.hpp"
+#include "ext/random.hpp"
 
 Game::Game(Team &team1, Team &team2, const std::pair<int, int> &score, char result) :
 team1(team1),

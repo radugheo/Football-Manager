@@ -78,6 +78,8 @@ endif()
 
 ###############################################################################
 
+target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ext/random/include)
+
 # copy binaries to bin folder; these are uploaded as artifacts on each release
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 # install(DIRECTORY some_dir1 some_dir2 DESTINATION bin)
