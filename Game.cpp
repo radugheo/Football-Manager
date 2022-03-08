@@ -41,6 +41,7 @@ void Game::calculateResult(int ratingA, int ratingB){
     ///exemplu: echipa 1 are 69 rating, echipa 2 are 66 rating
     ///diferenta 3
     ///sanse: 41 win, 32 lose, 27 egal
+    ///yes
     if(ratingA > ratingB){
         dif = ratingA - ratingB;
         win1 += dif*dif;
