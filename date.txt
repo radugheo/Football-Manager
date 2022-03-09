@@ -13,10 +13,32 @@ Cordea ATT 22 68
 2
 UCV
 4000000
-3
-Bancu DEF 29 68
-Ivan ATT 25 71
-Baiaram MID 19 64
+25
+Pigliacelli GK 28 71
+Lazar GK 30 69
+Vatajelu DEF 28 66
+Papp DEF 31 66
+Screciu DEF 21 66
+Bancu DEF 29 71
+Gaman DEF 32 68
+Vladoiu DEF 22 68
+Constantin DEF 36 67
+Conte DEF 27 63
+Capatina MID 25 64
+Rogulic MID 25 64
+Cimpanu MID 20 65
+Cretu MID 29 67
+Mateiu MID 31 66
+Gustavo MID 29 66
+Baiaram MID 19 65
+Nistor MID 33 71
+Bic MID 27 67
+Vina MID 26 65
+Houri MID 25 68
+Trica-Balaci ATT 16 55
+Markovic ATT 20 66
+Ivan ATT 25 69
+Koljic ATT 25 68
 3
 Dinamo
 2000000
@@ -85,8 +107,8 @@ Miculescu ATT 20 67
 FCU
 0
 2
-Popa GK 19 65
-Bauza ATT 25 66
+Popa GK 19 64
+Bauza ATT 25 64
 14
 Mioveni
 0

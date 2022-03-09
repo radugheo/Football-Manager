@@ -55,6 +55,7 @@ int main() {
             }
         }
     }
+    //std::cout << teams[1].getRating() << '\n';
     //std::cout << "Meciurile din retur:\n";
     for (int i=noOfTeams-1; i>=1; i--){
         for (int j=i-1; j>=0; j--){
@@ -63,7 +64,7 @@ int main() {
             Game g{teams[i], teams[j], score, result};
             g.calculateResult(teams[i].getRating(), teams[j].getRating());
             result = g.getResult();
-            //std::cout << teams[i].getName() << ' ' << g.getScore().first << ' ' << g.getScore().second << ' ' << teams[j].getName() << '\n';
+            std::cout << teams[i].getName() << ' ' << g.getScore().first << ' ' << g.getScore().second << ' ' << teams[j].getName() << '\n';
             if (result == '1'){
                 teams[i].win();
                 teams[j].lose();

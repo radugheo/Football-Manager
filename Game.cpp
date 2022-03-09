@@ -91,6 +91,6 @@ char Game::getResult() const {
     return result;
 }
 
-/*const std::pair<int, int> &Game::getScore() const {
+const std::pair<int, int> &Game::getScore() const {
     return score;
-}*/
+}

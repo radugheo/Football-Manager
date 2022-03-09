@@ -41,7 +41,7 @@ Team& Team::operator=(const Team& other){
     return *this;
 }
 std::ostream& operator<<(std::ostream& os, const Team& x){
-    os << x.name << ' ' << x.points << '\n';
+    os << x.rating << ' ' << x.name << ' ' << x.points << '\n';
     return os;
 }
 
@@ -65,9 +65,9 @@ int Team::getRating() const {
     return rating;
 }
 
-/*const std::string &Team::getName() const {
+const std::string &Team::getName() const {
     return name;
-}*/
+}
 
 
 
