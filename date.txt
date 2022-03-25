@@ -2,56 +2,120 @@
 1
 FCSB
 5400000
-7
-Cristea DEF 27 68
-Vinicius DEF 37 72
-Olaru MID 24 73
-Tanase MID 27 73
-Popescu MID 19 71
+28
+Vlad GK 23 68
+Radunovic DEF 29 70
+Vinicius DEF 37 71
+Cristea DEF 27 70
+Cretu DEF 32 69
+Tanase MID 27 71
+Edjouma MID 25 67
+Olaru MID 24 70
+Popescu MID 19 72
 Keseru ATT 35 70
-Cordea ATT 22 68
+Coman ATT 23 70
+
+Tarnovanu GK 21 64
+Straton GK 32 64
+Miron DEF 27 67
+Serban DEF 21 63
+Achim DEF 30 64
+Pantiru DEF 26 68
+Gheorghe MID 25 68
+Popescu MID 27 67
+Cordea MID 22 67
+Perianu MID 19 62
+Sut MID 22 66
+Oaida MID 24 64
+Musi MID 17 59
+Stoica ATT 19 65
+Mamut ATT 25 63
+Dumiter ATT 23 62
+Burlacu ATT 25 62
 2
 UCV
 4000000
 25
 Pigliacelli GK 28 71
-Lazar GK 30 69
 Vatajelu DEF 28 66
-Papp DEF 31 66
+Gaman DEF 32 68
 Screciu DEF 21 66
 Bancu DEF 29 71
-Gaman DEF 32 68
+Cretu MID 29 67
+Mateiu MID 31 66
+Nistor MID 33 71
+Markovic ATT 20 66
+Ivan ATT 25 69
+Koljic ATT 25 68
+
+Lazar GK 30 69
+Papp DEF 31 66
 Vladoiu DEF 22 68
 Constantin DEF 36 67
 Conte DEF 27 63
 Capatina MID 25 64
 Rogulic MID 25 64
 Cimpanu MID 20 65
-Cretu MID 29 67
-Mateiu MID 31 66
 Gustavo MID 29 66
 Baiaram MID 19 65
-Nistor MID 33 71
 Bic MID 27 67
 Vina MID 26 65
 Houri MID 25 68
 Trica-Balaci ATT 16 55
-Markovic ATT 20 66
-Ivan ATT 25 69
-Koljic ATT 25 68
 3
 Dinamo
 2000000
-2
-Ivanovski ATT 43 63
-Torje MID 33 62
+28
+Figueiredo GK 30 65
+Buleica DEF 29 59
+Ehmann DEF 21 63
+Patriche DEF 35 62
+Radu DEF 25 63
+Rauta MID 29 64
+Rodriguez MID 31 66
+Matei MID 29 65
+Torje ATT 32 65
+Ivanovski ATT 31 62
+Bordusanu ATT 17 58
+
+Esanu GK 22 63
+Carp DEF 27 64
+Jovanovic DEF 32 61
+Giafer DEF 20 61
+Grigore DEF 22 63
+Tomozei DEF 30 62
+Filip DEF 27 64
+Bani MID 18 60
+Ivanov MID 25 64
+Cretu MID 21 62
+deMoura MID 33 63
+Gradinaru MID 25 65
+Pierret MID 21 62
+Borcea MID 19 54
+Morar ATT 27 63
+Irobiso ATT 28 63
+Mihaiu ATT 22 61
 4
 CFR
 6100000
-3
-Balgradean GK 34 68
-Deac MID 35 72
-Omrani ATT 29 73
+16
+Hindrich GK 18 61
+Manea DEF 24 69
+Burca DEF 28 72
+Graovac DEF 27 68
+Camora DEF 35 71
+Boateng MID 28 69
+Deac MID 35 71
+Sigurjonsson MID 32 68
+Petrila ATT 21 68
+Debeljuh ATT 25 68
+Omrani ATT 29 69
+
+Yuri DEF 26 66
+Costache MID 23 67
+Chipciu MID 32 68
+Stefan DEF 25 67
+Bus ATT 28 66
 5
 Farul
 0

@@ -12,26 +12,30 @@ class Team{
     int ranking;
     int rating;
     int budget;
-    int points;
+    int points = 0;
     std::vector<Player> players;
     int matchesPlayed;
 public:
-    Team(int id, const std::string &name, int squadSize, int ranking, int rating, int budget, int points,
-         const std::vector<Player> &players, int matchesPlayed);
-
+    Team(int id, const std::string &name, int squadSize, int budget, const std::vector<Player> &players);
+    Team(int id, const std::string &name, int squadSize, int budget);
     Team();
-
     Team(const Team& other);
     Team& operator=(const Team& other);
-    friend std::ostream& operator<<(std::ostream& os, const Team& x);
-    virtual ~Team();
+    friend std::ostream& operator<<(std::ostream& os, const Team& team);
+    ~Team();
 
     void win();
     void lose();
     void draw();
+    void calculateRating();
+    void initializePlayers();
+    void modifyBudget(int transferSum);
 
     int getRating() const;
     int getPoints() const;
+
+    const std::vector<Player> &getPlayers() const;
+
     const std::string &getName() const;
 };
 

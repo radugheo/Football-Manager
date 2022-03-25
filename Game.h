@@ -7,17 +7,16 @@
 class Game {
     Team& team1;
     Team& team2;
-    std::pair<int, int> score;
+    std::pair<int, int> score{0, 0};
     char result;
 public:
-    Game(Team &team1, Team &team2, const std::pair<int, int> &score, char result);
+    Game(Team &team1, Team &team2);
     Game(const Game& other);
     Game& operator=(const Game& other);
-    friend std::ostream& operator<<(std::ostream& os, const Game& x);
+    friend std::ostream& operator<<(std::ostream& os, const Game& game);
+    ~Game();
 
-    virtual ~Game();
-
-    void calculateResult(int ratingA, int ratingB);
+    void playMatch();
 
     char getResult() const;
 

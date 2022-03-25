@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
 #include "Player.h"
+#include "Team.h"
 
-Player::Player(const std::string &name, const std::string &position, int age, int rating, int value, Team& team) :
+Player::Player(const std::string &name, const std::string &position, int age, int rating, Team& team) :
 name(name),
 position(position),
 age(age),
 rating(rating),
-value(value),
 team(team){}
 
 Player::Player(const Player& other) :
@@ -15,7 +15,6 @@ name(other.name),
 position(other.position),
 age(other.age),
 rating(other.rating),
-value(other.value),
 team(other.team){}
 
 Player& Player::operator=(const Player& other){
@@ -24,16 +23,28 @@ Player& Player::operator=(const Player& other){
     age = other.age;
     rating = other.rating;
     value = other.value;
-    //team = other.team;
+    team = other.team;
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& os, const Player& x){
-    os << x.name << '\n';
-    return os;
+Player::~Player() {}
+
+int Player::getRating() const {
+    return rating;
 }
 
-Player::~Player() {}
+void Player::setTeam(Team &team2) {
+    Player::team = team2;
+}
+
+Team &Player::getTeam() const {
+    return team;
+}
+
+std::ostream &operator<<(std::ostream &os, const Player &player) {
+    os << "name: " << player.name << " team: " << player.team;
+    return os;
+}
 
 /*int Player::getValue() const {
     return value;
@@ -44,8 +55,8 @@ Player::~Player() {}
 }*/
 
 /*void Player::calculateValue(){
-    int val = 0;
-    val = (this->rating - 55) * 100000 + (40 - this->age)*50000;
-    this->value = val;
+    this->value = (this->rating - 55) * 100000 + (40 - this->age)*50000;
+    ///Valoarea unui jucator, ca si in realitate, este o formula intre rating-ul sau si varsta sa. Cu cat este mai tanar, cu atat este mai scump.
+    ///De aceea am considerat ca varsta maxima a unui jucator este 40 de ani.
 }*/
 
