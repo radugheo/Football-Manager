@@ -1,6 +1,6 @@
 #include "Transfer.h"
 
-Transfer::Transfer(Team &team1, Team &team2, Player &player) :
+Transfer::Transfer(int team1, int team2, Player &player) :
     team1(team1),
     team2(team2),
     player(player) {}
@@ -25,9 +25,7 @@ std::ostream &operator<<(std::ostream &os, const Transfer &transfer) {
 
 Transfer::~Transfer() {}
 
-void Transfer::makeTransfer(int transferSum){
+void Transfer::makeTransfer(){
     ///se transfera de la team1 la team2 contra transferSum bani
     this->player.setTeam(team2);
-    this->team1.modifyBudget(transferSum);
-    this->team2.modifyBudget(-transferSum);
 }

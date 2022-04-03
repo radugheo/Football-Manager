@@ -26,24 +26,22 @@ int main() {
     std::vector<Team>teams;
     Team emptyTeam;
 
+    std::string teamsID[17];
+
     fin >> noOfTeams;
     for (int i=0; i<noOfTeams; i++){
         fin >> teamId >> teamName >> teamBudget >> teamSize;
+        teamsID[teamId] = teamName;
         std::vector<Player>p;
         for (int j=0; j<teamSize; j++){
             fin >> playerName >> playerPosition >> playerAge >> playerRating;
-            p.emplace_back(playerName, playerPosition, playerAge, playerRating, emptyTeam);
+            p.emplace_back(playerName, playerPosition, playerAge, playerRating, teamId);
             allPlayers.emplace_back(p.back());
         }
         teams.emplace_back(Team{teamId, teamName, teamSize, teamBudget, p});
     }
-
     for (int i=0; i<(int)teams.size(); i++){
         teams[i].calculateRating();
-        teams[i].initializePlayers();
-    }
-    for (int i=0; i<(int)teams[0].getPlayers().size(); i++){
-        std::cout << teams[0].getPlayers()[i] << ' ';
     }
     /*---------------------------------------------*/
     /*am de rezolvat urmatoarea problema: la initializePlayers(),
@@ -56,15 +54,22 @@ int main() {
             g.playMatch();
         }
     }
+    for (int i=0; i<noOfTeams-1; i++){
+        for (int j=i+1; j<noOfTeams; j++){
+            Game g{teams[i], teams[j]};
+            g.playMatch();
+        }
+    }
 
     std::sort(teams.begin(), teams.end(), cmp);
-    Transfer tr{teams[0], teams[1], allPlayers[3]};
+
+    /*Transfer tr{teams[0], teams[1], allPlayers[3]};
     tr.makeTransfer(600000);
     std::cout << tr;
 
-    LoanTransfer tr2{teams[3], teams[4], allPlayers[4]};
+    LoanTransfer tr2{teams[3], teams[4], allPlayers[4], 5};
     tr2.makeTransfer(50000, 3);
-    std::cout << tr2;
+    std::cout << tr2;*/
 
     int cnt = 1;
     std::cout << "Nr-Rating-Team-Points\n";

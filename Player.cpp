@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "Team.h"
 
-Player::Player(const std::string &name, const std::string &position, int age, int rating, Team& team) :
+Player::Player(const std::string &name, const std::string &position, int age, int rating, int team) :
 name(name),
 position(position),
 age(age),
@@ -33,11 +33,11 @@ int Player::getRating() const {
     return rating;
 }
 
-void Player::setTeam(Team &team2) {
-    Player::team = team2;
+void Player::setTeam(int team2) {
+    this->team = team2;
 }
 
-Team &Player::getTeam() const {
+int Player::getTeam() const {
     return team;
 }
 
@@ -45,6 +45,7 @@ std::ostream &operator<<(std::ostream &os, const Player &player) {
     os << "name: " << player.name << " team: " << player.team;
     return os;
 }
+
 
 /*int Player::getValue() const {
     return value;

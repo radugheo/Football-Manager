@@ -7,17 +7,17 @@
 
 class Transfer {
 protected:
-    Team& team1;
-    Team& team2;
+    int team1;
+    int team2;
     Player& player;
 public:
-    Transfer(Team &team1, Team &team2, Player &player);
+    Transfer(int team1, int team2, Player &player);
     Transfer(const Transfer& other);
     Transfer& operator=(const Transfer& other);
     friend std::ostream &operator<<(std::ostream &os, const Transfer &transfer);
     ~Transfer();
 
-    void makeTransfer(int transferSum);
+    void makeTransfer();
 };
 
 

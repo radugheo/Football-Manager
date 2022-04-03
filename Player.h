@@ -2,6 +2,7 @@
 #define OOP_PLAYER_H
 
 #include <iostream>
+#include <memory>
 
 class Team;
 
@@ -11,9 +12,9 @@ class Player{
     int age;
     int rating;
     int value;
-    Team& team;
+    int team;
 public:
-    Player(const std::string &name, const std::string &position, int age, int rating, Team &team);
+    Player(const std::string &name, const std::string &position, int age, int rating, int team);
     Player(const Player& other);
     Player& operator=(const Player& other);
 
@@ -23,11 +24,11 @@ public:
 
     int getRating() const;
 
-    Team &getTeam() const;
+    int getTeam() const;
     //int getValue() const;
     //const std::string &getName() const;
 
-    void setTeam(Team &team);
+    void setTeam(int team);
 
     //void calculateValue();
 };

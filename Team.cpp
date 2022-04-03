@@ -69,12 +69,6 @@ void Team::calculateRating() {
     this->rating = sumRating / this->players.size();
 }
 
-void Team::initializePlayers(){
-    for (int i=0; i<(int)this->players.size(); i++){
-        this->players[i].setTeam(*this);
-    }
-}
-
 void Team::modifyBudget(int transferSum) {
     this->budget += transferSum;
 }
