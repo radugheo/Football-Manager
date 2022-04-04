@@ -1,6 +1,6 @@
 16
-1
-FCSB
+0
+Steaua
 5400000
 28
 Vlad GK 23 68
@@ -32,8 +32,8 @@ Stoica ATT 19 65
 Mamut ATT 25 63
 Dumiter ATT 23 62
 Burlacu ATT 25 62
-2
-UCV
+1
+Craiova
 4000000
 25
 Pigliacelli GK 28 71
@@ -62,7 +62,7 @@ Bic MID 27 67
 Vina MID 26 65
 Houri MID 25 68
 Trica-Balaci ATT 16 55
-3
+2
 Dinamo
 2000000
 28
@@ -95,7 +95,7 @@ Borcea MID 19 54
 Morar ATT 27 63
 Irobiso ATT 28 63
 Mihaiu ATT 22 61
-4
+3
 CFR
 6100000
 16
@@ -116,76 +116,76 @@ Costache MID 23 67
 Chipciu MID 32 68
 Stefan DEF 25 67
 Bus ATT 28 66
-5
+4
 Farul
 0
 3
 Aioani GK 22 69
 Iancu ATT 27 68
 Jefte ATT 28 70
-6
+5
 Voluntari
 0
 2
 Tamas DEF 38 66
 Budescu MID 33 68
-7
+6
 Rapid
 0
 3
 Sapunaru DEF 38 66
 Sefer ATT 21 67
 Balan ATT 31 65
-8
+7
 Sepsi
 0
 2
 Niczuly GK 26 67
 Stefanescu ATT 23 66
-9
+8
 Chindia
 0
 2
 Capusa DEF 23 67
 Popadiuc MID 27 63
-10
+9
 Botosani
 0
 3
 Pap GK 27 65
 Dawa DEF 25 68
 Fili ATT 25 67
-11
+10
 Arges
 0
 2
 Serban DEF 29 64
 Ganea ATT 22 65
-12
+11
 UTA
 0
 2
 Erico DEF 32 65
 Miculescu ATT 20 67
-13
+12
 FCU
 0
 2
 Popa GK 19 64
 Bauza ATT 25 64
-14
+13
 Mioveni
 0
 2
 Trif DEF 24 65
 Rusu ATT 31 65
-15
+14
 Academica
 0
 2
 Ureche GK 23 62
 DeAmorim ATT 30 63
-16
+15
 GazMetan
 0
 2

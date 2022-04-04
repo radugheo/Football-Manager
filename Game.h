@@ -18,8 +18,6 @@ public:
 
     void playMatch();
 
-    char getResult() const;
-
     const std::pair<int, int> &getScore() const;
 };
 

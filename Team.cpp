@@ -69,9 +69,9 @@ void Team::calculateRating() {
     this->rating = sumRating / this->players.size();
 }
 
-void Team::modifyBudget(int transferSum) {
+/*void Team::modifyBudget(int transferSum) {
     this->budget += transferSum;
-}
+}*/
 
 int Team::getPoints() const {
     return points;

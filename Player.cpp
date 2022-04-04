@@ -42,7 +42,7 @@ int Player::getTeam() const {
 }
 
 std::ostream &operator<<(std::ostream &os, const Player &player) {
-    os << "name: " << player.name << " team: " << player.team;
+    os << "Pozitie: " << player.position << " | Nume: " << player.name << " | Rating: " << player.rating << " | Varsta: " << player.age << '\n';
     return os;
 }
 

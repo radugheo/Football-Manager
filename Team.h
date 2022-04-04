@@ -28,8 +28,7 @@ public:
     void lose();
     void draw();
     void calculateRating();
-    void initializePlayers();
-    void modifyBudget(int transferSum);
+    //void modifyBudget(int transferSum);
 
     int getRating() const;
     int getPoints() const;
@@ -40,4 +39,4 @@ public:
 };
 
 
-#endif //OOP_TEAM_H
+#endif
