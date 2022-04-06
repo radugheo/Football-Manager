@@ -6,18 +6,18 @@
 #include "Player.h"
 
 class Team{
-    int id;
+    unsigned int id;
     std::string name;
-    int squadSize;
-    int ranking;
-    int rating;
+    unsigned int squadSize;
+    unsigned int ranking;
+    unsigned int rating;
     int budget;
     int points = 0;
     std::vector<Player> players;
-    int matchesPlayed;
+    unsigned int matchesPlayed;
 public:
-    Team(int id, const std::string &name, int squadSize, int budget, const std::vector<Player> &players);
-    Team(int id, const std::string &name, int squadSize, int budget);
+    Team(unsigned int id, const std::string &name, unsigned int squadSize, int budget, const std::vector<Player> &players);
+    Team(unsigned int id, const std::string &name, unsigned int squadSize, int budget);
     Team();
     Team(const Team& other);
     Team& operator=(const Team& other);
@@ -30,7 +30,7 @@ public:
     void calculateRating();
     //void modifyBudget(int transferSum);
 
-    int getRating() const;
+    unsigned int getRating() const;
     int getPoints() const;
 
     const std::vector<Player> &getPlayers() const;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 
 #include "Player.h"
 #include "Team.h"
@@ -9,11 +10,11 @@
 //#include "Transfer.h"
 //#include "LoanTrnsfer.h"
 
-bool cmp (Team &team1, Team &team2){
+bool cmp (const Team &team1, const Team &team2){
     return team1.getPoints() > team2.getPoints();
 }
 
-void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<int> &teamsID){
+void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned int> &teamsID){
     int option, week, nextOpponent;
     option = 0;
     week = 1;
@@ -93,7 +94,7 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<int> &teams
                 std::cout << "\nSelectie invalida\n";
             }
         }
-        else if (week > 30){
+        else{
             std::cout << "===========================================\n";
              std::cout << "Campionatul s-a terminat!\nFelicitari!\n";
              std::cout << "===========================================\n";
@@ -126,7 +127,7 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<int> &teams
     }while(option != 0);
 }
 
-void menuInterface(std::vector<Team>&teams, int& playerTeamID, std::vector<int> teamsID){
+void menuInterface(std::vector<Team>&teams, int& playerTeamID, std::vector<unsigned int> teamsID){
     int option1;
     option1 = 0;
     do{
@@ -178,13 +179,13 @@ int main() {
     std::string playerName, playerPosition;
     std::vector<Player>allPlayers;
 
-    int noOfTeams;
-    int teamId, teamSize, teamBudget;
+    int noOfTeams, teamBudget;
+    unsigned int teamId, teamSize;
     std::string teamName;
     std::vector<Team>teams;
     Team emptyTeam;
     std::string teamsIDName[17];
-    std::vector<int> teamsID;
+    std::vector<unsigned int> teamsID;
 
     [[maybe_unused]]int playerTeamID;
 
@@ -194,7 +195,7 @@ int main() {
         teamsIDName[teamId] = teamName;
         teamsID.push_back(teamId);
         std::vector<Player>p;
-        for (int j=0; j<teamSize; j++){
+        for (auto j=0u; j<teamSize; j++){
             fin >> playerName >> playerPosition >> playerAge >> playerRating;
             p.emplace_back(playerName, playerPosition, playerAge, playerRating, teamId);
             allPlayers.emplace_back(p.back());

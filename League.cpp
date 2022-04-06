@@ -2,7 +2,7 @@
 #include <vector>
 #include <tuple>
 
-League::League(const std::vector<int> &teams) :
+League::League(const std::vector<unsigned int> &teams) :
 teams(teams) {}
 
 League::League(const League& other):

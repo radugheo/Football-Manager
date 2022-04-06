@@ -3,14 +3,14 @@
 #include <vector>
 #include "Team.h"
 
-Team::Team(int id, const std::string &name, int squadSize, int budget, const std::vector<Player> &players) :
+Team::Team(unsigned int id, const std::string &name, unsigned int squadSize, int budget, const std::vector<Player> &players) :
         id(id),
         name(name),
         squadSize(squadSize),
         budget(budget),
         players(players){}
 
-Team::Team(int id, const std::string &name, int squadSize, int budget) :
+Team::Team(unsigned int id, const std::string &name, unsigned int squadSize, int budget) :
         id(id),
         name(name),
         squadSize(squadSize),
@@ -63,7 +63,7 @@ void Team::draw(){
 
 void Team::calculateRating() {
     int sumRating = 0;
-    for (int i=0; i<(int)this->players.size(); i++){
+    for (auto i=0u; i<this->players.size(); i++){
         sumRating += players[i].getRating();
     }
     this->rating = sumRating / this->players.size();
@@ -73,20 +73,20 @@ void Team::calculateRating() {
     this->budget += transferSum;
 }*/
 
-int Team::getPoints() const {
-    return points;
-}
-
-int Team::getRating() const {
-    return rating;
-}
-
 const std::vector<Player> &Team::getPlayers() const {
     return players;
 }
 
 const std::string &Team::getName() const {
     return name;
+}
+
+unsigned int Team::getRating() const {
+    return rating;
+}
+
+int Team::getPoints() const {
+    return points;
 }
 
 
