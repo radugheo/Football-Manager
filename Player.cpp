@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "Team.h"
 
-Player::Player(const std::string &name, const std::string &position, int age, int rating, int team) :
+Player::Player(const std::string &name, const std::string &position, unsigned int age, unsigned int rating, unsigned int team) :
 name(name),
 position(position),
 age(age),
@@ -29,11 +29,11 @@ Player& Player::operator=(const Player& other){
 
 Player::~Player() {}
 
-int Player::getRating() const {
+unsigned int Player::getRating() const {
     return rating;
 }
 
-void Player::setTeam(int team2) {
+void Player::setTeam(unsigned int team2) {
     this->team = team2;
 }
 

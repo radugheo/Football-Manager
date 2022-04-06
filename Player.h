@@ -9,12 +9,12 @@ class Team;
 class Player{
     std::string name;
     std::string position;
-    int age;
-    int rating;
-    int value;
-    int team;
+    unsigned int age;
+    unsigned int rating;
+    unsigned int value;
+    unsigned int team;
 public:
-    Player(const std::string &name, const std::string &position, int age, int rating, int team);
+    Player(const std::string &name, const std::string &position, unsigned int age, unsigned int rating, unsigned int team);
     Player(const Player& other);
     Player& operator=(const Player& other);
 
@@ -22,12 +22,12 @@ public:
 
     ~Player();
 
-    int getRating() const;
+    unsigned int getRating() const;
 
     //int getValue() const;
     //const std::string &getName() const;
 
-    void setTeam(int team);
+    void setTeam(unsigned int team);
 
     //void calculateValue();
 };
