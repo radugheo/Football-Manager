@@ -7,8 +7,8 @@
 #include "Team.h"
 #include "Game.h"
 #include "League.h"
-//#include "Transfer.h"
-//#include "LoanTrnsfer.h"
+#include "Transfer.h"
+#include "LoanTransfer.h"
 
 bool cmp (const Team &team1, const Team &team2){
     return team1.getPoints() > team2.getPoints();
@@ -209,6 +209,11 @@ int main() {
 
     //std::cout << get<0>(test[3]) << ' ' << get<1>(test[3]) << ' ' << get<2>(test[3]) << '\n';
 
+    Transfer tr{teamsID[0], teamsID[1], allPlayers[3]};
+    tr.makeTransfer();
+    LoanTransfer tr2{teamsID[0], teamsID[1], allPlayers[4], 5};
+    tr2.makeTransfer(5);
+    std::cout << tr2.getLoanLength();
 
     /*std::sort(teams.begin(), teams.end(), cmp);
     int cnt = 1;

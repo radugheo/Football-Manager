@@ -4,11 +4,13 @@
 #include "Transfer.h"
 
 class LoanTransfer : public Transfer{
-    int loanLength;
+    unsigned int loanLength;
 public:
-    LoanTransfer(int team1, int team2, Player &player, int loanLength);
+    LoanTransfer(unsigned int team1, unsigned int team2, Player &player, unsigned int loanLength);
 
-    //void makeTransfer(int loanLength);
+    void makeTransfer(unsigned int loanLength);
+
+    unsigned int getLoanLength() const;
 };
 
 

@@ -7,17 +7,17 @@
 
 class Transfer {
 protected:
-    int team1;
-    int team2;
+    unsigned int team1;
+    unsigned int team2;
     Player& player;
 public:
-    Transfer(int team1, int team2, Player &player);
+    Transfer(unsigned int team1, unsigned int team2, Player &player);
     Transfer(const Transfer& other);
     Transfer& operator=(const Transfer& other);
     friend std::ostream &operator<<(std::ostream &os, const Transfer &transfer);
     ~Transfer();
 
-    //void makeTransfer();
+    void makeTransfer();
 };
 
 
