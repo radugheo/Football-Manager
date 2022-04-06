@@ -8,7 +8,7 @@ class LoanTransfer : public Transfer{
 public:
     LoanTransfer(int team1, int team2, Player &player, int loanLength);
 
-    void makeTransfer(int loanLength);
+    //void makeTransfer(int loanLength);
 };
 
 

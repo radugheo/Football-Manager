@@ -15,6 +15,7 @@ name(other.name),
 position(other.position),
 age(other.age),
 rating(other.rating),
+value(other.value),
 team(other.team){}
 
 Player& Player::operator=(const Player& other){

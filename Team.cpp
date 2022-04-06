@@ -10,12 +10,6 @@ Team::Team(unsigned int id, const std::string &name, unsigned int squadSize, int
         budget(budget),
         players(players){}
 
-Team::Team(unsigned int id, const std::string &name, unsigned int squadSize, int budget) :
-        id(id),
-        name(name),
-        squadSize(squadSize),
-        budget(budget){}
-
 Team::Team() {}
 
 Team::Team(const Team& other) :

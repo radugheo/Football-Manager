@@ -8,7 +8,7 @@ class Game {
     Team& team1;
     Team& team2;
     std::pair<int, int> score{0, 0};
-    char result;
+    char result = 'N';
 public:
     Game(Team &team1, Team &team2);
     Game(const Game& other);

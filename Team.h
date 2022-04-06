@@ -6,18 +6,17 @@
 #include "Player.h"
 
 class Team{
-    unsigned int id;
+    unsigned int id = 0;
     std::string name;
-    unsigned int squadSize;
-    unsigned int ranking;
-    unsigned int rating;
-    int budget;
+    unsigned int squadSize = 0;
+    unsigned int ranking = 0;
+    unsigned int rating = 0;
+    int budget = 0;
     int points = 0;
     std::vector<Player> players;
-    unsigned int matchesPlayed;
+    unsigned int matchesPlayed = 0;
 public:
     Team(unsigned int id, const std::string &name, unsigned int squadSize, int budget, const std::vector<Player> &players);
-    Team(unsigned int id, const std::string &name, unsigned int squadSize, int budget);
     Team();
     Team(const Team& other);
     Team& operator=(const Team& other);
