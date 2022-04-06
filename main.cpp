@@ -184,7 +184,7 @@ int main() {
     std::string teamName;
     std::vector<Team>teams;
     Team emptyTeam;
-    std::string teamsIDName[17];
+    //std::string teamsIDName[17];
     std::vector<unsigned int> teamsID;
 
     [[maybe_unused]]int playerTeamID;
@@ -192,7 +192,7 @@ int main() {
     fin >> noOfTeams;
     for (int i=0; i<noOfTeams; i++){
         fin >> teamId >> teamName >> teamBudget >> teamSize;
-        teamsIDName[teamId] = teamName;
+        //teamsIDName[teamId] = teamName;
         teamsID.push_back(teamId);
         std::vector<Player>p;
         for (auto j=0u; j<teamSize; j++){

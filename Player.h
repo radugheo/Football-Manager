@@ -24,7 +24,6 @@ public:
 
     int getRating() const;
 
-    int getTeam() const;
     //int getValue() const;
     //const std::string &getName() const;
 

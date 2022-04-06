@@ -17,7 +17,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Transfer &transfer);
     ~Transfer();
 
-    void makeTransfer();
+    //void makeTransfer();
 };
 
 

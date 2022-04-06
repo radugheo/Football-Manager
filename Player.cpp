@@ -37,10 +37,6 @@ void Player::setTeam(int team2) {
     this->team = team2;
 }
 
-int Player::getTeam() const {
-    return team;
-}
-
 std::ostream &operator<<(std::ostream &os, const Player &player) {
     os << "Pozitie: " << player.position << " | Nume: " << player.name << " | Rating: " << player.rating << " | Varsta: " << player.age << '\n';
     return os;

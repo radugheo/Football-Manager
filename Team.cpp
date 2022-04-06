@@ -62,7 +62,7 @@ void Team::draw(){
 }
 
 void Team::calculateRating() {
-    int sumRating = 0;
+    unsigned int sumRating = 0;
     for (auto i=0u; i<this->players.size(); i++){
         sumRating += players[i].getRating();
     }
