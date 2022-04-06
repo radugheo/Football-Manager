@@ -30,12 +30,12 @@ Game::~Game() {}
 
 void Game::playMatch(){
     double win1 = 35, win2 = 35;
-    int goals1 = 0, goals2 = 0, dif = 0;
-    int ratingA = this->team1.getRating(), ratingB = this->team2.getRating();
+    int goals1 = 0, goals2 = 0;
+    unsigned int ratingA = this->team1.getRating(), ratingB = this->team2.getRating(), dif;
     ///la fiecare 10 minute din meci, se poate marca un gol (am pus 100 de minute cu tot cu prelungiri xD)
     ///initial, sansele vor fi in felul urmator: 35, 35, 30
     ///pentru fiecare punct de rating diferenta intre cele 2 echipe, sansele
-    ///vor creste cu 2*puncte, iar pentru cealalta echipa, vor scadea cu
+    ///vor creste cu puncte*puncte, iar pentru cealalta echipa, vor scadea cu
     ///nr de puncte
     ///exemplu: echipa 1 are 69 rating, echipa 2 are 66 rating
     ///diferenta 3

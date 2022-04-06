@@ -8,7 +8,7 @@ class League {
     std::vector<unsigned int> teams;
     std::vector<std::tuple<int, int, int> > fixtures;
 public:
-    League(const std::vector<unsigned int> &teams);
+    explicit League(const std::vector<unsigned int> &teams);
     League(const League& other);
     League& operator=(const League& other);
     friend std::ostream &operator<<(std::ostream &os, const League &league);

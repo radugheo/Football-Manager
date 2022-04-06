@@ -11,7 +11,7 @@ class Player{
     std::string position;
     unsigned int age;
     unsigned int rating;
-    unsigned int value;
+    unsigned int value = 0;
     unsigned int team;
 public:
     Player(const std::string &name, const std::string &position, unsigned int age, unsigned int rating, unsigned int team);

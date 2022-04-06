@@ -127,7 +127,7 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned in
     }while(option != 0);
 }
 
-void menuInterface(std::vector<Team>&teams, int& playerTeamID, std::vector<unsigned int> teamsID){
+void menuInterface(const std::vector<Team>&teams, int& playerTeamID, std::vector<unsigned int> teamsID){
     int option1;
     option1 = 0;
     do{
