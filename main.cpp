@@ -174,7 +174,7 @@ void menuInterface(const std::vector<Team>&teams, int& playerTeamID, std::vector
 
 int main() {
     /*-----------------takeInput-------------------*/
-    std::ifstream fin("resources/date.txt");
+    std::ifstream fin("date.txt");
 
     int playerAge, playerRating;
     std::string playerName, playerPosition;
