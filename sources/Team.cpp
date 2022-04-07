@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Team.h"
+#include "../headers/Team.h"
 
 Team::Team(unsigned int id, const std::string &name, int budget, const std::vector<Player> &players) :
         id(id),

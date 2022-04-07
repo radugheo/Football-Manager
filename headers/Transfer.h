@@ -2,8 +2,7 @@
 #define OOP_TRANSFER_H
 
 #include <ostream>
-#include "Team.h"
-#include "Player.h"
+#include "../headers/Player.h"
 
 class Transfer {
 protected:

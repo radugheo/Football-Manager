@@ -2,7 +2,7 @@
 #define OOP_GAME_H
 
 #include <iostream>
-#include "Team.h"
+#include "../headers/Team.h"
 
 class Game {
     Team& team1;

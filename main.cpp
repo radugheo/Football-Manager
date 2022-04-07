@@ -3,12 +3,12 @@
 #include <vector>
 #include <algorithm>
 
-#include "Player.h"
-#include "Team.h"
-#include "Game.h"
-#include "League.h"
-#include "Transfer.h"
-#include "LoanTransfer.h"
+#include "headers/Player.h"
+#include "headers/Team.h"
+#include "headers/Game.h"
+#include "headers/League.h"
+#include "headers/Transfer.h"
+#include "headers/LoanTransfer.h"
 
 bool cmp (const Team &team1, const Team &team2){
     return team1.getPoints() > team2.getPoints();
@@ -174,7 +174,7 @@ void menuInterface(const std::vector<Team>&teams, int& playerTeamID, std::vector
 
 int main() {
     /*-----------------takeInput-------------------*/
-    std::ifstream fin("date.txt");
+    std::ifstream fin("resources/date.txt");
 
     int playerAge, playerRating;
     std::string playerName, playerPosition;

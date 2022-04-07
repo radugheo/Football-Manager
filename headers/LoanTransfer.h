@@ -1,7 +1,7 @@
 #ifndef OOP_LOANTRANSFER_H
 #define OOP_LOANTRANSFER_H
 
-#include "Transfer.h"
+#include "../headers/Transfer.h"
 
 class LoanTransfer : public Transfer{
     unsigned int loanLength;

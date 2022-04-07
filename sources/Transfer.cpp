@@ -1,4 +1,4 @@
-#include "Transfer.h"
+#include "../headers/Transfer.h"
 
 Transfer::Transfer(unsigned int team1, unsigned int team2, Player &player) :
     team1(team1),

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Player.h"
-#include "Team.h"
+#include "../headers/Player.h"
+#include "../headers/Team.h"
 
 Player::Player(const std::string &name, const std::string &position, unsigned int age, unsigned int rating, unsigned int team) :
 name(name),

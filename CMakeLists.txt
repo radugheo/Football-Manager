@@ -24,7 +24,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml when changing name here
-add_executable(${PROJECT_NAME} main.cpp Player.cpp Player.h Team.cpp Team.h Game.cpp Game.h Transfer.cpp Transfer.h LoanTransfer.cpp LoanTransfer.h League.cpp League.h)
+add_executable(${PROJECT_NAME} main.cpp sources/Player.cpp headers/Player.h sources/Team.cpp headers/Team.h sources/Game.cpp headers/Game.h sources/Transfer.cpp headers/Transfer.h sources/LoanTransfer.cpp headers/LoanTransfer.h sources/League.cpp headers/League.h)
 
 ###############################################################################
 
