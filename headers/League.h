@@ -6,7 +6,7 @@
 
 class League {
     std::vector<unsigned int> teams;
-    std::vector<std::pair<std::pair<int, int>, int> > fixtures;
+    std::vector<std::pair<std::pair<unsigned int, unsigned int>, unsigned int> > fixtures;
 public:
     explicit League(const std::vector<unsigned int> &teams);
     League(const League& other);
@@ -16,7 +16,7 @@ public:
 
     void makeFixtures();
 
-    const std::vector<std::pair<std::pair<int, int>, int>> &getFixtures() const;
+    const std::vector<std::pair<std::pair<unsigned int, unsigned int>, unsigned int>> &getFixtures() const;
 };
 
 

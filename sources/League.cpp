@@ -17,8 +17,8 @@ League& League::operator=(const League& other){
 
 std::ostream &operator<<(std::ostream &os, const League &league) {
     os << "teams: ";
-    for (auto i=0u; i<league.teams.size(); i++){
-        std::cout << league.teams[i] << ' ';
+    for (auto team : league.teams){
+        std::cout << team << ' ';
     }
     os << "\nfixtures: \n";
     for (auto i=0u; i<league.fixtures.size(); i++){
@@ -58,7 +58,7 @@ void League::makeFixtures() {
     }
 }
 
-const std::vector<std::pair<std::pair<int, int>, int>> &League::getFixtures() const {
+const std::vector<std::pair<std::pair<unsigned int, unsigned int>, unsigned int>> &League::getFixtures() const {
     return fixtures;
 }
 

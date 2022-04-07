@@ -14,21 +14,19 @@ bool cmp (const Team &team1, const Team &team2){
     return team1.getPoints() > team2.getPoints();
 }
 
-void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned int> &teamsID){
-    int option, week, nextOpponent;
+void menuMain1(std::vector<Team>teams, unsigned int playerTeamID, std::vector<unsigned int> &teamsID){
+    int option = 0;
+    unsigned int week = 1, nextOpponent = 0;
     bool finish = false;
-    option = 0;
-    week = 1;
-    nextOpponent = 0;
     system("cls");
     std::cout << "\nAi ales echipa " << teams[playerTeamID].getName() << ". Bafta in noua ta cariera!\n";
     do{
         std::cout << teams[playerTeamID].getName() << '\n';
         League league{teamsID};
         league.makeFixtures();
-        std::vector<std::pair<std::pair<int, int>, int>  > test;
+        std::vector<std::pair<std::pair<unsigned int, unsigned int>, unsigned int>  > test;
         test = league.getFixtures();
-        if (week > 1 && finish == false) {
+        if (week > 1 && !finish) {
             std::cout << "\n===========================================\n";
             std::cout << "Rezultate:\n";
             for (int i = 0; i < (int) test.size(); i += 8) {
@@ -36,7 +34,6 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned in
                     for (int j = i; j < i + 8; j++) {
                         Game game{teams[test[j].first.first], teams[test[j].first.second]};
                         game.playMatch();
-
                         std::pair<int, int> score;
                         score = game.getScore();
                         std::cout << teams[test[j].first.first].getName() << ' ' << score.first << " - " << score.second << ' ' << teams[test[j].first.second].getName() << '\n';
@@ -44,7 +41,7 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned in
                 }
             }
         }
-        if (week <= 30 && finish == false) {
+        if (week <= 30 && !finish) {
             for (int i=0; i<(int)test.size(); i += 8){
                 if (test[i].second == week){
                     for (int j=i; j<i+8; j++) {
@@ -128,7 +125,7 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned in
     }while(option != 0);
 }
 
-void menuInterface(const std::vector<Team>&teams, int& playerTeamID, std::vector<unsigned int> teamsID){
+void menuInterface(const std::vector<Team>&teams, unsigned int& playerTeamID, std::vector<unsigned int> teamsID){
     int option1;
     option1 = 0;
     do{
@@ -146,7 +143,7 @@ void menuInterface(const std::vector<Team>&teams, int& playerTeamID, std::vector
             std::cout << "\nIntrodu ID-ul echipei pe care o doresti.\n";
             std::cin >> playerTeamID;
             system("cls");
-            if (playerTeamID >= 0 && playerTeamID <= 15) {
+            if (playerTeamID <= 15) {
                 menuMain1(teams, playerTeamID, teamsID);
             }
             else{
@@ -185,15 +182,13 @@ int main() {
     std::string teamName;
     std::vector<Team>teams;
     Team emptyTeam;
-    //std::string teamsIDName[17];
     std::vector<unsigned int> teamsID;
 
-    [[maybe_unused]]int playerTeamID;
+    [[maybe_unused]]unsigned int playerTeamID;
 
     fin >> noOfTeams;
     for (int i=0; i<noOfTeams; i++){
         fin >> teamId >> teamName >> teamBudget >> teamSize;
-        //teamsIDName[teamId] = teamName;
         teamsID.push_back(teamId);
         std::vector<Player>p;
         for (auto j=0u; j<teamSize; j++){
@@ -204,26 +199,16 @@ int main() {
         teams.emplace_back(Team{teamId, teamName, teamBudget, p});
         teams[i].calculateRating();
     }
-
     menuInterface(teams, playerTeamID, teamsID);
-
-    //std::cout << get<0>(test[3]) << ' ' << get<1>(test[3]) << ' ' << get<2>(test[3]) << '\n';
-
     Transfer tr{teamsID[0], teamsID[1], allPlayers[3]};
     tr.makeTransfer();
     LoanTransfer tr2{teamsID[0], teamsID[1], allPlayers[4], 5};
     tr2.makeTransfer(5);
     std::cout << tr2.getLoanLength();
-
-    /*std::sort(teams.begin(), teams.end(), cmp);
-    int cnt = 1;
-    std::cout << "Nr-Rating-Team-Points\n";
-    for (auto &team:teams){
-        std::cout << cnt << ". " << team;
-        cnt++;
-    }*/
     return 0;
 }
+
+
 /*
  * version x.y.z:
  * x = major changes
