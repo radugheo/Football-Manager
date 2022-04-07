@@ -16,6 +16,7 @@ bool cmp (const Team &team1, const Team &team2){
 
 void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned int> &teamsID){
     int option, week, nextOpponent;
+    bool finish = false;
     option = 0;
     week = 1;
     nextOpponent = 0;
@@ -27,7 +28,7 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned in
         league.makeFixtures();
         std::vector<std::tuple<int, int, int> > test;
         test = league.getFixtures();
-        if (week > 1) {
+        if (week > 1 && finish == false) {
             std::cout << "\n===========================================\n";
             std::cout << "Rezultate:\n";
             for (int i = 0; i < (int) test.size(); i += 8) {
@@ -43,7 +44,7 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned in
                 }
             }
         }
-        if (week <= 30) {
+        if (week <= 30 && finish == false) {
             for (int i=0; i<(int)test.size(); i += 8){
                 if (get<2>(test[i]) == week){
                     for (int j=i; j<i+8; j++) {
@@ -95,31 +96,31 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned in
             }
         }
         else{
+            finish = true;
             std::cout << "===========================================\n";
-             std::cout << "Campionatul s-a terminat!\nFelicitari!\n";
-             std::cout << "===========================================\n";
-             std::cout << "Clasamentul\n";
-             std::vector<Team> teamsCopy = teams;
-             std::sort(teamsCopy.begin(), teamsCopy.end(), cmp);
-             int cnt = 1;
-             for (auto &team:teamsCopy){
-                 std::cout << cnt << ". | " << team.getPoints() << "p | " << team.getName() << "\n";
-                 cnt++;
-             }
-             std::cout << "===========================================\n";
-             std::cout << "Meniu:\n";
+            std::cout << "Campionatul s-a terminat!\nFelicitari!\n";
             std::cout << "===========================================\n";
-             std::cout << "0. Iesire.\n";
-             std::cout << "===========================================";
-             std::cout << "\nIntroduceti numarul actiunii: ";
-             std::cin >> option;
-
-             if (option == 0){
-                 std::cout << "\nExit.\n";
-             }
-             if (option < 0 || option > 0){
-                 std::cout << "\nSelectie invalida\n";
-             }
+            std::cout << "Clasamentul\n";
+            std::vector<Team> teamsCopy = teams;
+            std::sort(teamsCopy.begin(), teamsCopy.end(), cmp);
+            int cnt = 1;
+            for (auto &team:teamsCopy){
+                std::cout << cnt << ". | " << team.getPoints() << "p | " << team.getName() << "\n";
+                cnt++;
+            }
+            std::cout << "===========================================\n";
+            std::cout << "Meniu:\n";
+            std::cout << "===========================================\n";
+            std::cout << "0. Iesire.\n";
+            std::cout << "===========================================";
+            std::cout << "\nIntroduceti numarul actiunii: ";
+            std::cin >> option;
+            if (option == 0){
+                std::cout << "\nExit.\n";
+            }
+            if (option < 0 || option > 0){
+                std::cout << "\nSelectie invalida\n";
+            }
         }
         std::cout << "\n";
         system("pause");
@@ -155,7 +156,7 @@ void menuInterface(const std::vector<Team>&teams, int& playerTeamID, std::vector
         if (option1 == 2){
             int cnt = 1;
             for (auto &team:teams){
-                std::cout << cnt << ". " << team.getName() << '\n';
+                std::cout << cnt << ". " << team.getName() << ' ' << team.getRating() << '\n';
                 cnt++;
             }
         }
@@ -200,12 +201,11 @@ int main() {
             p.emplace_back(playerName, playerPosition, playerAge, playerRating, teamId);
             allPlayers.emplace_back(p.back());
         }
-        teams.emplace_back(Team{teamId, teamName, teamSize, teamBudget, p});
+        teams.emplace_back(Team{teamId, teamName, teamBudget, p});
         teams[i].calculateRating();
     }
 
     menuInterface(teams, playerTeamID, teamsID);
-
 
     //std::cout << get<0>(test[3]) << ' ' << get<1>(test[3]) << ' ' << get<2>(test[3]) << '\n';
 

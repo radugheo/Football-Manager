@@ -58,6 +58,6 @@ void League::makeFixtures() {
     }
 }
 
-const std::vector<std::tuple<unsigned int, unsigned int, unsigned int>> &League::getFixtures() const {
+const std::vector<std::tuple<int, int, int>> &League::getFixtures() const {
     return fixtures;
 }

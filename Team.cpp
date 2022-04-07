@@ -3,10 +3,9 @@
 #include <vector>
 #include "Team.h"
 
-Team::Team(unsigned int id, const std::string &name, unsigned int squadSize, int budget, const std::vector<Player> &players) :
+Team::Team(unsigned int id, const std::string &name, int budget, const std::vector<Player> &players) :
         id(id),
         name(name),
-        squadSize(squadSize),
         budget(budget),
         players(players){}
 
@@ -15,24 +14,24 @@ Team::Team() {}
 Team::Team(const Team& other) :
         id(other.id),
         name(other.name),
-        squadSize(other.squadSize),
         ranking(other.ranking),
         rating(other.rating),
         budget(other.budget),
         points(other.points),
         players(other.players),
-        matchesPlayed(other.matchesPlayed){}
+        matchesPlayed(other.matchesPlayed),
+        lastMatchResult(other.lastMatchResult){}
 
 Team& Team::operator=(const Team& other){
     id = other.id;
     name = other.name;
-    squadSize = other.squadSize;
     ranking = other.ranking;
     rating = other.rating;
     budget = other.budget;
     points = other.points;
     players = other.players;
     matchesPlayed = other.matchesPlayed;
+    lastMatchResult = other.lastMatchResult;
     return *this;
 }
 std::ostream& operator<<(std::ostream& os, const Team& team){
@@ -44,23 +43,26 @@ Team::~Team() {}
 
 void Team::win(){
     this->points = this->points + 3;
+    this->lastMatchResult = 2;
     this->matchesPlayed++;
 }
 void Team::lose(){
     ///nu se intampla nimic, castiga 0p
+    this->lastMatchResult = 0;
     this->matchesPlayed++;
 }
 void Team::draw(){
     this->points = this->points + 1;
+    this->lastMatchResult = 1;
     this->matchesPlayed++;
 }
 
 void Team::calculateRating() {
-    unsigned long long sumRating = 0;
-    for (auto i=0u; i<this->players.size(); i++){
+    unsigned int sumRating = 0;
+    for (auto i=0u; i<11; i++){
         sumRating += players[i].getRating();
     }
-    this->rating = sumRating / this->players.size();
+    this->rating = sumRating / 11;
 }
 
 /*void Team::modifyBudget(int transferSum) {
@@ -81,6 +83,10 @@ unsigned int Team::getRating() const {
 
 int Team::getPoints() const {
     return points;
+}
+
+unsigned int Team::getLastMatchResult() const {
+    return lastMatchResult;
 }
 
 
