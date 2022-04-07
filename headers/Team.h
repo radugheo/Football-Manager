@@ -14,7 +14,7 @@ class Team{
     int points = 0;
     std::vector<Player> players;
     unsigned int matchesPlayed = 0;
-    unsigned int lastMatchResult;
+    unsigned int lastMatchResult = 1;
 public:
     Team(unsigned int id, const std::string &name, int budget, const std::vector<Player> &players);
     Team();

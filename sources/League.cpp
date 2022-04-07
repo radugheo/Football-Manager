@@ -22,9 +22,9 @@ std::ostream &operator<<(std::ostream &os, const League &league) {
     }
     os << "\nfixtures: \n";
     for (auto i=0u; i<league.fixtures.size(); i++){
-        os << get<0>(league.fixtures[i]) << " - " << get<1>(league.fixtures[i]) << '\n';
+        os << league.fixtures[i].first.first << " - " << league.fixtures[i].first.second << '\n';
         if ((i+1) % 8 == 0){
-            os << get<2>(league.fixtures[i]) << "\n========\n";
+            os << league.fixtures[i].second << "\n========\n";
         }
     }
     os << "\n\n";
@@ -36,7 +36,7 @@ League::~League() {}
 void League::makeFixtures() {
     while ((this->fixtures).size() < (this->teams).size()/2 * ((this->teams).size() - 1)){
         for (int i=0; i<(int)(this->teams).size()/2; i++){
-            fixtures.emplace_back(std::make_tuple((this->teams)[i], (this->teams)[16 - i - 1], (this->fixtures).size()/8 + 1));
+            fixtures.emplace_back(std::make_pair((this->teams)[i], (this->teams)[16 - i - 1]), (this->fixtures).size()/8 + 1);
         }
         unsigned int aux = (this->teams)[15];
         for (auto i=(this->teams).size() - 1; i>1; i--){
@@ -48,7 +48,7 @@ void League::makeFixtures() {
     }
     while ((this->fixtures).size() + 1 < 2*((this->teams).size()/2 * ((this->teams).size() - 1))){
         for (int i=0; i<(int)(this->teams).size()/2; i++){
-            fixtures.emplace_back(std::make_tuple((this->teams)[16 - i - 1], (this->teams)[i], (this->fixtures).size()/8 + 1));
+            fixtures.emplace_back(std::make_pair((this->teams)[16 - i - 1], (this->teams)[i]), (this->fixtures).size()/8 + 1);
         }
         unsigned int aux = (this->teams)[15];
         for (int i=(int)(this->teams).size() - 1; i>1; i--){
@@ -58,6 +58,7 @@ void League::makeFixtures() {
     }
 }
 
-const std::vector<std::tuple<int, int, int>> &League::getFixtures() const {
+const std::vector<std::pair<std::pair<int, int>, int>> &League::getFixtures() const {
     return fixtures;
 }
+

@@ -26,32 +26,32 @@ void menuMain1(std::vector<Team>teams, int playerTeamID, std::vector<unsigned in
         std::cout << teams[playerTeamID].getName() << '\n';
         League league{teamsID};
         league.makeFixtures();
-        std::vector<std::tuple<int, int, int> > test;
+        std::vector<std::pair<std::pair<int, int>, int>  > test;
         test = league.getFixtures();
         if (week > 1 && finish == false) {
             std::cout << "\n===========================================\n";
             std::cout << "Rezultate:\n";
             for (int i = 0; i < (int) test.size(); i += 8) {
-                if (get<2>(test[i]) == week - 1) {
+                if (test[i].second == week - 1) {
                     for (int j = i; j < i + 8; j++) {
-                        Game game{teams[get<0>(test[j])], teams[get<1>(test[j])]};
+                        Game game{teams[test[j].first.first], teams[test[j].first.second]};
                         game.playMatch();
 
                         std::pair<int, int> score;
                         score = game.getScore();
-                        std::cout << teams[get<0>(test[j])].getName() << ' ' << score.first << " - " << score.second << ' ' << teams[get<1>(test[j])].getName() << '\n';
+                        std::cout << teams[test[j].first.first].getName() << ' ' << score.first << " - " << score.second << ' ' << teams[test[j].first.second].getName() << '\n';
                     }
                 }
             }
         }
         if (week <= 30 && finish == false) {
             for (int i=0; i<(int)test.size(); i += 8){
-                if (get<2>(test[i]) == week){
+                if (test[i].second == week){
                     for (int j=i; j<i+8; j++) {
-                        if (get<0>(test[j]) == playerTeamID) {
-                            nextOpponent = get<1>(test[j]);
-                        } else if (get<1>(test[j]) == playerTeamID) {
-                            nextOpponent = get<0>(test[j]);
+                        if (test[j].first.first == playerTeamID) {
+                            nextOpponent = test[j].first.second;
+                        } else if (test[j].first.second == playerTeamID) {
+                            nextOpponent = test[j].first.first;
                         }
                     }
                 }
