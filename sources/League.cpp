@@ -39,9 +39,9 @@ League::~League() {}
 void League::makeFixtures() {
     while ((this->fixtures_team1).size() < (this->teams).size()/2 * ((this->teams).size() - 1)){
         for (int i=0; i<(int)(this->teams).size()/2; i++){
-            fixtures_team1.emplace_back((this->teams)[i]);
-            fixtures_team2.emplace_back((this->teams)[16 - i - 1]);
-            fixtures_week.emplace_back((this->fixtures_team1).size()/8 + 1);
+            (this->fixtures_team1).emplace_back((this->teams)[i]);
+            (this->fixtures_team2).emplace_back((this->teams)[16 - i - 1]);
+            (this->fixtures_week).emplace_back((this->fixtures_team1).size()/8 + 1);
         }
         unsigned int aux = (this->teams)[15];
         for (auto i=(this->teams).size() - 1; i>1; i--){
@@ -53,9 +53,9 @@ void League::makeFixtures() {
     }
     while ((this->fixtures_team1).size() + 1 < 2*((this->teams).size()/2 * ((this->teams).size() - 1))){
         for (int i=0; i<(int)(this->teams).size()/2; i++){
-            fixtures_team1.emplace_back((this->teams)[16 - i - 1]);
-            fixtures_team2.emplace_back((this->teams)[i]);
-            fixtures_week.emplace_back((this->fixtures_team1).size()/8 + 1);
+            (this->fixtures_team1).emplace_back((this->teams)[16 - i - 1]);
+            (this->fixtures_team2).emplace_back((this->teams)[i]);
+            (this->fixtures_week).emplace_back((this->fixtures_team1).size()/8 + 1);
         }
         unsigned int aux = (this->teams)[15];
         for (int i=(int)(this->teams).size() - 1; i>1; i--){
