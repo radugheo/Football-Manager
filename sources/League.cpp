@@ -1,17 +1,20 @@
 #include "../headers/League.h"
 #include <vector>
-#include <tuple>
 
 League::League(const std::vector<unsigned int> &teams) :
 teams(teams) {}
 
 League::League(const League& other):
 teams(other.teams),
-fixtures(other.fixtures){}
+fixtures_team1(other.fixtures_team1),
+fixtures_team2(other.fixtures_team2),
+fixtures_week(other.fixtures_week){}
 
 League& League::operator=(const League& other){
     teams = other.teams;
-    fixtures = other.fixtures;
+    fixtures_team1 = other.fixtures_team1;
+    fixtures_team2 = other.fixtures_team2;
+    fixtures_week = other.fixtures_week;
     return *this;
 }
 
@@ -21,10 +24,10 @@ std::ostream &operator<<(std::ostream &os, const League &league) {
         std::cout << team << ' ';
     }
     os << "\nfixtures: \n";
-    for (auto i=0u; i<league.fixtures.size(); i++){
-        os << league.fixtures[i].first.first << " - " << league.fixtures[i].first.second << '\n';
+    for (auto i=0u; i<league.fixtures_team1.size(); i++){
+        os << league.fixtures_team1[i] << " - " << league.fixtures_team2[i] << '\n';
         if ((i+1) % 8 == 0){
-            os << league.fixtures[i].second << "\n========\n";
+            os << league.fixtures_week[i] << "\n========\n";
         }
     }
     os << "\n\n";
@@ -34,9 +37,11 @@ std::ostream &operator<<(std::ostream &os, const League &league) {
 League::~League() {}
 
 void League::makeFixtures() {
-    while ((this->fixtures).size() < (this->teams).size()/2 * ((this->teams).size() - 1)){
+    while ((this->fixtures_team1).size() < (this->teams).size()/2 * ((this->teams).size() - 1)){
         for (int i=0; i<(int)(this->teams).size()/2; i++){
-            fixtures.emplace_back(std::make_pair((this->teams)[i], (this->teams)[16 - i - 1]), (this->fixtures).size()/8 + 1);
+            fixtures_team1.emplace_back((this->teams)[i]);
+            fixtures_team2.emplace_back((this->teams)[16 - i - 1]);
+            fixtures_week.emplace_back((this->fixtures_team1).size()/8 + 1);
         }
         unsigned int aux = (this->teams)[15];
         for (auto i=(this->teams).size() - 1; i>1; i--){
@@ -46,9 +51,11 @@ void League::makeFixtures() {
         /* este algoritmul round robin pentru generarea meciurilor directe
          * https://en.wikipedia.org/wiki/Round-robin_tournament#Scheduling_algorithm */
     }
-    while ((this->fixtures).size() + 1 < 2*((this->teams).size()/2 * ((this->teams).size() - 1))){
+    while ((this->fixtures_team1).size() + 1 < 2*((this->teams).size()/2 * ((this->teams).size() - 1))){
         for (int i=0; i<(int)(this->teams).size()/2; i++){
-            fixtures.emplace_back(std::make_pair((this->teams)[16 - i - 1], (this->teams)[i]), (this->fixtures).size()/8 + 1);
+            fixtures_team1.emplace_back((this->teams)[16 - i - 1]);
+            fixtures_team2.emplace_back((this->teams)[i]);
+            fixtures_week.emplace_back((this->fixtures_team1).size()/8 + 1);
         }
         unsigned int aux = (this->teams)[15];
         for (int i=(int)(this->teams).size() - 1; i>1; i--){
@@ -58,7 +65,15 @@ void League::makeFixtures() {
     }
 }
 
-const std::vector<std::pair<std::pair<unsigned int, unsigned int>, unsigned int>> &League::getFixtures() const {
-    return fixtures;
+const std::vector<unsigned int> &League::getFixturesTeam1() const {
+    return fixtures_team1;
+}
+
+const std::vector<unsigned int> &League::getFixturesTeam2() const {
+    return fixtures_team2;
+}
+
+const std::vector<unsigned int> &League::getFixturesWeek() const {
+    return fixtures_week;
 }
 

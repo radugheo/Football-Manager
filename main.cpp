@@ -24,31 +24,35 @@ void menuMain1(std::vector<Team>teams, unsigned int playerTeamID, std::vector<un
         std::cout << teams[playerTeamID].getName() << '\n';
         League league{teamsID};
         league.makeFixtures();
-        std::vector<std::pair<std::pair<unsigned int, unsigned int>, unsigned int>  > test;
-        test = league.getFixtures();
+        std::vector<unsigned int> homeTeams;
+        std::vector<unsigned int> awayTeams;
+        std::vector<unsigned int> weekNumber;
+        homeTeams = league.getFixturesTeam1();
+        awayTeams = league.getFixturesTeam2();
+        weekNumber = league.getFixturesWeek();
         if (week > 1 && !finish) {
             std::cout << "\n===========================================\n";
             std::cout << "Rezultate:\n";
-            for (int i = 0; i < (int) test.size(); i += 8) {
-                if (test[i].second == week - 1) {
+            for (int i = 0; i < (int) homeTeams.size(); i += 8) {
+                if (weekNumber[i] == week - 1) {
                     for (int j = i; j < i + 8; j++) {
-                        Game game{teams[test[j].first.first], teams[test[j].first.second]};
+                        Game game{teams[homeTeams[j]], teams[awayTeams[j]]};
                         game.playMatch();
                         std::pair<int, int> score;
                         score = game.getScore();
-                        std::cout << teams[test[j].first.first].getName() << ' ' << score.first << " - " << score.second << ' ' << teams[test[j].first.second].getName() << '\n';
+                        std::cout << teams[homeTeams[j]].getName() << ' ' << score.first << " - " << score.second << ' ' << teams[awayTeams[j]].getName() << '\n';
                     }
                 }
             }
         }
         if (week <= 30 && !finish) {
-            for (int i=0; i<(int)test.size(); i += 8){
-                if (test[i].second == week){
+            for (int i=0; i<(int)homeTeams.size(); i += 8){
+                if (weekNumber[i] == week){
                     for (int j=i; j<i+8; j++) {
-                        if (test[j].first.first == playerTeamID) {
-                            nextOpponent = test[j].first.second;
-                        } else if (test[j].first.second == playerTeamID) {
-                            nextOpponent = test[j].first.first;
+                        if (homeTeams[j] == playerTeamID) {
+                            nextOpponent = awayTeams[j];
+                        } else if (awayTeams[j] == playerTeamID) {
+                            nextOpponent = homeTeams[j];
                         }
                     }
                 }
