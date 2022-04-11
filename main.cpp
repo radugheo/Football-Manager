@@ -129,9 +129,7 @@ void menuMain1(std::vector<Team>teams, unsigned int playerTeamID, std::vector<un
     }while(option != 0);
 }
 
-[[]]
-
-[[maybe_unused]]void menuInterface(const std::vector<Team>&teams, unsigned int& playerTeamID, std::vector<unsigned int> teamsID){
+void menuInterface(const std::vector<Team>&teams, unsigned int& playerTeamID, std::vector<unsigned int> teamsID){
     int option1;
     option1 = 0;
     do{
@@ -205,7 +203,7 @@ int main() {
         teams.emplace_back(Team{teamId, teamName, teamBudget, p});
         teams[i].calculateRating();
     }
-    //menuInterface(teams, playerTeamID, teamsID);
+    menuInterface(teams, playerTeamID, teamsID);
     Transfer tr{teamsID[0], teamsID[1], allPlayers[3]};
     tr.makeTransfer();
     LoanTransfer tr2{teamsID[0], teamsID[1], allPlayers[4], 5};
