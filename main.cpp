@@ -10,6 +10,8 @@
 #include "headers/Transfer.h"
 #include "headers/LoanTransfer.h"
 
+//#include <SFML/Graphics.hpp>
+
 bool cmp (const Team &team1, const Team &team2){
     return team1.getPoints() > team2.getPoints();
 }
@@ -189,6 +191,8 @@ int main() {
     std::vector<unsigned int> teamsID;
 
     [[maybe_unused]]unsigned int playerTeamID;
+
+    //sf::RenderWindow window(sf::VideoMode(1080, 720), "SFML");
 
     fin >> noOfTeams;
     for (int i=0; i<noOfTeams; i++){
