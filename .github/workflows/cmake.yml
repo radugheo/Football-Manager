@@ -22,6 +22,7 @@ jobs:
     env:
       CC: ${{ matrix.c }}
       CXX: ${{ matrix.cxx }}
+      SFML_VERSION: "2021-11-18"
       BUILD_TYPE: Debug
 
     strategy:
@@ -34,14 +35,14 @@ jobs:
             name: Ubuntu 20.04 Clang 11
             # The flag CMAKE_EXPORT_COMPILE_COMMANDS generates compile_commands.json
             # which is used by cppcheck and clang-tidy
-            cmake_flags: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+            cmake_flags: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_SHARED_LIBS=FALSE
             # This env runs cppcheck and sanitizers
 
           - os: ubuntu-20.04
             c: clang-12
             cxx: clang++-12
             name: Ubuntu 20.04 Clang 12
-            cmake_flags: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+            cmake_flags: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_SHARED_LIBS=FALSE
             # This env runs clang-tidy and sanitizers
 
           - os: ubuntu-20.04
@@ -50,11 +51,13 @@ jobs:
             name: Ubuntu 20.04 GCC 10
             # cmake_flags:
             # This env runs valgrind
+            cmake_flags: -DBUILD_SHARED_LIBS=FALSE
 
           - os: macos-11
             c: clang
             cxx: clang++
             name: macOS 11 Apple Clang 13
+            cmake_flags: -DSFML_BUILD_FRAMEWORKS=FALSE -DSFML_DEPENDENCIES_INSTALL_PREFIX=$GITHUB_WORKSPACE/artifacts -DBUILD_SHARED_LIBS=FALSE
             # cmake_flags:
 
           - os: macos-11
@@ -68,12 +71,14 @@ jobs:
             cxx: cl
             name: Windows 2022 MSVC 19.30
             # cmake_flags:
+            cmake_flags: -DBUILD_SHARED_LIBS=TRUE
 
           - os: windows-2022
             c: gcc
             cxx: g++
             name: Windows 2022 GCC 10
             # cmake_flags:
+            cmake_flags: -DBUILD_SHARED_LIBS=TRUE
             cmake_generator: Ninja
             # Ninja is faster
             # other generator: "\"MinGW Makefiles\""
@@ -140,14 +145,14 @@ jobs:
           sudo cmake --install build
 
       # Uncomment when using external dependencies so they will be cached
-      # - name: Cache deps
-      #   uses: actions/cache@v2
-      #   id: cache-deps
-      #   # make the key depend on the dependency version
-      #   with:
-      #     path: |
-      #       build/_deps
-      #     key: cache-${{ matrix.cmake_generator }}-${{ matrix.os }}-${{ matrix.cxx }}
+       - name: Cache deps
+         uses: actions/cache@v2
+         id: cache-deps
+         # make the key depend on the dependency version
+         with:
+           path: |
+             build/_deps
+           key: cache-1-${{ env.BUILD_TYPE }}-${{ matrix.os }}-${{ matrix.cxx }}-${{ env.SFML_VERSION }}
 
       # NOTE: GH Actions does not allow updating the cache yet
       # Using the workaround found here: https://github.com/actions/cache/issues/171
@@ -264,12 +269,12 @@ jobs:
         run: |
           cat date.txt | ./artifacts/bin/oop
 
-      #- name: Valgrind
-        #if: runner.os == 'Linux' && matrix.cxx == 'g++-10'
+      - name: Valgrind
+        if: runner.os == 'Linux' && matrix.cxx == 'g++-10'
         # NOTE: update executable name if it is changed in CMakeLists.txt
-        #run: |
+        run: |
           # remove --show-leak-kinds=all --track-origins=yes if there are many leaks in external libs
-          #cat date.txt | valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 ./artifacts/bin/oop
+          cat date.txt | valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 ./artifacts/bin/oop
 
       - name: Move artifacts
         run: |
