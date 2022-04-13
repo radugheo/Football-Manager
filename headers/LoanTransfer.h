@@ -7,7 +7,6 @@ class LoanTransfer : public Transfer{
     unsigned int loanLength;
 public:
     LoanTransfer(unsigned int team1, unsigned int team2, Player &player, unsigned int loanLength);
-
     void makeTransfer(unsigned int loanLength);
 
     unsigned int getLoanLength() const;

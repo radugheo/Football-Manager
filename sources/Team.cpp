@@ -39,6 +39,10 @@ std::ostream& operator<<(std::ostream& os, const Team& team){
     return os;
 }
 
+bool Team::operator>(const Team &team) const {
+    return points > team.points;
+}
+
 Team::~Team() {}
 
 void Team::win(){
@@ -88,6 +92,7 @@ int Team::getPoints() const {
 unsigned int Team::getLastMatchResult() const {
     return lastMatchResult;
 }
+
 
 
 

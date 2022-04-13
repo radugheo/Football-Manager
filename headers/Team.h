@@ -21,6 +21,7 @@ public:
     Team(const Team& other);
     Team& operator=(const Team& other);
     friend std::ostream& operator<<(std::ostream& os, const Team& team);
+    bool operator > (const Team& str) const;
     ~Team();
 
     void win();

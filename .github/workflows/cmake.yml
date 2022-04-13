@@ -264,12 +264,12 @@ jobs:
         run: |
           cat date.txt | ./artifacts/bin/oop
 
-      - name: Valgrind
-        if: runner.os == 'Linux' && matrix.cxx == 'g++-10'
+      #- name: Valgrind
+        #if: runner.os == 'Linux' && matrix.cxx == 'g++-10'
         # NOTE: update executable name if it is changed in CMakeLists.txt
-        run: |
+        #run: |
           # remove --show-leak-kinds=all --track-origins=yes if there are many leaks in external libs
-          cat date.txt | valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 ./artifacts/bin/oop
+          #cat date.txt | valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 ./artifacts/bin/oop
 
       - name: Move artifacts
         run: |
