@@ -24,7 +24,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml when changing name here
-add_executable(${PROJECT_NAME} main.cpp sources/Player.cpp headers/Player.h sources/Team.cpp headers/Team.h sources/Game.cpp headers/Game.h sources/Transfer.cpp headers/Transfer.h sources/LoanTransfer.cpp headers/LoanTransfer.h sources/League.cpp headers/League.h sources/GameEngine.cpp headers/GameEngine.h sources/Menu.cpp headers/Menu.h sources/Button.cpp headers/Button.h)
+add_executable(${PROJECT_NAME} main.cpp sources/Player.cpp headers/Player.h sources/Team.cpp headers/Team.h sources/Game.cpp headers/Game.h sources/Transfer.cpp headers/Transfer.h sources/LoanTransfer.cpp headers/LoanTransfer.h sources/League.cpp headers/League.h sources/GameEngine.cpp headers/GameEngine.h sources/Menu.cpp headers/Menu.h sources/Button.cpp headers/Button.h sources/ListObject.cpp headers/ListObject.h)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/SFML/lib/cmake/SFML)

@@ -1,9 +1,7 @@
 //
 // Created by Radu on 13/04/2022.
 //
-
 #include "../headers/GameEngine.h"
-#include "../headers/Menu.h"
 
 GameEngine::GameEngine() {
     std::ifstream fin("date.txt");
@@ -37,44 +35,96 @@ void GameEngine::putText(sf::RenderWindow& window, std::string& s, float x, floa
     window.draw(text);
 }
 
+void GameEngine::createListOfTeams(std::vector<ListObject> &listOfTeams){
+    int velY = 0;
+    for (const auto& team : this->teams) {
+        listOfTeams.emplace_back(team.getName() + " " + std::to_string(team.getRating()), sf::Vector2f(330, 200 + velY), sf::Color::Black);
+        velY += 40;
+    }
+}
+
 void GameEngine::run(){
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Football Manager");
-    sf::Sprite background_sprite;
-    background_sprite.setTexture(this->background);
+    sf::Sprite backgroundSpriteMenu;
+    backgroundSpriteMenu.setTexture(this->background);
     sf::Font font;
     font.loadFromFile("resources/PlusJakartaSans-Bold.ttf");
-    sf::Text text("Football Manager", font);
-    text.setCharacterSize(70);
-    text.setFillColor(sf::Color::Black);
-    text.setPosition(sf::Vector2f(40, 90));
+    sf::Text title("Football Manager", font);
+    title.setCharacterSize(70);
+    title.setFillColor(sf::Color::Black);
+    title.setPosition(sf::Vector2f(40, 90));
+
+    sf::Vector2f backButtonPosition(1075, 750);
+    Button backButton{300, 50, "Back to menu", backButtonPosition, sf::Color::Black};
+
+    std::vector<ListObject> listOfTeams;
+    createListOfTeams(listOfTeams);
 
     Menu menu{};
+    state = "menu";
 
     while (window.isOpen()){
-        sf::Event event;
-        while (window.pollEvent(event)){
-            if (event.type == sf::Event::Closed){
-                window.close();
-            }
-            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
-                int menuBtnCnt = 0;
-                for (auto menuBtn : menu.getMenu()){
-                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                    if (menuBtn.isHover(sf::Vector2f((float)mousePos.x, (float)mousePos.y))){
-                        if (menuBtnCnt == 2) {
-                            window.close();
+        if (state == "menu") {
+            sf::Event event;
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                }
+                if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+                    int menuBtnCnt = 0;
+                    for (auto menuBtn: menu.getMenu()) {
+                        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                        if (menuBtn.isHover(sf::Vector2f((float) mousePos.x, (float) mousePos.y))) {
+                            if (menuBtnCnt == 0){
+                                state = "chooseTeam";
+                            }
+                            else if(menuBtnCnt == 1){
+                                state = "viewTeams";
+                            }
+                            else {
+                                window.close();
+                            }
                         }
+                        menuBtnCnt++;
                     }
-                    menuBtnCnt++;
                 }
             }
+            window.clear();
+            window.draw(backgroundSpriteMenu);
+            window.draw(title);
+            menu.draw(window);
         }
-        window.clear();
-
-        window.draw(background_sprite);
-        window.draw(text);
-        menu.draw(window);
-
+        else if (state == "chooseTeam"){
+            sf::Event event;
+            while (window.pollEvent(event)){
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                }
+            }
+            window.clear();
+            window.draw(backgroundSpriteMenu);
+        }
+        else if (state == "viewTeams"){
+            sf::Event event;
+            while (window.pollEvent(event)){
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                }
+                if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                    if (backButton.isHover(sf::Vector2f((float) mousePos.x, (float) mousePos.y))) {
+                        state = "menu";
+                    }
+                }
+            }
+            window.clear();
+            window.draw(backgroundSpriteMenu);
+            for (auto listItem : listOfTeams){
+                listItem.display(window);
+            }
+            backButton.display(window);
+            window.draw(title);
+        }
         window.display();
     }
     GameEngine::mainMenuInterface();
