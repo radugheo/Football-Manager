@@ -42,19 +42,31 @@ void GameEngine::run(){
     sf::Sprite background_sprite;
     background_sprite.setTexture(this->background);
     sf::Font font;
-    font.loadFromFile("resources/PlusJakartaSans-Regular.ttf");
+    font.loadFromFile("resources/PlusJakartaSans-Bold.ttf");
     sf::Text text("Football Manager", font);
     text.setCharacterSize(70);
     text.setFillColor(sf::Color::Black);
-    text.setPosition(sf::Vector2f(windowWidth/30, 100));
+    text.setPosition(sf::Vector2f(40, 90));
 
-    Menu menu(windowWidth, windowHeight);
+    Menu menu{};
 
     while (window.isOpen()){
         sf::Event event;
         while (window.pollEvent(event)){
             if (event.type == sf::Event::Closed){
                 window.close();
+            }
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
+                int menuBtnCnt = 0;
+                for (auto menuBtn : menu.getMenu()){
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                    if (menuBtn.isHover(sf::Vector2f((float)mousePos.x, (float)mousePos.y))){
+                        if (menuBtnCnt == 2) {
+                            window.close();
+                        }
+                    }
+                    menuBtnCnt++;
+                }
             }
         }
         window.clear();

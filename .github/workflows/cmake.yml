@@ -145,14 +145,14 @@ jobs:
           sudo cmake --install build
 
       # Uncomment when using external dependencies so they will be cached
-       - name: Cache deps
-         uses: actions/cache@v2
-         id: cache-deps
-         # make the key depend on the dependency version
-         with:
-           path: |
-             build/_deps
-           key: cache-1-${{ env.BUILD_TYPE }}-${{ matrix.os }}-${{ matrix.cxx }}-${{ env.SFML_VERSION }}
+      - name: Cache deps
+        uses: actions/cache@v2
+        id: cache-deps
+        # make the key depend on the dependency version
+        with:
+          path: |
+            build/_deps
+          key: cache-1-${{ env.BUILD_TYPE }}-${{ matrix.os }}-${{ matrix.cxx }}-${{ env.SFML_VERSION }}
 
       # NOTE: GH Actions does not allow updating the cache yet
       # Using the workaround found here: https://github.com/actions/cache/issues/171

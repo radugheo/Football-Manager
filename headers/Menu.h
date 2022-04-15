@@ -5,17 +5,19 @@
 #ifndef OOP_MENU_H
 #define OOP_MENU_H
 
-#include "SFML/Graphics.hpp"
+#include "../headers/Button.h"
 
-#define MAX_NUMBER_OF_ITEMS 3
+#include "SFML/Graphics.hpp"
 
 class Menu {
     int selectedItem;
     sf::Font font;
-    sf::Text menu[MAX_NUMBER_OF_ITEMS];
+    std::vector<Button> menu;
 public:
-    Menu(float width, float height);
+    Menu();
     ~Menu();
+
+    const std::vector<Button> &getMenu() const;
 
     void draw(sf::RenderWindow &window);
 };
