@@ -6,7 +6,7 @@
 #define OOP_MENU_H
 
 #include "../headers/Button.h"
-
+#include <iostream>
 #include "SFML/Graphics.hpp"
 
 class Menu {
@@ -17,8 +17,8 @@ public:
     explicit Menu(int menuType);
     ~Menu();
 
-    const std::vector<Button> &getMenu() const;
 
+    const std::vector<Button> &getMenu() const;
     void draw(sf::RenderWindow &window);
 };
 
