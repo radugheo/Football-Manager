@@ -10,12 +10,11 @@
 #include "SFML/Graphics.hpp"
 
 class Menu {
-    int selectedItem;
     int menuType;
     sf::Font font;
     std::vector<Button> menu;
 public:
-    Menu(int menuType);
+    explicit Menu(int menuType);
     ~Menu();
 
     const std::vector<Button> &getMenu() const;

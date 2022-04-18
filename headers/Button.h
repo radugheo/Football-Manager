@@ -9,17 +9,17 @@
 
 
 class Button {
-    int width;
-    int height;
+    float width;
+    float height;
     std::string text;
     sf::RectangleShape shape;
     sf::Vector2f position;
     sf::Color color;
 public:
-    Button(int width, int height, const std::string &text, const sf::Vector2f &position, const sf::Color &color);
+    Button(float width, float height, const std::string &text, const sf::Vector2f &position, const sf::Color &color);
     ~Button();
     void display(sf::RenderWindow& window);
-    bool isHover(sf::Vector2f mousePos);
+    bool isHover(sf::Vector2f mousePos) const;
 };
 
 

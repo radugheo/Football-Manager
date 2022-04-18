@@ -37,12 +37,12 @@ class GameEngine {
     std::vector<Team>teams;
     std::vector<unsigned int> teamsID;
     sf::Texture background;
-    float windowWidth;
-    float windowHeight;
+    unsigned int windowWidth;
+    unsigned int windowHeight;
     std::string state;
 public:
     GameEngine();
-    void putText(sf::RenderWindow&, std::string&, float, float);
+    //void putText(sf::RenderWindow&, std::string&, float, float);
     void createListOfTeams(std::vector<ListObject> &listOfTeams);
     void createListOfPlayers(std::vector<ListObject> &listOfPlayers, int team);
     void run();

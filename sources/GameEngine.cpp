@@ -25,7 +25,7 @@ GameEngine::GameEngine() {
 
 GameEngine::~GameEngine() {}
 
-void GameEngine::putText(sf::RenderWindow& window, std::string& s, float x, float y){
+/*void GameEngine::putText(sf::RenderWindow& window, std::string& s, float x, float y){
     sf::Font font;
     font.loadFromFile("../resources/PlusJakartaSans-Regular.ttf");
     sf::Text text(s, font);
@@ -33,12 +33,12 @@ void GameEngine::putText(sf::RenderWindow& window, std::string& s, float x, floa
     text.setFillColor(sf::Color::Blue);
     text.setPosition(sf::Vector2f(x, y));
     window.draw(text);
-}
+}*/
 
 void GameEngine::createListOfTeams(std::vector<ListObject> &listOfTeams){
     int velY = 0;
     for (const auto& team : this->teams) {
-        listOfTeams.emplace_back("ID " + std::to_string(team.getId()) + ": " + team.getName() + " " + std::to_string(team.getRating()), sf::Vector2f(330, 200 + velY), sf::Color::Black, 30);
+        listOfTeams.emplace_back("ID " + std::to_string(team.getId()) + ": " + team.getName() + " " + std::to_string(team.getRating()), sf::Vector2f(330, (float)(200.0 + velY*1.0)), sf::Color::Black, 30);
         velY += 40;
     }
 }
@@ -50,7 +50,7 @@ void GameEngine::createListOfPlayers(std::vector<ListObject> &listOfPlayers, int
         if (cnt <= 11) {
             listOfPlayers.emplace_back(
                     player.getPosition() + " " + player.getName() + " " + std::to_string(player.getRating()),
-                    sf::Vector2f(100, 50 + velY), sf::Color::White, 20);
+                    sf::Vector2f(100, (float)(50 + velY)), sf::Color::White, 20);
             if (cnt == 11){
                 velY = -30;
             }
@@ -58,7 +58,7 @@ void GameEngine::createListOfPlayers(std::vector<ListObject> &listOfPlayers, int
         else{
             listOfPlayers.emplace_back(
                     player.getPosition() + " " + player.getName() + " " + std::to_string(player.getRating()),
-                    sf::Vector2f(300, 50 + velY - 2), sf::Color::White, 20);
+                    sf::Vector2f(300, float(50 + velY - 2)), sf::Color::White, 20);
         }
         velY += 30;
     }
@@ -112,7 +112,7 @@ void GameEngine::run(){
                 if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                     int menuBtnCnt = 0;
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                    for (auto menuBtn: menu.getMenu()) {
+                    for (const auto& menuBtn: menu.getMenu()) {
                         if (menuBtn.isHover(sf::Vector2f((float) mousePos.x, (float) mousePos.y))) {
                             if (menuBtnCnt == 0){
                                 state = "choose team";
@@ -163,7 +163,7 @@ void GameEngine::run(){
                 if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                     int menuBtnCnt = 0;
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                    for (auto menuBtn: selectTeamMenu.getMenu()) {
+                    for (const auto& menuBtn: selectTeamMenu.getMenu()) {
                         if (menuBtn.isHover(sf::Vector2f((float) mousePos.x, (float) mousePos.y))) {
                             if (menuBtnCnt == 0 && teamInputInt != -1){
                                 state = "game menu";
@@ -220,7 +220,7 @@ void GameEngine::run(){
                 if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                     int menuBtnCnt = 0;
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                    for (auto menuBtn: mainGameMenu.getMenu()) {
+                    for (const auto& menuBtn: mainGameMenu.getMenu()) {
                         if (menuBtn.isHover(sf::Vector2f((float) mousePos.x, (float) mousePos.y))) {
                             if (menuBtnCnt == 0){
                                 state = "advance";
@@ -377,8 +377,8 @@ void GameEngine::teamMenuInterface() {
                                 game.playMatch();
                                 std::pair<int, int> score;
                                 score = game.getScore();
-                                team1.push_back({this->teams[homeTeams[j]].getName(), score.first});
-                                team2.push_back({this->teams[awayTeams[j]].getName(), score.second});
+                                team1.emplace_back(this->teams[homeTeams[j]].getName(), score.first);
+                                team2.emplace_back(this->teams[awayTeams[j]].getName(), score.second);
                             }
                         }
                     }
