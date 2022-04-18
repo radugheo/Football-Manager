@@ -29,8 +29,6 @@ public:
     //int getValue() const;
     const std::string &getName() const;
 
-    void setTeam(unsigned int team);
-
     //void calculateValue();
 };
 

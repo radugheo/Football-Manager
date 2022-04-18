@@ -34,10 +34,6 @@ unsigned int Player::getRating() const {
     return rating;
 }
 
-void Player::setTeam(unsigned int team2) {
-    this->team = team2;
-}
-
 std::ostream &operator<<(std::ostream &os, const Player &player) {
     os << "Pozitie: " << player.position << " | Nume: " << player.name << " | Rating: " << player.rating << " | Varsta: " << player.age << '\n';
     return os;
