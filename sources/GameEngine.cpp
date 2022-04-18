@@ -150,7 +150,7 @@ void GameEngine::run(){
                             }
                             teamInputString.erase(teamInputString.size() - 1, 1);
                         }
-                        else if (event.text.unicode < 128 && event.text.unicode != '\b' && teamInputString.size() < 2) {
+                        else if (event.text.unicode != '\b' && teamInputString.size() < 2) {
                             teamInputString += static_cast<char>(event.text.unicode);
                         }
                         if (!teamInputString.empty()){

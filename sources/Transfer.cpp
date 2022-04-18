@@ -25,7 +25,7 @@ std::ostream &operator<<(std::ostream &os, const Transfer &transfer) {
 
 Transfer::~Transfer() {}
 
-void Transfer::makeTransfer(){
+/*void Transfer::makeTransfer(){
     ///se transfera de la team1 la team2 contra transferSum bani
     this->player.setTeam(team2);
-}
+}*/
