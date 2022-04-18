@@ -2,10 +2,10 @@ name: C++ CI
 
 on:
   push:
-    branches: [libs/sfml] # replace with main (if applicable)
+    branches: [main] # replace with main (if applicable)
     tags: ['*']
   pull_request:
-    branches: [master] # replace with main (if applicable)
+    branches: [main] # replace with main (if applicable)
 
 jobs:
   build:
