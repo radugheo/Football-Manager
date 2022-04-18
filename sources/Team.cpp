@@ -93,6 +93,10 @@ unsigned int Team::getLastMatchResult() const {
     return lastMatchResult;
 }
 
+unsigned int Team::getId() const {
+    return id;
+}
+
 
 
 

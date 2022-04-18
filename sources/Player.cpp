@@ -48,9 +48,13 @@ std::ostream &operator<<(std::ostream &os, const Player &player) {
     return value;
 }*/
 
-/*const std::string &Player::getName() const {
+const std::string &Player::getName() const {
     return name;
-}*/
+}
+
+const std::string &Player::getPosition() const {
+    return position;
+}
 
 /*void Player::calculateValue(){
     this->value = (this->rating - 55) * 100000 + (40 - this->age)*50000;

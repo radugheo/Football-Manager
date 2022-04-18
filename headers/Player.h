@@ -24,8 +24,10 @@ public:
 
     unsigned int getRating() const;
 
+    const std::string &getPosition() const;
+
     //int getValue() const;
-    //const std::string &getName() const;
+    const std::string &getName() const;
 
     void setTeam(unsigned int team);
 

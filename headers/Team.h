@@ -38,6 +38,8 @@ public:
     const std::vector<Player> &getPlayers() const;
 
     const std::string &getName() const;
+
+    unsigned int getId() const;
 };
 
 

@@ -12,8 +12,9 @@ class ListObject {
     std::string text;
     sf::Vector2f position;
     sf::Color color;
+    int size;
 public:
-    ListObject(const std::string &text, const sf::Vector2f &position, const sf::Color &color);
+    ListObject(const std::string &text, const sf::Vector2f &position, const sf::Color &color, int size);
     ~ListObject();
     void display(sf::RenderWindow& window);
 };
