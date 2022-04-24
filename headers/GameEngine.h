@@ -42,7 +42,7 @@ class GameEngine {
     std::string state;
 public:
     GameEngine();
-    void putText(sf::RenderWindow&, const std::string&, float, float, int);
+    static void putText(sf::RenderWindow&, const std::string&, float, float, int);
     void createListOfTeams(std::vector<ListObject> &listOfTeams);
     void createListOfPlayers(std::vector<ListObject> &listOfPlayers, int team);
     void run();

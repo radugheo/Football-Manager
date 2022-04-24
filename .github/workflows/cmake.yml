@@ -266,8 +266,8 @@ jobs:
       - name: Make scripts executable
         if: runner.os == 'Linux'
         run: |
-          chmod +x ./run.sh
-          chmod +x ./run_valgrind.sh
+          chmod +x scripts/run.sh
+          chmod +x scripts/run_valgrind.sh
 
       # too many memory errors in external libs
       # - name: Test 1
@@ -289,7 +289,7 @@ jobs:
            DISPLAY: :99.0
         with:
           run: |
-            ./run.sh
+            ./scripts/run.sh
           working-directory: ${{github.workspace}}
 
       - name: Test 3
@@ -299,7 +299,7 @@ jobs:
           DISPLAY: :99.0
         with:
           run: |
-            ./run_valgrind.sh
+            ./scripts/run_valgrind.sh
           working-directory: ${{github.workspace}}
 
 #      - name: Sanitizers

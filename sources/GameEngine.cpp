@@ -265,8 +265,8 @@ void GameEngine::run(){
             window.draw(gameMenuBackgroundSprite);
             mainGameMenu.draw(window);
             this->playerTeamID = teamInputInt;
-            unsigned int nextOpponent = 0;
             if (!finish){
+                unsigned int nextOpponent = 0;
                 if (week <= 31){
                     for (int i=0; i<(int)homeTeams.size(); i += 8){
                         if (weekNumber[i] == week){
@@ -301,7 +301,7 @@ void GameEngine::run(){
                         vizitat[week] = 1;
                     }
                     for (int i = 0; i<8; i++){
-                        GameEngine::putText(window, team1[i].first + " " + std::to_string(team1[i].second) + " - " + std::to_string(team2[i].second) + " " + team2[i].first, 80, 170 + i*25, 25);
+                        GameEngine::putText(window, team1[i].first + " " + std::to_string(team1[i].second) + " - " + std::to_string(team2[i].second) + " " + team2[i].first, 80, 170 + (float)i*25, 25);
                     }
                 }
                 GameEngine::putText(window, teams[teamInputInt].getName() + " | Week: " + std::to_string(week) + " | Next fixture: " + this->teams[nextOpponent].getName(), 80, 90, 30);
@@ -314,11 +314,11 @@ void GameEngine::run(){
                     if (team == teams[teamInputInt]) {
                         teams[teamInputInt].setRanking(cnt);
                     }
-                    GameEngine::putText(window, std::to_string(cnt) + ". " + team.getName(), 1150, 130 + cnt*25, 25);
+                    GameEngine::putText(window, std::to_string(cnt) + ". " + team.getName(), 1150, 130 + (float)cnt*25, 25);
                     GameEngine::putText(window, std::to_string(team.getMatchesPlayed()) + " - " +
                                                 std::to_string(team.getWins()) + " - " + std::to_string(team.getDraws()) + " - " +
                                                 std::to_string(team.getLoses()) + " - " + std::to_string(team.getPoints()),
-                                                1350, 130 + cnt*25, 20);
+                                                1350, 130 + (float)cnt*25, 20);
                     cnt++;
                 }
             }
@@ -338,11 +338,11 @@ void GameEngine::run(){
                     if (team == teams[teamInputInt]) {
                         teams[teamInputInt].setRanking(cnt);
                     }
-                    GameEngine::putText(window, std::to_string(cnt) + ". " + team.getName(), 1150, 130 + cnt*25, 25);
+                    GameEngine::putText(window, std::to_string(cnt) + ". " + team.getName(), 1150, 130 + (float)cnt*25, 25);
                     GameEngine::putText(window, std::to_string(team.getMatchesPlayed()) + " - " +
                                                 std::to_string(team.getWins()) + " - " + std::to_string(team.getDraws()) + " - " +
                                                 std::to_string(team.getLoses()) + " - " + std::to_string(team.getPoints()),
-                                        1350, 130 + cnt*25, 20);
+                                        1350, 130 + (float)cnt*25, 20);
                     cnt++;
                 }
             }
