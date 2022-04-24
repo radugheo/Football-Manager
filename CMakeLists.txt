@@ -47,7 +47,7 @@ add_executable(${PROJECT_NAME} main.cpp sources/Player.cpp headers/Player.h sour
 # custom compiler flags
 message("Compiler: ${CMAKE_CXX_COMPILER_ID} version ${CMAKE_CXX_COMPILER_VERSION}")
 if(MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /wd2220 /wd4267 /permissive-)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /wd4244 /wd5999 /wd4267 /permissive-)
 else()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror)
 

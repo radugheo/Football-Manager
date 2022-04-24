@@ -20,6 +20,9 @@ Team::Team(const Team& other) :
         points(other.points),
         players(other.players),
         matchesPlayed(other.matchesPlayed),
+        wins(other.wins),
+        draws(other.draws),
+        loses(other.loses),
         lastMatchResult(other.lastMatchResult){}
 
 Team& Team::operator=(const Team& other){
@@ -31,6 +34,9 @@ Team& Team::operator=(const Team& other){
     points = other.points;
     players = other.players;
     matchesPlayed = other.matchesPlayed;
+    wins = other.wins;
+    draws = other.draws;
+    loses = other.loses;
     lastMatchResult = other.lastMatchResult;
     return *this;
 }
@@ -49,16 +55,19 @@ void Team::win(){
     this->points = this->points + 3;
     this->lastMatchResult = 2;
     this->matchesPlayed++;
+    this->wins++;
 }
 void Team::lose(){
     ///nu se intampla nimic, castiga 0p
     this->lastMatchResult = 0;
     this->matchesPlayed++;
+    this->loses++;
 }
 void Team::draw(){
     this->points = this->points + 1;
     this->lastMatchResult = 1;
     this->matchesPlayed++;
+    this->draws++;
 }
 
 void Team::calculateRating() {
@@ -95,6 +104,46 @@ unsigned int Team::getLastMatchResult() const {
 
 unsigned int Team::getId() const {
     return id;
+}
+
+void Team::setPoints(int points_) {
+    Team::points = points_;
+    Team::matchesPlayed = 0;
+    Team::wins = 0;
+    Team::draws = 0;
+    Team::loses = 0;
+}
+
+unsigned int Team::getMatchesPlayed() const {
+    return matchesPlayed;
+}
+
+unsigned int Team::getWins() const {
+    return wins;
+}
+
+unsigned int Team::getDraws() const {
+    return draws;
+}
+
+unsigned int Team::getLoses() const {
+    return loses;
+}
+
+void Team::setRanking(unsigned int ranking_) {
+    Team::ranking = ranking_;
+}
+
+unsigned int Team::getRanking() const {
+    return ranking;
+}
+
+bool Team::operator==(const Team &rhs) const {
+    return id == rhs.id && name == rhs.name;
+}
+
+bool Team::operator!=(const Team &rhs) const {
+    return !(rhs == *this);
 }
 
 

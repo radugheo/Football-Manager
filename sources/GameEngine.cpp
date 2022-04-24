@@ -25,15 +25,15 @@ GameEngine::GameEngine() {
 
 GameEngine::~GameEngine() {}
 
-/*void GameEngine::putText(sf::RenderWindow& window, std::string& s, float x, float y){
+void GameEngine::putText(sf::RenderWindow& window, const std::string& s, float x, float y, int size){
     sf::Font font;
-    font.loadFromFile("../resources/PlusJakartaSans-Regular.ttf");
+    font.loadFromFile("resources/PlusJakartaSans-Bold.ttf");
     sf::Text text(s, font);
-    text.setCharacterSize(25);
-    text.setFillColor(sf::Color::Blue);
+    text.setCharacterSize(size);
+    text.setFillColor(sf::Color::White);
     text.setPosition(sf::Vector2f(x, y));
     window.draw(text);
-}*/
+}
 
 void GameEngine::createListOfTeams(std::vector<ListObject> &listOfTeams){
     int velY = 0;
@@ -99,11 +99,31 @@ void GameEngine::run(){
     teamInput.setPosition(sf::Vector2f(teamInputBox.getPosition().x + 32, teamInputBox.getPosition().y + 7));
     teamInput.setFillColor(sf::Color::Black);
 
+    League league{this->teamsID};
+    league.makeFixtures();
+    std::vector<unsigned int> homeTeams;
+    std::vector<unsigned int> awayTeams;
+    std::vector<unsigned int> weekNumber;
+
+    unsigned int week = 1;
+    bool finish = false;
+
+    int vizitat[50];
+    std::vector<std::pair<std::string,int>>team1, team2;
+
     while (window.isOpen()){
         if (state == "menu") {
             teamInputString = "";
             teamInput.setString(teamInputString);
             teamInputInt = -1;
+            homeTeams = league.getFixturesTeam1();
+            awayTeams = league.getFixturesTeam2();
+            weekNumber = league.getFixturesWeek();
+            week = 1;
+            finish = false;
+            for (auto &team:this->teams){
+                team.setPoints(0);
+            }
             sf::Event event;
             while (window.pollEvent(event)) {
                 if (event.type == sf::Event::Closed) {
@@ -209,10 +229,7 @@ void GameEngine::run(){
         }
         else if (state == "game menu"){
             sf::Event event;
-            sf::Text titleGameScreen("Ai ales echipa " + teams[teamInputInt].getName() + ". Bafta in noua ta cariera!", font, 50);
-            titleGameScreen.setFillColor(sf::Color::White);
-            titleGameScreen.setPosition(sf::Vector2f(80, 90));
-
+            GameEngine::putText(window, "Ai ales echipa " + teams[teamInputInt].getName() + ". Bafta in noua ta cariera!", 80, 90, 50);
             while (window.pollEvent(event)){
                 if (event.type == sf::Event::Closed) {
                     window.close();
@@ -241,31 +258,127 @@ void GameEngine::run(){
             }
             window.clear();
             window.draw(gameMenuBackgroundSprite);
-            window.draw(titleGameScreen);
             mainGameMenu.draw(window);
         }
         else if (state == "advance"){
+            window.clear();
+            window.draw(gameMenuBackgroundSprite);
+            mainGameMenu.draw(window);
+            this->playerTeamID = teamInputInt;
+            unsigned int nextOpponent = 0;
+            if (!finish){
+                if (week <= 31){
+                    for (int i=0; i<(int)homeTeams.size(); i += 8){
+                        if (weekNumber[i] == week){
+                            for (int j=i; j<i+8; j++) {
+                                if (homeTeams[j] == this->playerTeamID) {
+                                    nextOpponent = awayTeams[j];
+                                } else if (awayTeams[j] == this->playerTeamID) {
+                                    nextOpponent = homeTeams[j];
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                    finish = true;
+                }
+                if (week > 1){
+                    GameEngine::putText(window, "Results:", 80, 130, 30);
+                    if (vizitat[week] == 0) {
+                        for (int i = 0; i < (int) homeTeams.size(); i += 8) {
+                            if (weekNumber[i] == week - 1) {
+                                for (int j = i; j < i + 8; j++) {
+                                    Game game{this->teams[homeTeams[j]], this->teams[awayTeams[j]]};
+                                    game.playMatch();
+                                    std::pair<int, int> score;
+                                    score = game.getScore();
+                                    team1.emplace_back(this->teams[homeTeams[j]].getName(), score.first);
+                                    team2.emplace_back(this->teams[awayTeams[j]].getName(), score.second);
+                                }
+                            }
+                        }
+                        vizitat[week] = 1;
+                    }
+                    for (int i = 0; i<8; i++){
+                        GameEngine::putText(window, team1[i].first + " " + std::to_string(team1[i].second) + " - " + std::to_string(team2[i].second) + " " + team2[i].first, 80, 170 + i*25, 25);
+                    }
+                }
+                GameEngine::putText(window, teams[teamInputInt].getName() + " | Week: " + std::to_string(week) + " | Next fixture: " + this->teams[nextOpponent].getName(), 80, 90, 30);
+                GameEngine::putText(window, "Standings:", 1150, 90, 30);
+                GameEngine::putText(window, "P - W - D - L - PTS", 1350, 130, 20);
+                std::vector<Team> teamsCopy = this->teams;
+                std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
+                int cnt = 1;
+                for (auto &team:teamsCopy){
+                    if (team == teams[teamInputInt]) {
+                        teams[teamInputInt].setRanking(cnt);
+                    }
+                    GameEngine::putText(window, std::to_string(cnt) + ". " + team.getName(), 1150, 130 + cnt*25, 25);
+                    GameEngine::putText(window, std::to_string(team.getMatchesPlayed()) + " - " +
+                                                std::to_string(team.getWins()) + " - " + std::to_string(team.getDraws()) + " - " +
+                                                std::to_string(team.getLoses()) + " - " + std::to_string(team.getPoints()),
+                                                1350, 130 + cnt*25, 20);
+                    cnt++;
+                }
+            }
+            else{
+                window.clear();
+                window.draw(gameMenuBackgroundSprite);
+                mainGameMenu.draw(window);
+                GameEngine::putText(window, "League finished! Congratulations!", 80, 90, 30);
+                GameEngine::putText(window, "Your ranking with " + teams[teamInputInt].getName() + " was " +
+                                    std::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30);
+                GameEngine::putText(window, "Final standings:", 1150, 90, 30);
+                GameEngine::putText(window, "P - W - D - L - PTS", 1350, 130, 20);
+                std::vector<Team> teamsCopy = this->teams;
+                std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
+                int cnt = 1;
+                for (auto &team:teamsCopy){
+                    if (team == teams[teamInputInt]) {
+                        teams[teamInputInt].setRanking(cnt);
+                    }
+                    GameEngine::putText(window, std::to_string(cnt) + ". " + team.getName(), 1150, 130 + cnt*25, 25);
+                    GameEngine::putText(window, std::to_string(team.getMatchesPlayed()) + " - " +
+                                                std::to_string(team.getWins()) + " - " + std::to_string(team.getDraws()) + " - " +
+                                                std::to_string(team.getLoses()) + " - " + std::to_string(team.getPoints()),
+                                        1350, 130 + cnt*25, 20);
+                    cnt++;
+                }
+            }
             sf::Event event;
             while (window.pollEvent(event)){
                 if (event.type == sf::Event::Closed) {
                     window.close();
                 }
                 if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+                    int menuBtnCnt = 0;
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                    if (backButton.isHover(sf::Vector2f((float) mousePos.x, (float) mousePos.y))) {
-                        state = "game menu";
+                    for (const auto &menuBtn: mainGameMenu.getMenu()) {
+                        if (menuBtn.isHover(sf::Vector2f((float) mousePos.x, (float) mousePos.y))) {
+                            if (menuBtnCnt == 0) {
+                                week++;
+                                vizitat[week] = 0;
+                                team1.clear();
+                                team2.clear();
+                                state = "advance";
+                            } else if (menuBtnCnt == 1) {
+                                state = "view players";
+                            } else if (menuBtnCnt == 2) {
+                                window.close();
+                            } else {
+                                state = "menu";
+                            }
+                        }
+                        menuBtnCnt++;
                     }
                 }
             }
-            window.clear();
-            window.draw(gameMenuBackgroundSprite);
-            backButton.display(window);
         }
         else if (state == "view players"){
             sf::Event event;
             std::vector<ListObject> listOfPlayers;
             createListOfPlayers(listOfPlayers, teamInputInt);
-
             while (window.pollEvent(event)){
                 if (event.type == sf::Event::Closed) {
                     window.close();
@@ -286,177 +399,6 @@ void GameEngine::run(){
         }
         window.display();
     }
-    GameEngine::mainMenuInterface();
 }
 
-void GameEngine::mainMenuInterface() {
-    int option = 0;
-    do{
-        std::cout << "\nGheorghe Radu-Mihai 151 - Football Manager \n";
-        std::cout << "\nMeniu:";
-        std::cout << "\n===========================================\n\n";
-
-        std::cout << "1. Alege echipa.\n";
-        std::cout << "2. Vezi lista cu echipe.\n";
-        std::cout << "0. Iesire.\n";
-
-        std::cout << "\nIntroduceti numarul actiunii: ";
-        std::cin >> option;
-        if (option == 1){
-            std::cout << "\nIntrodu ID-ul echipei pe care o doresti.\n";
-            std::cin >> this->playerTeamID;
-            system("cls");
-            if (this->playerTeamID <= 15) {
-                teamMenuInterface();
-            }
-            else{
-                std::cout << "\nSelectie invalida.\n";
-            }
-        }
-        if (option == 2){
-            int cnt = 1;
-            for (auto &team:this->teams){
-                std::cout << cnt << ". " << team.getName() << ' ' << team.getRating() << '\n';
-                cnt++;
-            }
-        }
-        if (option == 0){
-            std::cout << "\nExit.\n";
-        }
-        if (option < 0 || option > 2){
-            std::cout << "\nSelectie invalida\n";
-        }
-        std::cout << "\n";
-        system("pause");
-        system("cls");
-    }while(option != 0);
-}
-
-void GameEngine::teamMenuInterface() {
-    int option = 0;
-    unsigned int week = 1, nextOpponent = 0;
-    bool finish = false;
-    std::vector<std::pair<std::string,int>>team1, team2;
-    system("cls");
-    std::cout << "\nAi ales echipa " << this->teams[this->playerTeamID].getName() << ". Bafta in noua ta cariera!\n";
-    League league{this->teamsID};
-    do{
-        std::cout << this->teams[this->playerTeamID].getName() << '\n';
-        league.makeFixtures();
-        std::vector<unsigned int> homeTeams;
-        std::vector<unsigned int> awayTeams;
-        std::vector<unsigned int> weekNumber;
-        homeTeams = league.getFixturesTeam1();
-        awayTeams = league.getFixturesTeam2();
-        weekNumber = league.getFixturesWeek();
-        if (!finish){
-            if (week <= 30){
-                for (int i=0; i<(int)homeTeams.size(); i += 8){
-                    if (weekNumber[i] == week){
-                        for (int j=i; j<i+8; j++) {
-                            if (homeTeams[j] == this->playerTeamID) {
-                                nextOpponent = awayTeams[j];
-                            } else if (awayTeams[j] == this->playerTeamID) {
-                                nextOpponent = homeTeams[j];
-                            }
-                        }
-                    }
-                }
-            }
-            else{
-                finish = true;
-            }
-            if (week > 1){
-                std::cout << "\n===========================================\n";
-                std::cout << "Rezultate:\n";
-                if (option != 1) {
-                    for (int i = 0; i < (int) homeTeams.size(); i += 8) {
-                        if (weekNumber[i] == week - 1) {
-                            for (int j = i; j < i + 8; j++) {
-                                Game game{this->teams[homeTeams[j]], this->teams[awayTeams[j]]};
-                                game.playMatch();
-                                std::pair<int, int> score;
-                                score = game.getScore();
-                                team1.emplace_back(this->teams[homeTeams[j]].getName(), score.first);
-                                team2.emplace_back(this->teams[awayTeams[j]].getName(), score.second);
-                            }
-                        }
-                    }
-                }
-                for (int i = 0; i<8; i++){
-                    std::cout << team1[i].first << ' ' << team1[i].second << " - " << team2[i].second << ' ' << team2[i].first << '\n';
-                }
-            }
-            std::cout << "===========================================\n";
-            std::cout << "Week " << week << '\n';
-            std::cout << "Next fixture: " << this->teams[nextOpponent].getName() << '\n';
-
-            std::cout << "===========================================\n";
-            std::cout << "Meniu:";
-            std::cout << "\n===========================================\n";
-
-            std::cout << "1. Vezi jucatorii.\n";
-            std::cout << "2. Advance (joaca meciul).\n";
-            std::cout << "0. Iesire.\n";
-
-            std::cout << "===========================================\n";
-            std::cout << "Clasamentul\n";
-            std::vector<Team> teamsCopy = this->teams;
-            std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
-            int cnt = 1;
-            for (auto &team:teamsCopy){
-                std::cout << cnt << ". | " << team.getPoints() << "p | " << team.getName() << "\n";
-                cnt++;
-            }
-            std::cout << "===========================================\n";
-            std::cout << "Introduceti numarul actiunii: ";
-            std::cin >> option;
-            if (option == 1){
-                for (auto &player : this->teams[this->playerTeamID].getPlayers()) {
-                    std::cout << player;
-                }
-            }
-            if (option == 2){
-                week++;
-                team1.clear();
-                team2.clear();
-            }
-            if (option == 0){
-                std::cout << "\nExit.\n";
-            }
-            if (option < 0 || option > 2){
-                std::cout << "\nSelectie invalida\n";
-            }
-        }
-        else{
-            std::cout << "===========================================\n";
-            std::cout << "Campionatul s-a terminat!\nFelicitari!\n";
-            std::cout << "===========================================\n";
-            std::cout << "Clasamentul\n";
-            std::vector<Team> teamsCopy = this->teams;
-            std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
-            int cnt = 1;
-            for (auto &team:teamsCopy){
-                std::cout << cnt << ". | " << team.getPoints() << "p | " << team.getName() << "\n";
-                cnt++;
-            }
-            std::cout << "===========================================\n";
-            std::cout << "Meniu:\n";
-            std::cout << "===========================================\n";
-            std::cout << "0. Iesire.\n";
-            std::cout << "===========================================";
-            std::cout << "\nIntroduceti numarul actiunii: ";
-            std::cin >> option;
-            if (option == 0){
-                std::cout << "\nExit.\n";
-            }
-            if (option < 0 || option > 0){
-                std::cout << "\nSelectie invalida\n";
-            }
-        }
-        std::cout << "\n";
-        system("pause");
-        system("cls");
-    }while(option != 0);
-}
 

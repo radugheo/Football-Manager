@@ -25,7 +25,7 @@ Menu::Menu(int menuType) : menuType (menuType){
         sf::Vector2f viewPlayersPosition(460, 750);
         this->menu.emplace_back(300, 50, "View players", viewPlayersPosition, sf::Color::Black);
         sf::Vector2f exitPosition(840, 750);
-        this->menu.emplace_back(300, 50, "Absolut nimic", exitPosition, sf::Color::Black);
+        this->menu.emplace_back(300, 50, "Transfer Market", exitPosition, sf::Color::Black);
         sf::Vector2f backButtonPosition(1220, 750);
         this->menu.emplace_back(300, 50, "Back to menu", backButtonPosition, sf::Color::Black);
     }

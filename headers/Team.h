@@ -14,6 +14,9 @@ class Team{
     int points = 0;
     std::vector<Player> players;
     unsigned int matchesPlayed = 0;
+    unsigned int wins = 0;
+    unsigned int draws = 0;
+    unsigned int loses = 0;
     unsigned int lastMatchResult = 1;
 public:
     Team(unsigned int id, const std::string &name, int budget, const std::vector<Player> &players);
@@ -22,6 +25,9 @@ public:
     Team& operator=(const Team& other);
     friend std::ostream& operator<<(std::ostream& os, const Team& team);
     bool operator > (const Team& str) const;
+    bool operator==(const Team &rhs) const;
+    bool operator!=(const Team &rhs) const;
+
     ~Team();
 
     void win();
@@ -32,14 +38,17 @@ public:
 
     unsigned int getRating() const;
     int getPoints() const;
-
     unsigned int getLastMatchResult() const;
-
     const std::vector<Player> &getPlayers() const;
-
     const std::string &getName() const;
-
     unsigned int getId() const;
+    void setPoints(int points_);
+    unsigned int getRanking() const;
+    void setRanking(unsigned int ranking);
+    unsigned int getMatchesPlayed() const;
+    unsigned int getWins() const;
+    unsigned int getDraws() const;
+    unsigned int getLoses() const;
 };
 
 
