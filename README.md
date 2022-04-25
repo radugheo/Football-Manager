@@ -28,7 +28,7 @@
   - [X] funcții virtuale (pure), constructori virtuali (clone)
   - [ ] apelarea constructorului din clasa de bază 
   - [X] smart pointers
-  - [ ] `dynamic_cast`
+  - [X] `dynamic_cast`
 - [X] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
 - [ ] excepții
   - [ ] ierarhie proprie (cu baza `std::exception` sau derivată din `std::exception`)
