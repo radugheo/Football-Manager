@@ -26,7 +26,7 @@
 - [X] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
 - [X] moșteniri
   - [X] funcții virtuale (pure), constructori virtuali (clone)
-  - [ ] apelarea constructorului din clasa de bază 
+  - [X] apelarea constructorului din clasa de bază 
   - [X] smart pointers
   - [X] `dynamic_cast`
 - [X] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
