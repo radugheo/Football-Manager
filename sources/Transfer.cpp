@@ -5,7 +5,6 @@ Transfer::Transfer(unsigned int team1, unsigned int team2, Player &player) :
     team2(team2),
     player(player) {}
 
-
 Transfer::Transfer(const Transfer& other) :
     team1(other.team1),
     team2(other.team2),
@@ -25,7 +24,3 @@ std::ostream &operator<<(std::ostream &os, const Transfer &transfer) {
 
 Transfer::~Transfer() {}
 
-/*void Transfer::makeTransfer(){
-    ///se transfera de la team1 la team2 contra transferSum bani
-    this->player.setTeam(team2);
-}*/

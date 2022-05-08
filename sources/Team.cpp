@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include <vector>
 #include "../headers/Team.h"
@@ -41,7 +40,8 @@ Team& Team::operator=(const Team& other){
     return *this;
 }
 std::ostream& operator<<(std::ostream& os, const Team& team){
-    os << team.id << ' ' << team.rating << ' ' << team.name << ' ' << team.points << '\n';
+    //os << team.id << ' ' << team.rating << ' ' << team.name << ' ' << team.points << '\n';
+    os << team.name << team.rating;
     return os;
 }
 
@@ -144,6 +144,10 @@ bool Team::operator==(const Team &rhs) const {
 
 bool Team::operator!=(const Team &rhs) const {
     return !(rhs == *this);
+}
+
+void Team::setRating(unsigned int rating_) {
+    Team::rating = rating_;
 }
 
 

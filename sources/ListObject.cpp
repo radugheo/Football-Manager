@@ -8,17 +8,38 @@ ListObject::ListObject(const std::string &text, const sf::Vector2f &position, co
 text(text),
 position(position),
 color(color),
-size(size) {}
+size(size) {
+    sf::Font font_;
+    font_.loadFromFile("resources/PlusJakartaSans-Regular.ttf");
+    this->text_.setString(this->text);
+    this->text_.setFont(font_);
+    this->text_.setCharacterSize(this->size);
+    this->text_.setPosition((float)this->position.x, (float)this->position.y);
+    this->text_.setFillColor(this->color);
+    this->text_.setOutlineColor(sf::Color::Black);
+    this->text_.setOutlineThickness(1);
+}
 
 ListObject::~ListObject() {}
 
-void ListObject::display(sf::RenderWindow& window){
+void ListObject::display(sf::RenderWindow& window, sf::Vector2i mouse_pos){
     sf::Font font_;
     font_.loadFromFile("resources/PlusJakartaSans-Regular.ttf");
-    sf::Text text_(this->text, font_, this->size);
-    float x = this->position.x - text_.getLocalBounds().width / 2;
-    float y = this->position.y - text_.getLocalBounds().height / 2;
-    text_.setPosition((float)x, (float)y);
-    text_.setFillColor(this->color);
-    window.draw(text_);
+    this->text_.setFont(font_);
+    if (mouse_pos.x >= this->position.x && mouse_pos.x <= this->position.x + this->text_.getLocalBounds().width && mouse_pos.y >= this->position.y && mouse_pos.y <= this->position.y + this->text_.getLocalBounds().height){
+        this->text_.setFillColor(sf::Color::Green);
+    }
+    window.draw(this->text_);
 }
+
+bool ListObject::checkHover(sf::Vector2i mouse_pos){
+    sf::Font font_;
+    font_.loadFromFile("resources/PlusJakartaSans-Regular.ttf");
+    this->text_.setFont(font_);
+    return mouse_pos.x >= this->position.x && mouse_pos.x <= this->position.x + this->text_.getLocalBounds().width && mouse_pos.y >= this->position.y && mouse_pos.y <= this->position.y + this->text_.getLocalBounds().height;
+}
+
+const std::string &ListObject::getText() const {
+    return text;
+}
+

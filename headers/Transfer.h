@@ -14,9 +14,11 @@ public:
     Transfer(const Transfer& other);
     Transfer& operator=(const Transfer& other);
     friend std::ostream &operator<<(std::ostream &os, const Transfer &transfer);
-    ~Transfer();
+    virtual ~Transfer();
 
-    //void makeTransfer();
+    [[nodiscard]] virtual std::shared_ptr<Transfer> clone() const = 0;
+
+    virtual void f() = 0;
 };
 
 

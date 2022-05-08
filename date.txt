@@ -4,87 +4,81 @@ Steaua
 5400000
 28
 Vlad GK 23 68
-Radunovic DEF 29 70
-Vinicius DEF 37 71
-Cristea DEF 27 70
-Cretu DEF 32 69
-Tanase MID 27 71
-Edjouma MID 25 67
-Olaru MID 24 70
-Popescu MID 19 72
-Keseru ATT 35 70
-Coman ATT 23 70
-
 Tarnovanu GK 21 64
 Straton GK 32 64
-Miron DEF 27 67
+Radunovic DEF 29 70
 Serban DEF 21 63
-Achim DEF 30 64
 Pantiru DEF 26 68
-Gheorghe MID 25 68
+Vinicius DEF 37 71
+Cristea DEF 27 70
+Miron DEF 27 67
+Cretu DEF 32 69
+Achim DEF 30 64
 Popescu MID 27 67
-Cordea MID 22 67
+Tanase MID 27 71
+Edjouma MID 25 67
 Perianu MID 19 62
 Sut MID 22 66
 Oaida MID 24 64
+Olaru MID 24 70
 Musi MID 17 59
+Popescu ATT 19 72
+Burlacu ATT 25 62
+Coman ATT 23 70
+Keseru ATT 35 70
 Stoica ATT 19 65
 Mamut ATT 25 63
 Dumiter ATT 23 62
-Burlacu ATT 25 62
+Gheorghe ATT 25 68
+Cordea ATT 22 67
 1
 Craiova
 4000000
 25
 Pigliacelli GK 28 71
-Vatajelu DEF 28 66
-Gaman DEF 32 68
-Screciu DEF 21 66
-Bancu DEF 29 71
-Cretu MID 29 67
-Mateiu MID 31 66
-Nistor MID 33 71
-Markovic ATT 20 66
-Ivan ATT 25 69
-Koljic ATT 25 68
-
 Lazar GK 30 69
-Papp DEF 31 66
-Vladoiu DEF 22 68
-Constantin DEF 36 67
+Bancu DEF 29 71
 Conte DEF 27 63
+Gaman DEF 32 68
+Papp DEF 31 66
+Constantin DEF 36 67
+Screciu DEF 21 66
+Vladoiu DEF 22 68
+Vatajelu DEF 28 66
+Mateiu MID 31 66
 Capatina MID 25 64
 Rogulic MID 25 64
-Cimpanu MID 20 65
-Gustavo MID 29 66
-Baiaram MID 19 65
 Bic MID 27 67
+Cretu MID 29 67
+Nistor MID 33 71
 Vina MID 26 65
 Houri MID 25 68
+Baiaram ATT 19 65
+Ivan ATT 25 69
+Markovic ATT 20 66
+Koljic ATT 25 68
 Trica-Balaci ATT 16 55
+Cimpanu ATT 20 65
+Gustavo ATT 29 66
 2
 Dinamo
 2000000
 28
 Figueiredo GK 30 65
-Buleica DEF 29 59
+Esanu GK 22 63
+Filip DEF 27 64
+Giafer DEF 20 61
 Ehmann DEF 21 63
+Carp DEF 27 64
+Jovanovic DEF 32 61
+Grigore DEF 22 63
+Tomozei DEF 30 62
 Patriche DEF 35 62
 Radu DEF 25 63
+Buleica DEF 29 59
 Rauta MID 29 64
 Rodriguez MID 31 66
 Matei MID 29 65
-Torje ATT 32 65
-Ivanovski ATT 31 62
-Bordusanu ATT 17 58
-
-Esanu GK 22 63
-Carp DEF 27 64
-Jovanovic DEF 32 61
-Giafer DEF 20 61
-Grigore DEF 22 63
-Tomozei DEF 30 62
-Filip DEF 27 64
 Bani MID 18 60
 Ivanov MID 25 64
 Cretu MID 21 62
@@ -92,92 +86,88 @@ deMoura MID 33 63
 Gradinaru MID 25 65
 Pierret MID 21 62
 Borcea MID 19 54
+Torje ATT 32 65
+Ivanovski ATT 31 62
+Bordusanu ATT 17 58
 Morar ATT 27 63
 Irobiso ATT 28 63
 Mihaiu ATT 22 61
 3
 CFR
 6100000
-26
+25
 Hindrich GK 18 61
-Manea DEF 24 69
+Balgradean GK 33 69
+Stefan DEF 25 67
+Camora DEF 35 71
+Yuri DEF 26 66
 Burca DEF 28 72
 Graovac DEF 27 68
-Camora DEF 35 71
-Boateng MID 28 69
-Deac MID 35 71
-Sigurjonsson MID 32 68
-Petrila ATT 21 68
-Debeljuh ATT 25 68
-Omrani ATT 29 69
-
-Balgradean GK 33 69
-Yuri DEF 26 66
-Stefan DEF 25 67
 Susic DEF 30 67
-Costache MID 23 67
-Chipciu MID 32 68
+Manea DEF 24 69
+Deac MID 35 71
+Boateng MID 28 69
+Sigurjonsson MID 32 68
 Bordeianu MID 29 68
 Gidea MID 21 56
 Paun MID 27 69
-Dugandzic ATT 27 68
-Sacko ATT 27 67
-Negut ATT 25 66
+Costache ATT 23 67
+Petrila ATT 21 68
 Roger ATT 25 66
+Omrani ATT 29 69
+Dugandzic ATT 27 68
+Debeljuh ATT 25 68
+Negut ATT 25 66
 Birligea ATT 21 58
 Bus ATT 28 66
-
+Chipciu ATT 32 68
 4
 Farul
 0
 25
 Aioani GK 22 69
+Branescu GK 27 61
 Dussaut DEF 26 66
 Larie DEF 34 65
 Mladen DEF 29 66
 deNooijer DEF 23 68
-Ciobanu MID 23 69
-Artean MID 27 67
-Grameni MID 18 60
-Iancu ATT 27 70
-Jefte ATT 28 70
-Omoh ATT 29 65
-
-Branescu GK 27 61
 Sirbu DEF 18 58
 Boboc DEF 22 68
 Nedelcu DEF 24 67
 Danuleasa DEF 18 56
+Ciobanu MID 23 69
+Artean MID 27 67
+Grameni MID 18 60
 Purece MID 29 63
 Radaslavescu MID 17 61
 Bodisteanu MID 18 56
 Popescu MID 18 55
 Buta MID 19 54
+Iancu ATT 27 70
+Jefte ATT 28 70
+Omoh ATT 29 65
 Pitu ATT 19 65
 Moldoveanu ATT 22 61
 Petre ATT 23 65
 Andronache ATT 19 54
-
 5
 Voluntari
 0
 26
 Popa GK 20 64
+Rimniceanu GK 31 63
 Ciobotariu DEF 23 65
 Tamas DEF 38 67
 Armas DEF 33 66
 Briceag DEF 29 65
 Miranda DEF 27 65
+Achim DEF 25 62
+Andres DEF 21 55
+Vlad DEF 31 64
 Droppa MID 32 67
 Rata MID 28 66
 Gheorghe MID 21 67
 Budescu MID 33 71
-Nemet ATT 35 64
-
-Rimniceanu GK 31 63
-Achim DEF 25 62
-Andres DEF 21 55
-Vlad DEF 31 64
 Golan MID 25 58
 Marcelo MID 27 65
 Balan MID 19 55
@@ -187,31 +177,29 @@ Costin MID 23 65
 Ilie MID 21 60
 Meleke MID 22 63
 Stan MID 20 56
+Nemec ATT 35 64
 Olawale ATT 22 59
 Merloi ATT 21 64
-
 6
 Rapid
 0
 27
 Moldovan GK 23 66
+Draghia GK 30 58
 Belu-Iordache DEF 27 66
 Sapunaru DEF 38 68
 Grigore DEF 34 67
 Junior-Morais DEF 34 68
-Kait MID 23 61
-Albu MID 27 68
-Sefer MID 21 64
-Stahl MID 22 64
-Ilie MID 18 62
-Vojtus ATT 27 62
-
-Draghia GK 30 58
 Dandea DEF 33 64
 Demici DEF 21 56
 Acuna DEF 27 63
 Goge DEF 29 61
 Onea DEF 23 63
+Kait MID 23 61
+Albu MID 27 68
+Sefer MID 21 64
+Stahl MID 22 64
+Ilie MID 18 62
 Carnat MID 23 64
 Ionita MID 26 63
 Crepulja MID 27 67
@@ -219,59 +207,50 @@ Hlistei MID 26 63
 Moise MID 25 64
 Panoiu MID 18 58
 ALami MID 28 62
+Vojtus ATT 27 62
 Despa ATT 20 55
 Balan ATT 31 64
 Marzouk ATT 25 62
-
 7
 Sepsi
 0
 25
 Niczuly GK 26 68
+Began GK 24 57
 Dimitrov DEF 32 67
 Ninaj DEF 27 66
 Mitrea DEF 33 68
 Dumitrescu DEF 20 61
-Paun MID 22 62
-Eder-Gonzalez MID 25 64
-Aganovic MID 33 65
-Luckassen ATT 27 66
-Tudorie ATT 25 64
-Barbut ATT 26 67
-
-Began GK 24 57
 Ispas DEF 20 58
 Sousa DEF 29 65
 Balasa DEF 26 68
 Tincu DEF 33 62
+Paun MID 22 62
+Eder-Gonzalez MID 25 64
+Aganovic MID 33 65
 Vasvari MID 34 66
 Achahbar MID 27 64
 Fulop MID 31 64
 Stefanescu MID 23 66
 Boubacar-Fofana MID 31 64
+Luckassen ATT 27 66
+Tudorie ATT 25 64
+Barbut ATT 26 67
 Golofca ATT 31 65
 Askovski ATT 29 65
 Dragomir ATT 17 53
 Damascan ATT 22 63
-
 8
 Chindia
 0
 28
 Cabuz GK 25 65
+Moldovan GK 31 63
+Pop GK 22 53
 Butean DEF 24 65
 Pitian DEF 25 66
 Iacob DEF 25 66
 Ionita DEF 21 61
-Serban MID 20 61
-Dulca MID 22 65
-Passaglia MID 32 63
-Sila ATT 23 63
-Chunchukov ATT 26 65
-Florea ATT 33 66
-
-Moldovan GK 31 63
-Pop GK 22 53
 Martac DEF 30 64
 Rumbullaku DEF 29 63
 Kocic DEF 31 63
@@ -280,37 +259,41 @@ Dinu DEF 32 65
 Celea DEF 26 65
 Corbu DEF 27 63
 Baxevanos DEF 21 62
+Serban MID 20 61
+Dulca MID 22 65
+Passaglia MID 32 63
 Popadiuc MID 26 65
 Serban MID 20 60
 Jipa MID 19 50
 Atanase MID 20 57
 Cantave MID 24 59
 Chamed MID 27 67
+Sila ATT 23 63
+Chunchukov ATT 26 65
+Florea ATT 33 66
 Cherchez ATT 30 62
-
 9
 Botosani
 0
 25
 Pap GK 27 67
+Contra GK 21 53
 Braun DEF 29 67
 Seroni DEF 34 65
 Dawa DEF 25 68
 Tiganasu DEF 31 66
-Dican MID 20 60
-Florescu MID 24 64
-Papa MID 28 66
-Mailat ATT 23 63
-Roman ATT 29 63
-Souza ATT 22 64
-
-Contra GK 21 53
 Dragu DEF 21 60
 Neciu DEF 22 61
 Harut DEF 22 66
 Patache DEF 33 62
+Dican MID 20 60
+Florescu MID 24 64
+Papa MID 28 66
 Croitoru MID 17 56
 Tircoveanu MID 24 61
+Mailat ATT 23 63
+Roman ATT 29 63
+Souza ATT 22 64
 Mateus ATT 22 61
 Romani ATT 36 63
 Lupeta ATT 28 60
@@ -318,155 +301,144 @@ Caia ATT 18 54
 Fili ATT 25 64
 Grubac ATT 21 61
 Torres ATT 23 60
-
 10
 Arges
 0
 26
 Greab GK 29 65
+Croitoru GK 28 62
+Micle GK 19 61
 Tofan DEF 24 66
 Turda DEF 23 65
 Dobrosavlevici DEF 26 62
 Latovlevici DEF 35 66
+Musat DEF 34 63
+Moisie DEF 21 57
+Boldor DEF 26 64
+Miguel DEF 27 64
 Meza-Colli MID 32 63
 Raynov MID 29 64
 Isfan MID 21 62
 Tanase MID 34 65
 Serban MID 29 64
-Fatai ATT 31 65
-
-Croitoru GK 28 62
-Micle GK 19 61
-Musat DEF 34 63
-Moisie DEF 21 57
-Boldor DEF 26 64
-Miguel DEF 27 64
 Palic MID 33 64
 Dumitrascu MID 26 63
 Dumitru MID 19 62
 Viana MID 31 64
 Barbu MID 21 56
 Honciu MID 32 59
+Fatai ATT 31 65
 Ganea ATT 22 64
 Arias ATT 26 62
 Said ATT 28 64
-
 11
 UTA
 0
 24
 Iacob GK 27 67
+Balauru GK 31 61
 Vukcevic DEF 28 64
 Erico DEF 31 67
 Benga DEF 32 65
 Shlyakov DEF 29 64
+Medimorec DEF 25 66
+Dima DEF 21 64
+Baravykas DEF 25 64
+Patlagica DEF 18 53
 Miculescu MID 21 66
 Batha MID 29 64
 Vorobjovas MID 25 64
 Otele MID 22 63
 Ubbink MID 28 65
-Dangubic ATT 26 64
-
-Balauru GK 31 61
-Medimorec DEF 25 66
-Dima DEF 21 64
-Baravykas DEF 25 64
-Patlagica DEF 18 53
 Isac MID 20 61
 Hrezdac MID 19 52
 Matei MID 28 66
 Cibi MID 16 50
+Dangubic ATT 26 64
 Dumitru ATT 29 66
 Mericioiu ATT 18 51
 Ongaro ATT 23 61
 Laukzemis ATT 29 60
-
 12
 FCU
 0
 24
 Popa GK 19 62
+Cobrea GK 30 59
+Mogosanu GK 28 60
 Negru DEF 22 66
 Kovacic DEF 27 65
 Diallo DEF 30 64
 Huyghebaert DEF 32 64
+Paramatti DEF 26 60
+Enache DEF 30 63
+Busu DEF 32 62
 Asamoah MID 27 68
 Van-Durmen MID 24 65
 Sidibe MID 20 63
 Baeten MID 24 65
-Bauza ATT 25 63
-Balan ATT 27 65
-
-Cobrea GK 30 59
-Mogosanu GK 28 60
-Paramatti DEF 26 60
-Enache DEF 30 63
-Busu DEF 32 62
 Albu MID 20 66
 Marquet MID 26 64
 Pop MID 20 57
 Achim MID 32 64
 Bildar MID 18 50
+Bauza ATT 25 63
+Balan ATT 27 65
 Chitu ATT 30 63
 Ondaan ATT 27 65
 Compagno ATT 25 59
-
 13
 Mioveni
 0
 28
 Popescu GK 27 61
+Sima GK 23 54
+Ducan GK 20 62
 Oancea DEF 24 62
 Balaur DEF 32 64
 Scarlatache DEF 34 63
 Guilherme DEF 27 64
 Serbanica DEF 25 62
-Panait MID 32 63
-Veres MID 25 62
-Sanoh ATT 25 63
-Rusu ATT 31 65
-Buziuc ATT 27 63
-
-Sima GK 23 54
-Ducan GK 20 62
 Burnea DEF 28 61
 Trif DEF 23 64
 Radescu DEF 26 62
 Iacob DEF 32 62
+Panait MID 32 63
+Veres MID 25 62
 Toma MID 21 60
 Cierpka MID 26 61
 Lixandru MID 20 57
 Dumitriu MID 28 63
 Dat MID 20 56
 Mitrea MID 20 55
+Sanoh ATT 25 63
+Rusu ATT 31 65
+Buziuc ATT 27 63
 Coman ATT 19 53
 Raicea ATT 24 59
 Blanaru ATT 32 60
 Cosereanu ATT 29 58
 Tomczyk ATT 23 62
-
 14
 Academica
 0
 27
 Ureche GK 22 59
+Bolboasa GK 31 57
 Mboko DEF 23 61
 Rufati DEF 22 59
 Corinus DEF 24 59
 Cmovs DEF 31 63
 Holzmann DEF 30 65
-Ion MID 20 64
-Vrdoljak MID 27 60
-Tsvetkov MID 30 64
-DeAmorim MID 30 63
-Plazibat ATT 31 65
-
-Bolboasa GK 31 57
 Ion DEF 22 57
 Iana DEF 19 56
 Sterian DEF 17 53
 Florica DEF 18 57
 Ionita DEF 18 53
+Ion MID 20 64
+Vrdoljak MID 27 60
+Tsvetkov MID 30 64
+DeAmorim MID 30 63
 Longher MID 21 57
 Alghoul MID 25 61
 Gogov MID 23 57
@@ -474,32 +446,31 @@ Obedeanu MID 20 56
 Stefan MID 20 56
 Dumitrache MID 18 55
 Lis MID 16 53
+Plazibat ATT 31 65
 Massaro ATT 23 61
 Goma ATT 19 55
 Melniciuc ATT 16 51
-
 15
 GazMetan
 0
 20
 Bumbar GK 16 49
+Buzbuchi GK 27 64
+Grosz GK 18 52
 Kanda DEF 20 60
 Matricardi DEF 27 65
 Lima DEF 26 62
 Maxim DEF 18 52
+Avram DEF 18 54
+Tala DEF 16 52
 Harfas MID 18 54
 Santos MID 29 63
 Gaspar MID 18 51
 Costea MID 22 58
 Steau MID 20 54
-Iancu ATT 18 54
-
-Buzbuchi GK 27 64
-Grosz GK 18 52
-Avram DEF 18 54
-Tala DEF 16 52
 Ursu MID 17 50
 Domsa MID 17 50
 Covaci MID 17 50
+Iancu ATT 18 54
 Nitu ATT 20 60
 Noian ATT 16 51

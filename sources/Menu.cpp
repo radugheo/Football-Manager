@@ -23,11 +23,19 @@ Menu::Menu(int menuType) : menuType (menuType){
         sf::Vector2f advancePosition(80, 750);
         this->menu.emplace_back(300, 50, "Advance", advancePosition, sf::Color::Black);
         sf::Vector2f viewPlayersPosition(460, 750);
-        this->menu.emplace_back(300, 50, "View players", viewPlayersPosition, sf::Color::Black);
+        this->menu.emplace_back(300, 50, "Team Management", viewPlayersPosition, sf::Color::Black);
         sf::Vector2f exitPosition(840, 750);
         this->menu.emplace_back(300, 50, "Transfer Market", exitPosition, sf::Color::Black);
         sf::Vector2f backButtonPosition(1220, 750);
         this->menu.emplace_back(300, 50, "Back to menu", backButtonPosition, sf::Color::Black);
+    }
+    else if (this->menuType == 4) {
+        sf::Vector2f savePosition(460, 750);
+        this->menu.emplace_back(300, 50, "Save team", savePosition, sf::Color::Black);
+        sf::Vector2f resetPosition(840, 750);
+        this->menu.emplace_back(300, 50, "Reset team", resetPosition, sf::Color::Black);
+        sf::Vector2f backButtonPosition(1220, 750);
+        this->menu.emplace_back(300, 50, "Back", backButtonPosition, sf::Color::Black);
     }
 }
 

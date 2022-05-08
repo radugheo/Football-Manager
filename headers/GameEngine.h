@@ -15,6 +15,7 @@
 #include "../headers/Game.h"
 #include "../headers/League.h"
 #include "../headers/Transfer.h"
+#include "../headers/LoanTransfer.h"
 #include "../headers/GameEngine.h"
 #include "../headers/Menu.h"
 #include "../headers/Button.h"
@@ -42,9 +43,10 @@ class GameEngine {
     std::string state;
 public:
     GameEngine();
-    static void putText(sf::RenderWindow&, const std::string&, float, float, int);
+    static void putText(sf::RenderWindow&, const std::string&, float, float, int, bool);
     void createListOfTeams(std::vector<ListObject> &listOfTeams);
     void createListOfPlayers(std::vector<ListObject> &listOfPlayers, int team);
+    static void createFirst11(sf::RenderWindow& window, std::vector<std::string> first11);
     void run();
     ~GameEngine();
 };
