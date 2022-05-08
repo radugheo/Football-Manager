@@ -38,8 +38,3 @@ bool ListObject::checkHover(sf::Vector2i mouse_pos){
     this->text_.setFont(font_);
     return mouse_pos.x >= this->position.x && mouse_pos.x <= this->position.x + this->text_.getLocalBounds().width && mouse_pos.y >= this->position.y && mouse_pos.y <= this->position.y + this->text_.getLocalBounds().height;
 }
-
-const std::string &ListObject::getText() const {
-    return text;
-}
-

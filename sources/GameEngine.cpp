@@ -144,6 +144,8 @@ void GameEngine::run(){
      * EXPLICIT PENTRU TEMA 2:
      */
     Transfer* b2 = new LoanTransfer{0, 1, this->allPlayers[1], 6};
+    LoanTransfer ltr{0, 1, this->allPlayers[2], 6};
+    std::cout << "clona " <<  ltr.clone() << '\n';
     try {
         auto& der = dynamic_cast<LoanTransfer&>(*b2);
         new LoanTransfer(der);
@@ -176,8 +178,8 @@ void GameEngine::run(){
                 team.setPoints(0);
             }
             checkboxEmptySpriteList.clear();
-            for (int & i : checked){
-                i = 0;
+            for (int i=0; i<50; i++){
+                checked[i] = 0;
             }
             noChecked = 0;
             for (int i=0; i<=11; i++){

@@ -6,7 +6,6 @@
 #define OOP_LISTOBJECT_H
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 class ListObject {
     std::string text;
@@ -19,8 +18,6 @@ public:
     ~ListObject();
     void display(sf::RenderWindow& window, sf::Vector2i mouse_pos);
     bool checkHover(sf::Vector2i mouse_pos);
-
-    const std::string &getText() const;
 };
 
 
