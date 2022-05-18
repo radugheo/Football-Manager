@@ -82,7 +82,7 @@ void Team::calculateRating() {
     this->budget += transferSum;
 }*/
 
-const std::vector<Player> &Team::getPlayers() const {
+std::vector<Player> &Team::getPlayers() {
     return players;
 }
 

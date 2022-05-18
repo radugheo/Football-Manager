@@ -4,8 +4,6 @@
 #include <iostream>
 #include <memory>
 
-class Team;
-
 class Player{
     std::string name;
     std::string position;
@@ -20,12 +18,12 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Player &player);
 
+    void growRating(unsigned int points);
+
     ~Player();
 
     unsigned int getRating() const;
-
     const std::string &getPosition() const;
-
     //int getValue() const;
     const std::string &getName() const;
 

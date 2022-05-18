@@ -38,15 +38,14 @@ public:
 
     unsigned int getRating() const;
     int getPoints() const;
+    unsigned int getRanking() const;
     unsigned int getLastMatchResult() const;
-    const std::vector<Player> &getPlayers() const;
+    std::vector<Player> &getPlayers();
     const std::string &getName() const;
     unsigned int getId() const;
-    void setPoints(int points_);
-    unsigned int getRanking() const;
 
     void setRating(unsigned int rating_);
-
+    void setPoints(int points_);
     void setRanking(unsigned int ranking);
     unsigned int getMatchesPlayed() const;
     unsigned int getWins() const;

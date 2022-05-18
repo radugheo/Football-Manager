@@ -129,7 +129,8 @@ void GameEngine::run(){
 
     sf::Texture checkboxEmpty;
     checkboxEmpty.loadFromFile("resources/checkbox_empty.png");
-    std::vector<sf::Sprite> checkboxEmptySpriteList;
+    std::vector<sf::Sprite> checkboxPlayersSprite;
+    std::vector<sf::Sprite> checkboxMentalitySprite;
 
     sf::Texture checkboxFull;
     checkboxFull.loadFromFile("resources/checkbox_full.png");
@@ -147,8 +148,10 @@ void GameEngine::run(){
     unsigned int week = 0;
     const int size50 = 50;
     bool finishLeague = false;
-    int checked[size50] = {0};
+    int playersChecked[size50] = {0};
+    int mentalityChecked[size50] = {0};
     int noChecked = 0;
+    int mentalityNoChecked = 0;
 
     int vizitat[size50];
     std::vector<std::pair<std::string,int>>team1, team2;
@@ -181,11 +184,13 @@ void GameEngine::run(){
     /*
      *
      */
+
     while (window.isOpen()){
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
         if (state == "menu") {
-            menuMethod(title, chooseTeamBackgroundSprite, menu, teamInput, checkboxEmptySpriteList, size50,
-                       checked, mousePos, window, teamInputString, teamInputInt, week, finishLeague, noChecked, first11);
+            menuMethod(title, chooseTeamBackgroundSprite, menu, teamInput, checkboxPlayersSprite, checkboxMentalitySprite, size50,
+                       playersChecked, mentalityChecked, mousePos, window, teamInputString, teamInputInt, week,
+                       finishLeague, noChecked, mentalityNoChecked, first11);
         }
         else if (state == "choose team"){
             chooseTeamMethod(backgroundSpriteMenu, inputTeamTitle, selectTeamMenu, teamInputBox,
@@ -200,8 +205,8 @@ void GameEngine::run(){
         }
         else if (state == "team management"){
             teamManagementMethod(gameMenuBackgroundSprite, teamManagementMenu, teamInputInt, checkboxEmpty,
-                                 checkboxEmptySpriteList,
-                                 checkboxFull, checked, mousePos, window, noChecked, first11);
+                                 checkboxPlayersSprite, checkboxMentalitySprite,
+                                 checkboxFull, playersChecked, mentalityChecked, mousePos, window, noChecked, mentalityNoChecked, first11);
 
         }
         window.display();
@@ -230,9 +235,9 @@ void GameEngine::printStandings(int teamInputInt, sf::RenderWindow &window, std:
         window.draw(sprite);
         putText(window,std::to_string(cnt) + ". ", 1135, 130 + (float)cnt*30, 25, false);
         putText(window, team.getName(), 1210, 130 + (float)cnt*30, 25, false);
-        putText(window, std::__cxx11::to_string(team.getMatchesPlayed()) + " - " +
-                        std::__cxx11::to_string(team.getWins()) + " - " + std::__cxx11::to_string(team.getDraws()) + " - " +
-                        std::__cxx11::to_string(team.getLoses()) + " - " + std::__cxx11::to_string(team.getPoints()),
+        putText(window, std::to_string(team.getMatchesPlayed()) + " - " +
+                        std::to_string(team.getWins()) + " - " + std::to_string(team.getDraws()) + " - " +
+                        std::to_string(team.getLoses()) + " - " + std::to_string(team.getPoints()),
                 1350, 130 + (float)cnt*30, 25, false);
         putText(window,"First 11:", 80, 380, 30, false);
         cnt++;
@@ -240,10 +245,11 @@ void GameEngine::printStandings(int teamInputInt, sf::RenderWindow &window, std:
 }
 
 void GameEngine::menuMethod(const sf::Text &title, const sf::Sprite &chooseTeamBackgroundSprite, Menu &menu,
-                            sf::Text &teamInput, std::vector<sf::Sprite> &checkboxEmptySpriteList, const int size50,
-                            int *checked, sf::Vector2i &mousePos, sf::RenderWindow &window,
+                            sf::Text &teamInput, std::vector<sf::Sprite> &checkboxPlayersSprite,
+                            std::vector<sf::Sprite> &checkboxMentalitySprite, const int size50,
+                            int *playersChecked, int *mentalityChecked, sf::Vector2i &mousePos, sf::RenderWindow &window,
                             std::string &teamInputString, int &teamInputInt, unsigned int &week, bool &finish,
-                            int &noChecked, std::vector<std::string> &first11) {
+                            int &noChecked, int &mentalityNoChecked, std::vector<std::string> &first11) {
     teamInputString = "";
     teamInput.setString(teamInputString);
     teamInputInt = -1;
@@ -252,11 +258,16 @@ void GameEngine::menuMethod(const sf::Text &title, const sf::Sprite &chooseTeamB
     for (auto &team: teams){
         team.setPoints(0);
     }
-    checkboxEmptySpriteList.clear();
+    checkboxPlayersSprite.clear();
+    checkboxMentalitySprite.clear();
     for (int i=0; i<size50; i++){
-        checked[i] = 0;
+        playersChecked[i] = 0;
+    }
+    for (int i=0; i<size50; i++){
+        mentalityChecked[i] = 0;
     }
     noChecked = 0;
+    mentalityNoChecked = 0;
     for (int i=0; i<=11; i++){
         first11[i] = "-";
     }
@@ -334,6 +345,7 @@ void GameEngine::chooseTeamMethod(const sf::Sprite &backgroundSpriteMenu, const 
             for (const auto& menuBtn: selectTeamMenu.getMenu()) {
                 if (menuBtn.isHover(sf::Vector2i((float) mousePos.x, (float) mousePos.y))) {
                     if (menuBtnCnt == 0 && teamInputInt != -1){
+                        DefensiveTactic defensiveTactic{static_cast<unsigned int>(teamInputInt)};
                         state = "advance";
                     }
                     else if(menuBtnCnt == 1){
@@ -436,11 +448,11 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
             }
         }
         if (week == 30){
-            putText(window, teams[teamInputInt].getName() + " | R: " + std::__cxx11::to_string(
+            putText(window, teams[teamInputInt].getName() + " | R: " + std::to_string(
                     teams[teamInputInt].getRating()) + " | Week: " + std::to_string(week) + " | Next fixture: -", 80, 90, 30, false);
         }
         else{
-            putText(window, teams[teamInputInt].getName() + " | R: " + std::__cxx11::to_string(
+            putText(window, teams[teamInputInt].getName() + " | R: " + std::to_string(
                     teams[teamInputInt].getRating()) + " | Week: " + std::to_string(week) + " | Next fixture: " + teams[nextOpponent].getName(), 80, 90, 30, false);
         }
         putText(window, "Standings:", 1150, 90, 30, false);
@@ -454,12 +466,12 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
                 //playOff
                 putText(window, "League finished! Congratulations! You qualified for the Play-Off.", 80, 90, 30, false);
                 putText(window, "Your ranking with " + teams[teamInputInt].getName() + " was " +
-                                std::__cxx11::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30, false);
+                                std::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30, false);
             }
             else{
                 putText(window, "League finished! You qualified for the Play-Out.", 80, 90, 30, false);
                 putText(window, "Your ranking with " + teams[teamInputInt].getName() + " was " +
-                                std::__cxx11::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30, false);
+                                std::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30, false);
                 //playOut
             }
         }
@@ -467,14 +479,14 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
             //playOff
             putText(window, "League finished! Congratulations! You qualified for the Play-Offs.", 80, 90, 30, false);
             putText(window, "Your ranking with " + teams[teamInputInt].getName() + " was " +
-                            std::__cxx11::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30, false);
+                            std::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30, false);
         }
         else{
             //playOut
         }
         /*putText(window, "League finished! Congratulations!", 80, 90, 30, false);
         putText(window, "Your ranking with " + teams[teamInputInt].getName() + " was " +
-                        std::__cxx11::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30, false);
+                        std::to_string(teams[teamInputInt].getRanking()) + ".", 80, 130, 30, false);
         putText(window, "Final standings:", 1150, 90, 30, false);*/
     }
     sf::Event event;
@@ -508,45 +520,42 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
 }
 
 void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &teamManagementMenu, int teamInputInt,
-                                 const sf::Texture &checkboxEmpty, std::vector<sf::Sprite> &checkboxEmptySpriteList,
-                                 const sf::Texture &checkboxFull, int *checked, sf::Vector2i &mousePos,
-                                 sf::RenderWindow &window, int &noChecked, std::vector<std::string> &first11) {
+                                 const sf::Texture &checkboxEmpty, std::vector<sf::Sprite> &checkboxPlayersSprite,
+                                 std::vector<sf::Sprite> &checkboxMentalitySprite,
+                                 const sf::Texture &checkboxFull, int *playersChecked, int *mentalityChecked, sf::Vector2i &mousePos,
+                                 sf::RenderWindow &window, int &noChecked, int &mentalityNoChecked, std::vector<std::string> &first11) {
     sf::Event event;
+    ///*-------------PLAYERS------------*///
     std::vector<ListObject> listOfPlayers;
     createListOfPlayers(listOfPlayers, teamInputInt);
     window.clear();
     window.draw(gameMenuBackgroundSprite);
     mousePos = sf::Mouse::getPosition(window);
+    int velY = 0, cnt = 0;
     for (auto listItem : listOfPlayers){
         listItem.display(window, mousePos);
-    }
-    for (auto i : teams[teamInputInt].getPlayers()){
         sf::Sprite spriteAux(checkboxEmpty);
-        checkboxEmptySpriteList.emplace_back(spriteAux);
+        spriteAux.setPosition(sf::Vector2f(65, (float)(53 + velY)));
+        checkboxPlayersSprite.emplace_back(spriteAux);
+        window.draw(checkboxPlayersSprite[cnt]);
+        velY += 30, cnt++;
     }
-    int velY = 0;
-    unsigned int nr = 0;
-    for (auto &checkbox : checkboxEmptySpriteList){
-        checkbox.setPosition(sf::Vector2f(65, (float)(53 + velY)));
-        velY += 30;
-        window.draw(checkbox);
-        nr++;
-        if (nr == teams[teamInputInt].getPlayers().size()){
-            break;
-        }
-    }
+    ///*-------------TACTICS------------*///
     putText(window, "Tactics:",500, 50, 25, false);
-    putText(window, "Offside trap", 500, 95, 17, false);
-    sf::Sprite checkboxEmptySprite;
-    checkboxEmptySprite.setTexture(checkboxEmpty);
-    checkboxEmptySprite.setPosition(sf::Vector2f(500, 120));
-    putText(window, "Yes", 525, 120, 17, false);
-    sf::Sprite checkboxFullSprite;
-    checkboxFullSprite.setTexture(checkboxFull);
-    checkboxFullSprite.setPosition(sf::Vector2f(575, 120));
-    putText(window, "No", 600, 120, 17, false);
-    window.draw(checkboxEmptySprite);
-    window.draw(checkboxFullSprite);
+    std::vector<ListObject> listOfMentality;
+    listOfMentality.emplace_back("Defensive", sf::Vector2f(525, 120), sf::Color::White, 17);
+    listOfMentality.emplace_back("Balanced", sf::Vector2f(650, 120), sf::Color::White, 17);
+    listOfMentality.emplace_back("Offensive", sf::Vector2f(775, 120), sf::Color::White, 17);
+    int velX = 0;
+    cnt = 0;
+    for (auto listItem : listOfMentality){
+        listItem.display(window, mousePos);
+        sf::Sprite spriteAux(checkboxEmpty);
+        spriteAux.setPosition(sf::Vector2f((float)(500 + velX), 120));
+        checkboxMentalitySprite.emplace_back(spriteAux);
+        window.draw(checkboxMentalitySprite[cnt]);
+        velX += 125, cnt++;
+    }
 
     teamManagementMenu.draw(window, mousePos);
     while (window.pollEvent(event)){
@@ -554,19 +563,58 @@ void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite
             window.close();
         }
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-            mousePos = sf::Mouse::getPosition(window);
-            int cnt = 0;
+            cnt = 0;
             for (auto listItem : listOfPlayers){
                 if (listItem.checkHover(mousePos)){
-                    if (checked[cnt] == 0 && noChecked <= 10) {
-                        checkboxEmptySpriteList[cnt].setTexture(checkboxFull);
-                        checked[cnt] = 1;
+                    if (playersChecked[cnt] == 0 && noChecked <= 10) {
+                        checkboxPlayersSprite[cnt].setTexture(checkboxFull);
+                        playersChecked[cnt] = 1;
                         noChecked++;
                     }
-                    else if (checked[cnt] == 1){
-                        checkboxEmptySpriteList[cnt].setTexture(checkboxEmpty);
-                        checked[cnt] = 0;
+                    else if (playersChecked[cnt] == 1){
+                        checkboxPlayersSprite[cnt].setTexture(checkboxEmpty);
+                        playersChecked[cnt] = 0;
                         noChecked--;
+                    }
+                }
+                cnt++;
+            }
+            cnt = 0;
+            for (auto listItem : listOfMentality){
+                if (listItem.checkHover(mousePos)){
+                    if (mentalityChecked[cnt] == 0 && mentalityNoChecked == 0) {
+                        checkboxMentalitySprite[cnt].setTexture(checkboxFull);
+                        mentalityChecked[cnt] = 1;
+                        mentalityNoChecked++;
+                        if (cnt == 0) {
+                            DefensiveTactic defensiveTactic{static_cast<unsigned int>(teamInputInt)};
+                            defensiveTactic.applyTactic(this->teams, 2);
+                        }
+                        else if (cnt == 1){
+                            BalancedTactic balancedTactic{static_cast<unsigned int>(teamInputInt)};
+                            balancedTactic.applyTactic(this->teams, 1);
+                        }
+                        else{
+                            OffensiveTactic offensiveTactic{static_cast<unsigned int>(teamInputInt)};
+                            offensiveTactic.applyTactic(this->teams, 2);
+                        }
+                    }
+                    else if (mentalityChecked[cnt] == 1){
+                        checkboxMentalitySprite[cnt].setTexture(checkboxEmpty);
+                        mentalityChecked[cnt] = 0;
+                        mentalityNoChecked--;
+                        if (cnt == 0) {
+                            DefensiveTactic defensiveTactic{static_cast<unsigned int>(teamInputInt)};
+                            defensiveTactic.applyTactic(this->teams, -2);
+                        }
+                        else if (cnt == 1){
+                            BalancedTactic balancedTactic{static_cast<unsigned int>(teamInputInt)};
+                            balancedTactic.applyTactic(this->teams, -1);
+                        }
+                        else{
+                            OffensiveTactic offensiveTactic{static_cast<unsigned int>(teamInputInt)};
+                            offensiveTactic.applyTactic(this->teams, -2);
+                        }
                     }
                 }
                 cnt++;
@@ -578,9 +626,9 @@ void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite
                         int cnt1 = 0, cnt2 = 0;
                         unsigned int sum = 0;
                         for ([[maybe_unused]] const auto& listItem : listOfPlayers){
-                            if (checked[cnt1] == 1){
-                                first11[cnt2] = teams[playerTeamID].getPlayers()[cnt1].getName() + " " + std::to_string(
-                                        teams[playerTeamID].getPlayers()[cnt1].getRating());
+                            if (playersChecked[cnt1] == 1){
+                                first11[cnt2] = teams[playerTeamID].getPlayers()[cnt1].getName() + " " +
+                                        std::to_string(teams[playerTeamID].getPlayers()[cnt1].getRating());
                                 cnt2++;
                                 sum += teams[playerTeamID].getPlayers()[cnt1].getRating();
                             }
@@ -588,6 +636,7 @@ void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite
                         }
                         sum = sum / 11;
                         teams[playerTeamID].setRating(sum);
+
                         state = "advance";
                     }
                     else if(menuBtnCnt == 1){
@@ -597,8 +646,8 @@ void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite
                             first11[i] = "-";
                         }
                         for (auto listItem : listOfPlayers){
-                            checked[cnt] = 0;
-                            checkboxEmptySpriteList[cnt].setTexture(checkboxEmpty);
+                            playersChecked[cnt] = 0;
+                            checkboxPlayersSprite[cnt].setTexture(checkboxEmpty);
                             cnt++;
                         }
                     }
@@ -609,8 +658,8 @@ void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite
                             first11[i] = "-";
                         }
                         for (auto listItem : listOfPlayers){
-                            checked[cnt] = 0;
-                            checkboxEmptySpriteList[cnt].setTexture(checkboxEmpty);
+                            playersChecked[cnt] = 0;
+                            checkboxPlayersSprite[cnt].setTexture(checkboxEmpty);
                             cnt++;
                         }
                         state = "advance";

@@ -28,6 +28,10 @@ Player& Player::operator=(const Player& other){
     return *this;
 }
 
+void Player::growRating(unsigned int points) {
+    this->rating += points;
+}
+
 Player::~Player() {}
 
 unsigned int Player::getRating() const {
@@ -51,6 +55,8 @@ const std::string &Player::getName() const {
 const std::string &Player::getPosition() const {
     return position;
 }
+
+
 
 /*void Player::calculateValue(){
     this->value = (this->rating - 55) * 100000 + (40 - this->age)*50000;
