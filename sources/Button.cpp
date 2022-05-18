@@ -28,7 +28,11 @@ void Button::display(sf::RenderWindow& window){
     window.draw(text_);
 }
 
-bool Button::isHover(sf::Vector2f mousePos) const {
+bool Button::isHover(sf::Vector2i mousePos) const {
     return mousePos.x >= position.x && mousePos.x <= position.x + width && mousePos.y >= position.y && mousePos.y <= position.y + height;
+}
+
+void Button::setColor(const sf::Color &color_) {
+    Button::color = color_;
 }
 

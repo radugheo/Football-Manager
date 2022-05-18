@@ -1,5 +1,5 @@
 ./artifacts/bin/oop &
-sleep 3 && xdotool search --name "Football Manager" key X &&
+sleep 3 && xdotool search --name "Football Manager" key X && xdotool mousemove 20 50 && xdotool mousedown 1 && xdotool mouseup 1 &&
 sleep 1 && xdotool search --name "Football Manager" key Y &&
 sleep 1 && xdotool search --name "Football Manager" key X &&
 sleep 1 && xdotool search --name "Football Manager" key Z &&

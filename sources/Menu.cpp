@@ -41,9 +41,17 @@ Menu::Menu(int menuType) : menuType (menuType){
 
 Menu::~Menu(){}
 
-void Menu::draw(sf::RenderWindow &window){
-    for (auto & i : this->menu){
-        i.display(window);
+void Menu::draw(sf::RenderWindow &window, sf::Vector2i mousePos){
+    for (auto & button : this->menu) {
+        if (button.isHover(mousePos)) {
+            button.setColor(sf::Color(123, 123, 123));
+        }
+        else{
+            button.setColor(sf::Color::Black);
+        }
+    }
+    for (auto & button : this->menu){
+        button.display(window);
     }
 }
 

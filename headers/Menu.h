@@ -16,10 +16,8 @@ class Menu {
 public:
     explicit Menu(int menuType);
     ~Menu();
-
-
     const std::vector<Button> &getMenu() const;
-    void draw(sf::RenderWindow &window);
+    void draw(sf::RenderWindow &window, sf::Vector2i mousePos);
 };
 
 

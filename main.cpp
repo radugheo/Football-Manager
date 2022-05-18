@@ -1,7 +1,7 @@
 #include "headers/GameEngine.h"
 
 int main() {
-    GameEngine engine;
+    auto& engine = GameEngine::getGameEngine();
     engine.run();
     return 0;
 }

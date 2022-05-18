@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../headers/Team.h"
+#include "../headers/Errors.h"
 
 class Game {
     Team& team1;

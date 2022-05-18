@@ -19,7 +19,9 @@ public:
     Button(float width, float height, const std::string &text, const sf::Vector2f &position, const sf::Color &color);
     ~Button();
     void display(sf::RenderWindow& window);
-    bool isHover(sf::Vector2f mousePos) const;
+    bool isHover(sf::Vector2i mousePos) const;
+
+    void setColor(const sf::Color &color_);
 };
 
 

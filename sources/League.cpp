@@ -18,6 +18,7 @@ League& League::operator=(const League& other){
     return *this;
 }
 
+
 std::ostream &operator<<(std::ostream &os, const League &league) {
     os << "teams: ";
     for (auto team : league.teams){
@@ -37,31 +38,31 @@ std::ostream &operator<<(std::ostream &os, const League &league) {
 League::~League() {}
 
 void League::makeFixtures() {
-    while ((this->fixtures_team1).size() < (this->teams).size()/2 * ((this->teams).size() - 1)){
-        for (auto i=0u; i<(this->teams).size()/2; i++){
-            (this->fixtures_team1).emplace_back((this->teams)[i]);
-            (this->fixtures_team2).emplace_back((this->teams)[16 - i - 1]);
-            (this->fixtures_week).emplace_back((this->fixtures_team1).size()/8 + 1);
+    while (this->fixtures_team1.size() < this->teams.size()/2 * (this->teams.size() - 1)){
+        for (auto i=0u; i<this->teams.size()/2; i++){
+            this->fixtures_team1.emplace_back(this->teams[i]);
+            this->fixtures_team2.emplace_back(this->teams[this->teams.size() - i - 1]);
+            this->fixtures_week.emplace_back(this->fixtures_team1.size()/(this->teams.size()/2) + 1);
         }
-        unsigned int aux = (this->teams)[15];
-        for (auto i=(this->teams).size() - 1; i>1; i--){
-            (this->teams)[i] = (this->teams)[i - 1];
+        unsigned int aux = this->teams[15];
+        for (auto i=this->teams.size() - 1; i>1; i--){
+            this->teams[i] = this->teams[i - 1];
         }
-        (this->teams)[1] = aux;
+        this->teams[1] = aux;
         /* este algoritmul round robin pentru generarea meciurilor directe
          * https://en.wikipedia.org/wiki/Round-robin_tournament#Scheduling_algorithm */
     }
-    while ((this->fixtures_team1).size() + 1 < 2*((this->teams).size()/2 * ((this->teams).size() - 1))){
-        for (auto i=0u; i<(this->teams).size()/2; i++){
-            (this->fixtures_team1).emplace_back((this->teams)[16 - i - 1]);
-            (this->fixtures_team2).emplace_back((this->teams)[i]);
-            (this->fixtures_week).emplace_back((this->fixtures_team1).size()/8 + 1);
+    while (this->fixtures_team1.size() + 1 < 2*(this->teams.size()/2 * (this->teams.size() - 1))){
+        for (auto i=0u; i<this->teams.size()/2; i++){
+            this->fixtures_team1.emplace_back(this->teams[this->teams.size() - i - 1]);
+            this->fixtures_team2.emplace_back(this->teams[i]);
+            this->fixtures_week.emplace_back(this->fixtures_team1.size()/(this->teams.size()/2) + 1);
         }
-        unsigned int aux = (this->teams)[15];
-        for (auto i=(this->teams).size() - 1; i>1; i--){
-            (this->teams)[i] = (this->teams)[i - 1];
+        unsigned int aux = this->teams[15];
+        for (auto i=this->teams.size() - 1; i>1; i--){
+            this->teams[i] = this->teams[i - 1];
         }
-        (this->teams)[1] = aux;
+        this->teams[1] = aux;
     }
 }
 

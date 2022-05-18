@@ -5,7 +5,11 @@
 
 Game::Game(Team &team1, Team &team2) :
     team1(team1),
-    team2(team2){}
+    team2(team2){
+    if (team1 == team2){
+        throw(matchError{"Echipa " + team1.getName() +  "nu poate juca cu ea insasi!"});
+    }
+}
 
 Game::Game(const Game& other) :
     team1(other.team1),
@@ -31,7 +35,11 @@ Game::~Game() {}
 void Game::playMatch(){
     double win1 = 35, win2 = 35;
     int goals1 = 0, goals2 = 0;
-    unsigned int ratingA = this->team1.getRating(), ratingB = this->team2.getRating(), dif, lastA = this->team1.getLastMatchResult(), lastB = this->team2.getLastMatchResult();
+    unsigned int dif;
+    unsigned int ratingA = this->team1.getRating();
+    unsigned int ratingB = this->team2.getRating();
+    unsigned int lastA = this->team1.getLastMatchResult();
+    unsigned int lastB = this->team2.getLastMatchResult();
     ///la fiecare 10 minute din meci, se poate marca un gol
     ///initial, sansele vor fi in felul urmator: 35, 35, 30
     ///pentru fiecare punct de rating diferenta intre cele 2 echipe, sansele

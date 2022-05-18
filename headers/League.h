@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 
+
 class League {
     std::vector<unsigned int> teams;
     std::vector<unsigned int> fixtures_team1;

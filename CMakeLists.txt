@@ -34,7 +34,7 @@ FetchContent_MakeAvailable(SFML)
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml when changing name here
-add_executable(${PROJECT_NAME} main.cpp sources/Player.cpp headers/Player.h sources/Team.cpp headers/Team.h sources/Game.cpp headers/Game.h sources/Transfer.cpp headers/Transfer.h sources/LoanTransfer.cpp headers/LoanTransfer.h sources/League.cpp headers/League.h sources/GameEngine.cpp headers/GameEngine.h sources/Menu.cpp headers/Menu.h sources/Button.cpp headers/Button.h sources/ListObject.cpp headers/ListObject.h)
+add_executable(${PROJECT_NAME} main.cpp sources/Player.cpp headers/Player.h sources/Team.cpp headers/Team.h sources/Game.cpp headers/Game.h sources/Transfer.cpp headers/Transfer.h sources/LoanTransfer.cpp headers/LoanTransfer.h sources/League.cpp headers/League.h sources/GameEngine.cpp headers/GameEngine.h sources/Menu.cpp headers/Menu.h sources/Button.cpp headers/Button.h sources/ListObject.cpp headers/ListObject.h sources/MenuFactory.cpp headers/MenuFactory.h sources/Errors.cpp headers/Errors.h)
 
 #set(SFML_STATIC_LIBRARIES TRUE)
 #set(SFML_DIR C:/SFML/lib/cmake/SFML)
@@ -47,7 +47,7 @@ add_executable(${PROJECT_NAME} main.cpp sources/Player.cpp headers/Player.h sour
 # custom compiler flags
 message("Compiler: ${CMAKE_CXX_COMPILER_ID} version ${CMAKE_CXX_COMPILER_VERSION}")
 if(MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /wd4244 /wd5999 /wd4267 /permissive-)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /wd4244 /wd4267 /permissive-)
 else()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror)
 
@@ -122,3 +122,4 @@ target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ext/random/include)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(DIRECTORY resources DESTINATION bin)
+install(FILES date.txt DESTINATION bin)

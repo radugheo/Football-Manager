@@ -10,7 +10,6 @@ class LoanTransfer : public Transfer{
 public:
     LoanTransfer(unsigned int team1, unsigned int team2, Player &player, unsigned int loanLength);
     LoanTransfer(const LoanTransfer& other);
-    LoanTransfer& operator=(const LoanTransfer& other);
     friend std::ostream &operator<<(std::ostream &os, const LoanTransfer &loanTransfer);
     ~LoanTransfer() override;
 
