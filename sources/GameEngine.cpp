@@ -76,10 +76,10 @@ void GameEngine::createFirst11(sf::RenderWindow& window, std::vector<std::string
         putText(window, first11[2], 415, 635, 20, true);
         putText(window, first11[3], 590, 625, 20, true);
 
-        putText(window, first11[1], 165, 550, 20, true);
-        putText(window, first11[2], 315, 550, 20, true);
-        putText(window, first11[3], 515, 550, 20, true);
-        putText(window, first11[4], 665, 550, 20, true);
+        putText(window, first11[4], 165, 550, 20, true);
+        putText(window, first11[5], 315, 550, 20, true);
+        putText(window, first11[6], 515, 550, 20, true);
+        putText(window, first11[7], 665, 550, 20, true);
 
         putText(window, first11[8], 205, 475, 20, true);
         putText(window, first11[9], 415, 460, 20, true);
@@ -117,7 +117,7 @@ void GameEngine::createFirst11(sf::RenderWindow& window, std::vector<std::string
         putText(window, first11[9], 500, 460, 20, true);
         putText(window, first11[10], 660, 475, 20, true);
     }
-    if (formation == "4-3-3") {
+    else if (formation == "4-3-3") {
         putText(window, first11[0], 415, 675, 20, true);
 
         putText(window, first11[1], 165, 625, 20, true);
@@ -132,6 +132,70 @@ void GameEngine::createFirst11(sf::RenderWindow& window, std::vector<std::string
         putText(window, first11[8], 205, 475, 20, true);
         putText(window, first11[9], 415, 460, 20, true);
         putText(window, first11[10], 625, 475, 20, true);
+    }
+    else if (formation == "4-4-2") {
+        putText(window, first11[0], 415, 675, 20, true);
+
+        putText(window, first11[1], 165, 625, 20, true);
+        putText(window, first11[2], 315, 635, 20, true);
+        putText(window, first11[3], 515, 635, 20, true);
+        putText(window, first11[4], 665, 625, 20, true);
+
+        putText(window, first11[5], 165, 540, 20, true);
+        putText(window, first11[6], 315, 550, 20, true);
+        putText(window, first11[7], 515, 550, 20, true);
+        putText(window, first11[8], 665, 540, 20, true);
+
+        putText(window, first11[9], 300, 460, 20, true);
+        putText(window, first11[10], 530, 460, 20, true);
+    }
+    else if (formation == "4-5-1") {
+        putText(window, first11[0], 415, 675, 20, true);
+
+        putText(window, first11[1], 165, 625, 20, true);
+        putText(window, first11[2], 315, 635, 20, true);
+        putText(window, first11[3], 515, 635, 20, true);
+        putText(window, first11[4], 665, 625, 20, true);
+
+        putText(window, first11[5], 165, 525, 20, true);
+        putText(window, first11[6], 290, 575, 20, true);
+        putText(window, first11[7], 415, 520, 20, true);
+        putText(window, first11[8], 540, 575, 20, true);
+        putText(window, first11[9], 665, 525, 20, true);
+
+        putText(window, first11[10], 415, 460, 20, true);
+    }
+    else if (formation == "5-3-2") {
+        putText(window, first11[0], 415, 675, 20, true);
+
+        putText(window, first11[1], 150, 625, 20, true);
+        putText(window, first11[2], 280, 630, 20, true);
+        putText(window, first11[3], 415, 635, 20, true);
+        putText(window, first11[4], 550, 630, 20, true);
+        putText(window, first11[5], 680, 625, 20, true);
+
+        putText(window, first11[6], 240, 550, 20, true);
+        putText(window, first11[7], 415, 550, 20, true);
+        putText(window, first11[8], 590, 550, 20, true);
+
+        putText(window, first11[9], 300, 460, 20, true);
+        putText(window, first11[10], 530, 460, 20, true);
+    }
+    else if (formation == "5-4-1") {
+        putText(window, first11[0], 415, 675, 20, true);
+
+        putText(window, first11[1], 150, 625, 20, true);
+        putText(window, first11[2], 280, 630, 20, true);
+        putText(window, first11[3], 415, 635, 20, true);
+        putText(window, first11[4], 550, 630, 20, true);
+        putText(window, first11[5], 680, 625, 20, true);
+
+        putText(window, first11[6], 165, 540, 20, true);
+        putText(window, first11[7], 315, 550, 20, true);
+        putText(window, first11[8], 515, 550, 20, true);
+        putText(window, first11[9], 665, 540, 20, true);
+
+        putText(window, first11[10], 415, 460, 20, true);
     }
 }
 
@@ -394,7 +458,7 @@ void GameEngine::chooseTeamMethod(const sf::Sprite &backgroundSpriteMenu, const 
                     teamInput.setString(teamInputString);
                 }
             }
-            catch(std::exception& err){
+            catch([[maybe_unused]]std::exception& err){
                 std::cout << "Nu ai introdus o cifra." << '\n';
                 if (teamInputString.size() == 1) {
                     teamInputInt = -1;
