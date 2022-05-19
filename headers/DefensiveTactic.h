@@ -9,7 +9,7 @@
 
 class DefensiveTactic : public Tactic{
 public:
-    DefensiveTactic(unsigned int team);
+    explicit DefensiveTactic(unsigned int team);
     void applyTactic(std::vector<Team>&teams, int points) override;
 };
 

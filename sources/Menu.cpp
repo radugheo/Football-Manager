@@ -30,8 +30,6 @@ Menu::Menu(int menuType) : menuType (menuType){
         this->menu.emplace_back(300, 50, "Back to menu", backButtonPosition, sf::Color::Black);
     }
     else if (this->menuType == 4) {
-        sf::Vector2f savePosition(460, 750);
-        this->menu.emplace_back(300, 50, "Save team", savePosition, sf::Color::Black);
         sf::Vector2f resetPosition(840, 750);
         this->menu.emplace_back(300, 50, "Reset team", resetPosition, sf::Color::Black);
         sf::Vector2f backButtonPosition(1220, 750);
