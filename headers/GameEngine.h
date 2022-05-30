@@ -62,7 +62,7 @@ private:
     static int calculateChances(int bid, int value, int age, std::string& middle);
     static std::string formatMoney(int sum);
     static void createFirst11(sf::RenderWindow& window, std::vector<std::string> first11, const std::string& formation);
-    static void printStandings(unsigned int teamInputInt, sf::RenderWindow &window, std::vector<Team> &teams_, const std::string& formation);
+    void printStandings(unsigned int teamInputInt, sf::RenderWindow &window, std::vector<Team> &teams_, const std::string& formation);
     void menuMethod(const sf::Text &title, const sf::Sprite &chooseTeamBackgroundSprite, Menu &menu,
                std::vector<sf::Sprite> &checkboxPlayersSprite, std::vector<sf::Sprite> &checkboxMentalitySprite,
                std::vector<sf::Sprite> &checkboxFormationsSprite, const int size50,
@@ -81,11 +81,11 @@ private:
                               std::string &formation);
 
     void advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &mainGameMenu,
-                       const std::vector<unsigned int> &homeTeams, const std::vector<unsigned int> &awayTeams,
-                       const std::vector<unsigned int> &weekNumber, int *vizitat,
+                       std::vector<unsigned int> &homeTeams, std::vector<unsigned int> &awayTeams,
+                       std::vector<unsigned int> &weekNumber, int *vizitat,
                        std::vector<std::pair<std::string, int>> &team1, std::vector<std::pair<std::string, int>> &team2,
                        std::vector<std::string> &first11, sf::Vector2i &mousePos, sf::RenderWindow &window,
-                       unsigned int &week, bool &finish, const std::string& formation);
+                       unsigned int &week, bool &finish, bool &finishPlayOff, std::vector<Team> teamsPlayOff, const std::string& formation);
 
     void initialize();
 
