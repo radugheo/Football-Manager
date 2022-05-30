@@ -5,5 +5,4 @@
 #include "../headers/Errors.h"
 
 appError::appError(const std::string &arg) : runtime_error(arg) {}
-
 matchError::matchError(const std::string &arg) : appError(arg) {}

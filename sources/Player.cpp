@@ -15,7 +15,6 @@ name(other.name),
 position(other.position),
 age(other.age),
 rating(other.rating),
-value(other.value),
 team(other.team){}
 
 Player& Player::operator=(const Player& other){
@@ -23,7 +22,6 @@ Player& Player::operator=(const Player& other){
     position = other.position;
     age = other.age;
     rating = other.rating;
-    value = other.value;
     team = other.team;
     return *this;
 }
@@ -43,10 +41,27 @@ std::ostream &operator<<(std::ostream &os, const Player &player) {
     return os;
 }
 
+unsigned int Player::value() const{
+    return (rating - 55) * 100000 + (40 - age)*50000;
+}
 
-/*int Player::getValue() const {
-    return value;
-}*/
+std::string Player::valueString() const {
+    int value = (rating - 55) * 100000 + (40 - age)*50000;
+    int nrcif = 0;
+    std::string valueString = "$";
+    while (value){
+        valueString += std::to_string(value % 10);
+        nrcif++;
+        if (nrcif % 3 == 0){
+            valueString += ",";
+        }
+        value /= 10;
+    }
+    std::reverse(valueString.begin(), valueString.end());
+    return valueString;
+    ///Valoarea unui jucator, ca si in realitate, este o formula intre rating-ul sau si varsta sa. Cu cat este mai tanar, cu atat este mai scump.
+    ///De aceea am considerat ca varsta maxima a unui jucator este 40 de ani.
+}
 
 const std::string &Player::getName() const {
     return name;
@@ -56,11 +71,20 @@ const std::string &Player::getPosition() const {
     return position;
 }
 
+unsigned int Player::getAge() const {
+    return age;
+}
 
+bool Player::operator==(const Player &rhs) const {
+    return name == rhs.name &&
+           position == rhs.position &&
+           age == rhs.age &&
+           rating == rhs.rating &&
+           team == rhs.team;
+}
 
-/*void Player::calculateValue(){
-    this->value = (this->rating - 55) * 100000 + (40 - this->age)*50000;
-    ///Valoarea unui jucator, ca si in realitate, este o formula intre rating-ul sau si varsta sa. Cu cat este mai tanar, cu atat este mai scump.
-    ///De aceea am considerat ca varsta maxima a unui jucator este 40 de ani.
-}*/
+bool Player::operator!=(const Player &rhs) const {
+    return !(rhs == *this);
+}
+
 

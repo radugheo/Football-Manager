@@ -78,11 +78,39 @@ void Team::calculateRating() {
     this->rating = sumRating / 11;
 }
 
-/*void Team::modifyBudget(int transferSum) {
+void Team::modifyBudget(int transferSum) {
     this->budget += transferSum;
-}*/
+}
 
 std::vector<Player> &Team::getPlayers() {
+    std::vector<Player> gks, defs, mids, atts;
+    for (const auto& player : players){
+        if (player.getPosition() == "GK"){
+            gks.emplace_back(player);
+        }
+        else if (player.getPosition() == "DEF"){
+            defs.emplace_back(player);
+        }
+        else if (player.getPosition() == "MID"){
+            mids.emplace_back(player);
+        }
+        else{
+            atts.emplace_back(player);
+        }
+    }
+    players.clear();
+    for (const auto& player : gks){
+        players.emplace_back(player);
+    }
+    for (const auto& player : defs){
+        players.emplace_back(player);
+    }
+    for (const auto& player : mids){
+        players.emplace_back(player);
+    }
+    for (const auto& player : atts){
+        players.emplace_back(player);
+    }
     return players;
 }
 
@@ -148,6 +176,39 @@ bool Team::operator!=(const Team &rhs) const {
 
 void Team::setRating(unsigned int rating_) {
     Team::rating = rating_;
+}
+
+std::string Team::getBudgetString() const {
+    int budgetCopy = budget;
+    int nrcif = 0;
+    std::string budgetString = "$";
+    while (budgetCopy){
+        budgetString += std::to_string(budgetCopy % 10);
+        nrcif++;
+        budgetCopy /= 10;
+        if (nrcif % 3 == 0 && budgetCopy > 0){
+            budgetString += ",";
+        }
+    }
+    std::reverse(budgetString.begin(), budgetString.end());
+    return budgetString;
+}
+
+int Team::getBudget() const {
+    return budget;
+}
+
+void Team::addPlayer(const Player& player) {
+    players.emplace_back(player);
+}
+
+void Team::deletePlayer(const Player& player) {
+    for (const auto& plr : players){
+        if (plr == player){
+            players.erase(std::remove(players.begin(), players.end(), player), players.end());
+            break;
+        }
+    }
 }
 
 

@@ -6,16 +6,12 @@
 
 Menu::Menu(int menuType) : menuType (menuType){
     if (this->menuType == 1) {
-        sf::Vector2f playPosition(190, 375);
-        this->menu.emplace_back(300, 50, "Choose your team", playPosition, sf::Color::Black);
         sf::Vector2f viewTeamsPosition(190, 475);
-        this->menu.emplace_back(300, 50, "View teams", viewTeamsPosition, sf::Color::Black);
+        this->menu.emplace_back(300, 50, "Choose team", viewTeamsPosition, sf::Color::Black);
         sf::Vector2f exitPosition(190, 575);
         this->menu.emplace_back(300, 50, "Exit", exitPosition, sf::Color::Black);
     }
     else if (this->menuType == 2){
-        sf::Vector2f selectTeamButtonPosition(210, 750);
-        this->menu.emplace_back(300, 50, "Select team", selectTeamButtonPosition, sf::Color::Black);
         sf::Vector2f backButtonPosition(1075, 750);
         this->menu.emplace_back(300, 50, "Back to menu", backButtonPosition, sf::Color::Black);
     }
@@ -32,6 +28,22 @@ Menu::Menu(int menuType) : menuType (menuType){
     else if (this->menuType == 4) {
         sf::Vector2f resetPosition(840, 750);
         this->menu.emplace_back(300, 50, "Reset team", resetPosition, sf::Color::Black);
+        sf::Vector2f backButtonPosition(1220, 750);
+        this->menu.emplace_back(300, 50, "Back", backButtonPosition, sf::Color::Black);
+    }
+    else if (this->menuType == 5){
+        sf::Vector2f backButtonPosition(1220, 750);
+        this->menu.emplace_back(300, 50, "Back", backButtonPosition, sf::Color::Black);
+    }
+    else if (this->menuType == 6){
+        sf::Vector2f resetPosition(840, 750);
+        this->menu.emplace_back(300, 50, "Make offer", resetPosition, sf::Color::Black);
+        sf::Vector2f backButtonPosition(1220, 750);
+        this->menu.emplace_back(300, 50, "Back", backButtonPosition, sf::Color::Black);
+    }
+    else if (this->menuType == 7) {
+        sf::Vector2f resetPosition(840, 750);
+        this->menu.emplace_back(300, 50, "Sell player", resetPosition, sf::Color::Black);
         sf::Vector2f backButtonPosition(1220, 750);
         this->menu.emplace_back(300, 50, "Back", backButtonPosition, sf::Color::Black);
     }

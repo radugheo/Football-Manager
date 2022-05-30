@@ -11,3 +11,9 @@ Menu MenuFactory::selectScreen() { return Menu(2); }
 Menu MenuFactory::gameScreen() { return Menu(3); }
 
 Menu MenuFactory::squadScreen() { return Menu(4); }
+
+Menu MenuFactory::onlyBack() { return Menu(5);};
+
+Menu MenuFactory::playerTransferScreen() { return Menu(6);};
+
+Menu MenuFactory::transferMarketScreen() {return Menu(7);}

@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../headers/Team.h"
 #include "../headers/Errors.h"
+#include "../ext/random.hpp"
 
 class Game {
     Team& team1;

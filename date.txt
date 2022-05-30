@@ -33,7 +33,7 @@ Gheorghe ATT 25 68
 Cordea ATT 22 67
 1
 Craiova
-4000000
+3000000
 25
 Pigliacelli GK 28 71
 Lazar GK 30 69
@@ -62,7 +62,7 @@ Cimpanu ATT 20 65
 Gustavo ATT 29 66
 2
 Dinamo
-2000000
+1100000
 28
 Figueiredo GK 30 65
 Esanu GK 22 63
@@ -123,7 +123,7 @@ Bus ATT 28 66
 Chipciu ATT 32 68
 4
 Farul
-0
+2700000
 25
 Aioani GK 22 69
 Branescu GK 27 61
@@ -152,7 +152,7 @@ Petre ATT 23 65
 Andronache ATT 19 54
 5
 Voluntari
-0
+1300000
 26
 Popa GK 20 64
 Rimniceanu GK 31 63
@@ -182,7 +182,7 @@ Olawale ATT 22 59
 Merloi ATT 21 64
 6
 Rapid
-0
+1900000
 27
 Moldovan GK 23 66
 Draghia GK 30 58
@@ -213,7 +213,7 @@ Balan ATT 31 64
 Marzouk ATT 25 62
 7
 Sepsi
-0
+2400000
 25
 Niczuly GK 26 68
 Began GK 24 57
@@ -242,7 +242,7 @@ Dragomir ATT 17 53
 Damascan ATT 22 63
 8
 Chindia
-0
+1400000
 28
 Cabuz GK 25 65
 Moldovan GK 31 63
@@ -274,7 +274,7 @@ Florea ATT 33 66
 Cherchez ATT 30 62
 9
 Botosani
-0
+2100000
 25
 Pap GK 27 67
 Contra GK 21 53
@@ -303,7 +303,7 @@ Grubac ATT 21 61
 Torres ATT 23 60
 10
 Arges
-0
+1600000
 26
 Greab GK 29 65
 Croitoru GK 28 62
@@ -333,7 +333,7 @@ Arias ATT 26 62
 Said ATT 28 64
 11
 UTA
-0
+1700000
 24
 Iacob GK 27 67
 Balauru GK 31 61
@@ -361,7 +361,7 @@ Ongaro ATT 23 61
 Laukzemis ATT 29 60
 12
 FCU
-0
+1900000
 24
 Popa GK 19 62
 Cobrea GK 30 59
@@ -389,7 +389,7 @@ Ondaan ATT 27 65
 Compagno ATT 25 59
 13
 Mioveni
-0
+1300000
 28
 Popescu GK 27 61
 Sima GK 23 54
@@ -421,7 +421,7 @@ Cosereanu ATT 29 58
 Tomczyk ATT 23 62
 14
 Academica
-0
+1100000
 27
 Ureche GK 22 59
 Bolboasa GK 31 57
@@ -452,7 +452,7 @@ Goma ATT 19 55
 Melniciuc ATT 16 51
 15
 GazMetan
-0
+1700000
 20
 Bumbar GK 16 49
 Buzbuchi GK 27 64

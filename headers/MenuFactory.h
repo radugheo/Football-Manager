@@ -13,6 +13,9 @@ public:
     static Menu selectScreen();
     static Menu gameScreen();
     static Menu squadScreen();
+    static Menu onlyBack();
+    static Menu playerTransferScreen();
+    static Menu transferMarketScreen();
 };
 
 

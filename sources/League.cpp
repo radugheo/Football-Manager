@@ -18,7 +18,6 @@ League& League::operator=(const League& other){
     return *this;
 }
 
-
 std::ostream &operator<<(std::ostream &os, const League &league) {
     os << "teams: ";
     for (auto team : league.teams){
@@ -44,7 +43,7 @@ void League::makeFixtures() {
             this->fixtures_team2.emplace_back(this->teams[this->teams.size() - i - 1]);
             this->fixtures_week.emplace_back(this->fixtures_team1.size()/(this->teams.size()/2) + 1);
         }
-        unsigned int aux = this->teams[15];
+        unsigned int aux = this->teams[this->teams.size() - 1];
         for (auto i=this->teams.size() - 1; i>1; i--){
             this->teams[i] = this->teams[i - 1];
         }
@@ -58,7 +57,7 @@ void League::makeFixtures() {
             this->fixtures_team2.emplace_back(this->teams[i]);
             this->fixtures_week.emplace_back(this->fixtures_team1.size()/(this->teams.size()/2) + 1);
         }
-        unsigned int aux = this->teams[15];
+        unsigned int aux = this->teams[this->teams.size() - 1];
         for (auto i=this->teams.size() - 1; i>1; i--){
             this->teams[i] = this->teams[i - 1];
         }

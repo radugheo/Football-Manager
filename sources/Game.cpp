@@ -1,7 +1,5 @@
-#include <iostream>
-#include <cmath>
 #include "../headers/Game.h"
-#include "../ext/random.hpp"
+
 
 Game::Game(Team &team1, Team &team2) :
     team1(team1),

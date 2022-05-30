@@ -9,25 +9,22 @@ class Player{
     std::string position;
     unsigned int age;
     unsigned int rating;
-    unsigned int value = 0;
     unsigned int team;
 public:
     Player(const std::string &name, const std::string &position, unsigned int age, unsigned int rating, unsigned int team);
     Player(const Player& other);
     Player& operator=(const Player& other);
-
+    bool operator==(const Player &rhs) const;
+    bool operator!=(const Player &rhs) const;
     friend std::ostream &operator<<(std::ostream &os, const Player &player);
-
     void growRating(unsigned int points);
-
     ~Player();
-
     unsigned int getRating() const;
+    unsigned int getAge() const;
     const std::string &getPosition() const;
-    //int getValue() const;
+    std::string valueString() const;
+    unsigned int value() const;
     const std::string &getName() const;
-
-    //void calculateValue();
 };
 
 
