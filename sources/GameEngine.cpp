@@ -50,7 +50,7 @@ void GameEngine::putText(sf::RenderWindow &window, const std::string &s, float x
 void GameEngine::createListOfTeams(std::vector<ListObject> &listOfTeams){
     int velY = 0;
     for (const auto& team : this->teams) {
-        listOfTeams.emplace_back("-->" + team.getName() + " - Rating " + std::to_string(team.getRating()), sf::Vector2f(80, (float)(200.0 + velY*1.0)), sf::Color::White, 30);
+        listOfTeams.emplace_back(team.getName() + " - Rating " + std::to_string(team.getRating()), sf::Vector2f(100, (float)(200.0 + velY*1.0)), sf::Color::White, 30);
         velY += 40;
     }
 }
@@ -324,9 +324,11 @@ void GameEngine::run(){
     const int size50 = 50;
     bool finishLeague = false;
     bool finishPlayOff = false;
+    bool finishPlayOut = false;
     int playersChecked[size50] = {0};
     int mentalityChecked[size50] = {0};
     int formationsChecked[size50] = {0};
+    unsigned int checkPlayOut[size50] = {0};
     int noChecked = 0;
     int mentalityNoChecked = 0;
     int formationsNoChecked = 0;
@@ -363,8 +365,9 @@ void GameEngine::run(){
     /*
      *
      */
-    unsigned int transferTeamId = 0, transferPlayerId = 0, sellPlayerId = 0;
+    unsigned int transferTeamId = 0, transferPlayerId = 0, sellPlayerId = 0, rankingRegularSeason = 0;
     std::vector<Team> teamsPlayOff;
+    std::vector<Team> teamsPlayOut;
     while (window.isOpen()){
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
         if (state == "menu") {
@@ -377,7 +380,7 @@ void GameEngine::run(){
         }
         else if (state == "advance"){
             advanceMethod(gameMenuBackgroundSprite, mainGameMenu, homeTeams, awayTeams, weekNumber,
-                          vizitat, team1, team2, first11, mousePos, window, week, finishLeague, finishPlayOff, teamsPlayOff, formation);
+                          vizitat, team1, team2, first11, mousePos, window, week, rankingRegularSeason, checkPlayOut, finishLeague, finishPlayOff, finishPlayOut, teamsPlayOff, teamsPlayOut, formation);
         }
         else if (state == "team management"){
             teamManagementMethod(gameMenuBackgroundSprite, teamManagementMenu, checkboxEmpty,
@@ -738,10 +741,22 @@ void GameEngine::transferMarketMethod(const sf::Sprite &gameMenuBackgroundSprite
     putText(window, "Budget: " + teams[playerTeamID].getBudgetString(), 1200, 90, 30, false, sf::Color::White);
     std::vector<ListObject> transferTeams;
     int velY = 0;
+    int cnt = 0;
     for (const auto& team : teams) {
         if (team.getId() != playerTeamID) {
-            transferTeams.emplace_back("-> " + team.getName(), sf::Vector2f(80, (float) (150.0 + velY * 1.0)),sf::Color::White, 25);
+            sf::Texture texture;
+            std::string fileName;
+            fileName = "resources/" + team.getName() + "_25x25.png";
+            texture.loadFromFile(fileName);
+            sf::Sprite sprite(texture);
+            auto center = sprite.getGlobalBounds().getSize() / 2.f;
+            auto localBounds = center + sprite.getLocalBounds().getPosition();
+            sprite.setOrigin(localBounds);
+            sprite.setPosition(90, static_cast<float>(cnt*40 + 165.0));
+            window.draw(sprite);
+            transferTeams.emplace_back(team.getName(), sf::Vector2f(110, (float) (150.0 + velY * 1.0)),sf::Color::White, 25);
             velY += 40;
+            cnt++;
         }
         else {
             velY += 0;
@@ -875,6 +890,20 @@ void GameEngine::chooseTeamMethod(sf::RenderWindow &window, Menu &selectTeamMenu
     window.clear();
     window.draw(backgroundSpriteMenu);
     mousePos = sf::Mouse::getPosition(window);
+    int cnt = 1;
+    for (auto &team:teams){
+        sf::Texture texture;
+        std::string fileName;
+        fileName = "resources/" + team.getName() + "_32x32.png";
+        texture.loadFromFile(fileName);
+        sf::Sprite sprite(texture);
+        auto center = sprite.getGlobalBounds().getSize() / 2.f;
+        auto localBounds = center + sprite.getLocalBounds().getPosition();
+        sprite.setOrigin(localBounds);
+        sprite.setPosition(80, static_cast<float>(cnt*40 + 177.0));
+        window.draw(sprite);
+        cnt++;
+    }
     for (auto listItem : listOfTeams){
         listItem.display(window, mousePos);
     }
@@ -885,7 +914,7 @@ void GameEngine::chooseTeamMethod(sf::RenderWindow &window, Menu &selectTeamMenu
             window.close();
         }
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-            int cnt = 0;
+            cnt = 0;
             for (auto listItem : listOfTeams){
                 if (listItem.checkHover(mousePos)){
                     this->playerTeamID = cnt;
@@ -912,8 +941,9 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
                                std::vector<unsigned int> &weekNumber, int *vizitat,
                                std::vector<std::pair<std::string, int>> &team1,
                                std::vector<std::pair<std::string, int>> &team2, std::vector<std::string> &first11,
-                               sf::Vector2i &mousePos, sf::RenderWindow &window, unsigned int &week, bool &finishLeague,
-                               bool &finishPlayOff, std::vector<Team> teamsPlayOff, const std::string& formation) {
+                               sf::Vector2i &mousePos, sf::RenderWindow &window, unsigned int &week, unsigned int &rankingRegularSeason,
+                               unsigned int *checkPlayOut, bool &finishLeague,
+                               bool &finishPlayOff, bool &finishPlayOut, std::vector<Team> teamsPlayOff, std::vector<Team> teamsPlayOut, const std::string& formation) {
     window.clear();
     window.draw(gameMenuBackgroundSprite);
     mainGameMenu.draw(window, mousePos);
@@ -926,6 +956,7 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
                 team.setPoints(team.getPoints() % 2 == 0 ? team.getPoints() / 2 : team.getPoints() / 2 + 1);
             }
             std::vector<unsigned int> teamsPlayOffInt;
+            std::vector<unsigned int> teamsPlayOutInt;
             std::vector<Team> teamsCopy = teams;
             std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
             int cnt = 0;
@@ -934,16 +965,35 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
                     teamsPlayOffInt.emplace_back(team.getId());
                     teamsPlayOff.emplace_back(team);
                 }
+                else{
+                    checkPlayOut[team.getId()] = 1;
+                    teamsPlayOutInt.emplace_back(team.getId());
+                    teamsPlayOut.emplace_back(team);
+                }
                 cnt++;
             }
-            League playOff{teamsPlayOffInt};
-            playOff.makeFixtures();
-            std::cout << "\n-----------------\n";
-            std::cout << playOff << '\n';
-            std::cout << "\n-----------------\n";
-            homeTeams = playOff.getFixturesTeam1();
-            awayTeams = playOff.getFixturesTeam2();
-            weekNumber = playOff.getFixturesWeek();
+            rankingRegularSeason = teams[playerTeamID].getRanking();
+            std::cout <<"ranking: " << rankingRegularSeason << '\n';
+            if (rankingRegularSeason <= 6) {
+                League playOff{teamsPlayOffInt};
+                playOff.makeFixtures();
+                std::cout << "\n-----------------\n";
+                std::cout << playOff << '\n';
+                std::cout << "\n-----------------\n";
+                homeTeams = playOff.getFixturesTeam1();
+                awayTeams = playOff.getFixturesTeam2();
+                weekNumber = playOff.getFixturesWeek();
+            }
+            else{
+                League playOut(teamsPlayOutInt);
+                playOut.makeFixtures();
+                std::cout << "\n-----------------\n";
+                std::cout << playOut << '\n';
+                std::cout << "\n-----------------\n";
+                homeTeams = playOut.getFixturesTeam1();
+                awayTeams = playOut.getFixturesTeam2();
+                weekNumber = playOut.getFixturesWeek();
+            }
             return;
         }
         for (int i=0; i<(int)homeTeams.size(); i += 8){
@@ -985,14 +1035,14 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
         }
         if (week == 30){
             putText(window, "Regular season standings:", 1150, 90, 30, false, sf::Color::White);
-            unsigned int rankingRegularSeason = teams[playerTeamID].getRanking();
+            rankingRegularSeason = teams[playerTeamID].getRanking();
             if (rankingRegularSeason <= 6){
                 putText(window, "Congratulations! You qualified for the Play-Off. Position: " + std::to_string(rankingRegularSeason), 80, 90, 30, false, sf::Color::White);
-                putText(window, "First 11, " + formation, 80, 380, 30, false, sf::Color::White);
             }
             else{
                 putText(window, "You qualified for the Play-Out. Position: " + std::to_string(rankingRegularSeason), 80, 90, 30, false, sf::Color::White);
             }
+            putText(window, "First 11, " + formation, 80, 380, 30, false, sf::Color::White);
         }
         else{
             putText(window, "Standings:", 1150, 90, 30, false, sf::Color::White);
@@ -1003,18 +1053,17 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
         printStandings(playerTeamID, window, teams, formation);
     }
     else {
-        unsigned int rankingRegularSeason = teams[playerTeamID].getRanking();
         team1.clear(), team2.clear();
         if (rankingRegularSeason <= 6){ //playOff
             putText(window, "First 11, " + formation, 80, 380, 30, false, sf::Color::White);
             if (!finishPlayOff){
                 unsigned int nextOpponent = 0;
-                if (week > 41){
+                if (week > 42){
                     finishPlayOff = true;
                     return;
                 }
                 for (int i=0; i<(int)homeTeams.size(); i += 3){
-                    if (weekNumber[i] == week - 30 + 1){
+                    if (weekNumber[i] == week - 30){
                         for (int j=i; j<i+3; j++) {
                             if (homeTeams[j] == playerTeamID) {
                                 nextOpponent = awayTeams[j];
@@ -1024,11 +1073,11 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
                         }
                     }
                 }
-                if (week > 30){
+                if (week > 31){
                     putText(window, "Results:", 80, 130, 30, false, sf::Color::White);
                     if (vizitat[week] == 0) {
                         for (int i = 0; i < (int) homeTeams.size(); i += 3) {
-                            if (weekNumber[i] == week - 30) {
+                            if (weekNumber[i] == week - 30 - 1) {
                                 for (int j = i; j < i + 3; j++) {
                                     try {
                                         Game game{teams[homeTeams[j]], teams[awayTeams[j]]};
@@ -1050,17 +1099,27 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
                         putText(window, team1[i].first + " " + std::to_string(team1[i].second) + " - " + std::to_string(team2[i].second) + " " + team2[i].first, 80, 170 + (float) i * 25, 25,false, sf::Color::White);
                     }
                 }
-                if (week == 40){
+                if (week == 41){
+                    std::vector<Team> teamsCopy = teams;
+                    std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
+                    int cnt = 1;
+                    for (auto &team:teamsCopy) {
+                        if (team == teams[playerTeamID]) {
+                            teams[playerTeamID].setRanking(cnt);
+                        }
+                        cnt++;
+                    }
                     putText(window, "League finished! Congratulations! Ranking: " + std::to_string(teams[playerTeamID].getRanking()), 80, 90, 30, false, sf::Color::White);
                     putText(window, "Final standings:", 1150, 90, 30, false, sf::Color::White);
                 }
                 else{
                     putText(window, "PlayOff | " + teams[playerTeamID].getName() + " | R: " + std::to_string(
-                            teams[playerTeamID].getRating()) + " | Week: " + std::to_string(week - 30) + " | Next fixture: " +
+                            teams[playerTeamID].getRating()) + " | Week: " + std::to_string(week - 30 - 1) + " | Next fixture: " +
                                     teams[nextOpponent].getName(), 80, 90, 30, false, sf::Color::White);
                     putText(window, "Standings:", 1150, 90, 30, false, sf::Color::White);
                 }
                 std::vector<Team> teamsCopy = teams;
+                std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
                 int cnt = 0;
                 for (auto &team:teamsCopy) {
                     if (cnt <= 5){
@@ -1071,9 +1130,80 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
                 printStandings(playerTeamID, window, teamsPlayOff, formation);
             }
         }
-        /*else{
-            //playOut
-        }*/
+        else{
+            putText(window, "First 11, " + formation, 80, 380, 30, false, sf::Color::White);
+            if (!finishPlayOut){
+                unsigned int nextOpponent = 0;
+                if (week > 42){
+                    finishPlayOut = true;
+                    return;
+                }
+                for (int i=0; i<(int)homeTeams.size(); i += 5){
+                    if (weekNumber[i] == week - 30){
+                        for (int j=i; j<i+5; j++) {
+                            if (homeTeams[j] == playerTeamID) {
+                                nextOpponent = awayTeams[j];
+                            } else if (awayTeams[j] == playerTeamID) {
+                                nextOpponent = homeTeams[j];
+                            }
+                        }
+                    }
+                }
+                if (week > 31){
+                    putText(window, "Results:", 80, 130, 30, false, sf::Color::White);
+                    if (vizitat[week] == 0) {
+                        for (int i = 0; i < (int) homeTeams.size(); i += 5) {
+                            if (weekNumber[i] == week - 30 - 1) {
+                                for (int j = i; j < i + 5; j++) {
+                                    try {
+                                        Game game{teams[homeTeams[j]], teams[awayTeams[j]]};
+                                        game.playMatch();
+                                        std::pair<int, int> score;
+                                        score = game.getScore();
+                                        team1.emplace_back(teams[homeTeams[j]].getName(), score.first);
+                                        team2.emplace_back(teams[awayTeams[j]].getName(), score.second);
+                                    }
+                                    catch(matchError& err){
+                                        std::cout << err.what() << "\n";
+                                    }
+                                }
+                            }
+                        }
+                        vizitat[week] = 1;
+                    }
+                    for (int i = 0; i<5; i++){
+                        putText(window, team1[i].first + " " + std::to_string(team1[i].second) + " - " + std::to_string(team2[i].second) + " " + team2[i].first, 80, 170 + (float) i * 25, 25,false, sf::Color::White);
+                    }
+                }
+                if (week == 41){
+                    std::vector<Team> teamsCopy = teams;
+                    std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
+                    int cnt = 1;
+                    for (auto &team:teamsCopy) {
+                        if (team == teams[playerTeamID]) {
+                            teams[playerTeamID].setRanking(cnt);
+                        }
+                        cnt++;
+                    }
+                    putText(window, "League finished! Congratulations! Ranking: " + std::to_string(teams[playerTeamID].getRanking()), 80, 90, 30, false, sf::Color::White);
+                    putText(window, "Final standings:", 1150, 90, 30, false, sf::Color::White);
+                }
+                else{
+                    putText(window, "PlayOut | " + teams[playerTeamID].getName() + " | R: " + std::to_string(
+                            teams[playerTeamID].getRating()) + " | Week: " + std::to_string(week - 30 - 1) + " | Next fixture: " +
+                                    teams[nextOpponent].getName(), 80, 90, 30, false, sf::Color::White);
+                    putText(window, "Standings:", 1150, 90, 30, false, sf::Color::White);
+                }
+                std::vector<Team> teamsCopy = teams;
+                std::sort(teamsCopy.begin(), teamsCopy.end(), std::greater());
+                for (auto &team:teamsCopy) {
+                    if (checkPlayOut[team.getId()] == 1){
+                        teamsPlayOut.emplace_back(team);
+                    }
+                }
+                printStandings(playerTeamID, window, teamsPlayOut, formation);
+            }
+        }
         /**/
     }
     sf::Event event{};
@@ -1086,7 +1216,7 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
             for (const auto &menuBtn: mainGameMenu.getMenu()) {
                 if (menuBtn.isHover(mousePos)) {
                     if (menuBtnCnt == 0) {
-                        if (week <= 39) {
+                        if (week <= 40) {
                             week++;
                             vizitat[week] = 0;
                             team1.clear();

@@ -26,7 +26,7 @@ std::ostream &operator<<(std::ostream &os, const League &league) {
     os << "\nfixtures: \n";
     for (auto i=0u; i<league.fixtures_team1.size(); i++){
         os << league.fixtures_team1[i] << " - " << league.fixtures_team2[i] << '\n';
-        if ((i+1) % 3 == 0){
+        if ((i+1) % 5 == 0){
             os << league.fixtures_week[i] << "\n========\n";
         }
     }

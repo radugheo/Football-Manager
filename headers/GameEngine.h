@@ -85,7 +85,7 @@ private:
                        std::vector<unsigned int> &weekNumber, int *vizitat,
                        std::vector<std::pair<std::string, int>> &team1, std::vector<std::pair<std::string, int>> &team2,
                        std::vector<std::string> &first11, sf::Vector2i &mousePos, sf::RenderWindow &window,
-                       unsigned int &week, bool &finish, bool &finishPlayOff, std::vector<Team> teamsPlayOff, const std::string& formation);
+                       unsigned int &week, unsigned int &rankingRegularSeason, unsigned int *checkPlayOut, bool &finish, bool &finishPlayOff, bool &finishPlayOut, std::vector<Team> teamsPlayOff, std::vector<Team> teamsPlayOut, const std::string& formation);
 
     void initialize();
 
