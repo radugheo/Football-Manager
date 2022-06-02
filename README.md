@@ -47,8 +47,7 @@
 - [ ] o specializare pe funcție/clasă șablon
 - [ ] tag de `git`: de exemplu `v0.3` sau `v1.0`
 
-##Football Manager
-
+<h1>Football Manager</h1>
 <h3>How to play</h3>
 <p>After you choose your team, you can adjust the squad and the desired tactics for the next game, sell or buy players from the transfer market, and of course, simulate the next match.</p>
 <p>If you are in top 6 when the regular season ends, you qualify for the Play-Offs. Else, it's the Play-Outs.</p>
