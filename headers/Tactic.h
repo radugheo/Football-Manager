@@ -5,6 +5,7 @@
 #ifndef OOP_TACTIC_H
 #define OOP_TACTIC_H
 
+#include <iostream>
 #include <memory>
 
 class Team;
