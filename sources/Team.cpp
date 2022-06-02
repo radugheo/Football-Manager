@@ -2,8 +2,10 @@
 #include <vector>
 #include "../headers/Team.h"
 
-Team::Team(unsigned int id, const std::string &name, int budget, const std::vector<Player> &players) :
-        id(id),
+unsigned int Team::contor = 0;
+
+Team::Team(const std::string &name, int budget, const std::vector<Player> &players) :
+        id(contor++),
         name(name),
         budget(budget),
         players(players){}
@@ -202,6 +204,11 @@ void Team::addPlayer(const Player& player) {
     players.emplace_back(player);
 }
 
+void Team::applyTactic() {
+    if (tactic != nullptr)
+        tactic->applyTactic(*this);
+}
+
 void Team::deletePlayer(const Player& player) {
     for (const auto& plr : players){
         if (plr == player){
@@ -210,6 +217,12 @@ void Team::deletePlayer(const Player& player) {
         }
     }
 }
+
+void Team::setTactic(std::shared_ptr<Tactic> tactic_) {
+    Team::tactic = tactic_;
+}
+
+
 
 
 

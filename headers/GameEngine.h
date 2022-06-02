@@ -14,8 +14,6 @@
 #include "../headers/Team.h"
 #include "../headers/Game.h"
 #include "../headers/League.h"
-#include "../headers/Transfer.h"
-#include "../headers/LoanTransfer.h"
 #include "../headers/GameEngine.h"
 #include "../headers/Menu.h"
 #include "../headers/MenuFactory.h"
@@ -66,7 +64,7 @@ private:
     void menuMethod(const sf::Text &title, const sf::Sprite &chooseTeamBackgroundSprite, Menu &menu,
                std::vector<sf::Sprite> &checkboxPlayersSprite, std::vector<sf::Sprite> &checkboxMentalitySprite,
                std::vector<sf::Sprite> &checkboxFormationsSprite, const int size50,
-               int *playersChecked, int *mentalityChecked, int *formationsChecked, sf::Vector2i &mousePos, sf::RenderWindow &window,
+               int *playersChecked, int *mentalityChecked, int *formationsChecked, const sf::Vector2i &mousePos, sf::RenderWindow &window,
                unsigned int &week, bool &finish, int &noChecked, int &mentalityNoChecked,
                int &formationsNoChecked, std::vector<std::string> &first11);
 
@@ -93,29 +91,29 @@ private:
     transferMarketMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &transferMarketMenu, sf::Vector2i &mousePos,
                          sf::RenderWindow &window, unsigned int &transferTeamId);
 
-    void sellPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack, sf::Vector2i &mousePos,
+    void sellPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack, const sf::Vector2i &mousePos,
                            sf::RenderWindow &window, unsigned int &sellPlayerId);
 
     void
     sellPlayerMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &transferMarketMenu, int *playersChecked,
-                     unsigned int sellPlayerId, sf::Vector2i &mousePos, sf::RenderWindow &window, int &noChecked,
+                     unsigned int sellPlayerId, const sf::Vector2i &mousePos, sf::RenderWindow &window, int &noChecked,
                      std::vector<std::string> &first11);
 
     void sellConfirmMethod(sf::RenderWindow &window, const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack,
-                           sf::Vector2i &mousePos);
+                           const sf::Vector2i &mousePos);
 
     void buyPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack, unsigned int transferTeamId,
-                          sf::Vector2i &mousePos, sf::RenderWindow &window, unsigned int &transferPlayerId);
+                          const sf::Vector2i &mousePos, sf::RenderWindow &window, unsigned int &transferPlayerId);
 
     void buyPlayerMethod(sf::RenderWindow &window, const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack,
                          Menu &playerTransferMenu, unsigned int transferTeamId, unsigned int transferPlayerId,
                          sf::Vector2i &mousePos);
 
     void refuseTransferMethod(sf::RenderWindow &window, const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack,
-                              unsigned int transferTeamId, unsigned int transferPlayerId, sf::Vector2i &mousePos);
+                              unsigned int transferTeamId, unsigned int transferPlayerId, const sf::Vector2i &mousePos);
 
     void acceptTransferMethod(sf::RenderWindow &window, const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack,
-                              sf::Vector2i &mousePos);
+                              const sf::Vector2i &mousePos);
 };
 
 

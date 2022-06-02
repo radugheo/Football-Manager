@@ -7,16 +7,19 @@
 
 #include <memory>
 
-#include "../headers/Team.h"
+class Team;
 
 class Tactic {
 protected:
-    unsigned int team;
+    int points;
+    virtual void afisare(std::ostream& os) const;
 public:
-    explicit Tactic(unsigned int team);
+    explicit Tactic(int points);
     Tactic(const Tactic& other);
     Tactic& operator=(const Tactic& other);
-    virtual void applyTactic(std::vector<Team>&teams, int points) = 0;
+    virtual void applyTactic(Team& team) = 0;
+    virtual std::shared_ptr<Tactic> clone() const = 0;
+    friend std::ostream &operator<<(std::ostream &os, const Tactic &tactic);
     virtual ~Tactic();
 };
 

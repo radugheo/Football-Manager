@@ -34,6 +34,8 @@ void Game::playMatch(){
     double win1 = 35, win2 = 35;
     int goals1 = 0, goals2 = 0;
     unsigned int dif;
+    std::cout << team1.getName() << ' ' << team1.getRating() << "\n-------------\n";
+    std::cout << team1.getName() << ' ' << team1.getRating();
     unsigned int ratingA = this->team1.getRating();
     unsigned int ratingB = this->team2.getRating();
     unsigned int lastA = this->team1.getLastMatchResult();

@@ -12,15 +12,15 @@ void GameEngine::initialize() {
     std::ifstream fin("date.txt");
     fin >> noOfTeams;
     for (int i=0; i < noOfTeams; i++){
-        fin >> teamId >> teamName >> teamBudget >> teamSize;
-        teamsID.push_back(teamId);
+        fin >> teamName >> teamBudget >> teamSize;
+        teamsID.push_back(i);
         std::vector<Player>p;
         for (auto j=0u; j < teamSize; j++){
             fin >> playerName >> playerPosition >> playerAge >> playerRating;
             p.emplace_back(playerName, playerPosition, playerAge, playerRating, teamId);
             allPlayers.emplace_back(std::make_pair(p.back(), teamId));
         }
-        teams.emplace_back(Team{teamId, teamName, teamBudget, p});
+        teams.emplace_back(Team{teamName, teamBudget, p});
         teams[i].calculateRating();
     }
     windowWidth = 1600;
@@ -338,33 +338,9 @@ void GameEngine::run(){
     std::vector<std::pair<std::string,int>>team1, team2;
 
     std::vector<std::string>first11;
-    for (int i=0; i<=11; i++){
+    for (int i=0; i<=11; i++) {
         first11.emplace_back("-");
     }
-    /*
-     * EXPLICIT PENTRU TEMA 2:
-     */
-
-    LoanTransfer ltr{0, 1, this->allPlayers[2].first, 6};
-    Transfer* b2 = new LoanTransfer{0, 1, this->allPlayers[1].first, 6};
-    try {
-        auto& der = dynamic_cast<LoanTransfer&>(*b2);
-        new LoanTransfer(der);
-        der.f();
-    } catch (std::bad_cast& err) {
-        std::cout << err.what() << "\n";
-    }
-    auto* der2 = dynamic_cast<LoanTransfer*>(b2);
-    if(der2 != nullptr) {
-        der2->f();
-    }
-    else {
-        std::cout << "nu a reusit conversia cu pointer\n";
-    }
-    delete b2;
-    /*
-     *
-     */
     unsigned int transferTeamId = 0, transferPlayerId = 0, sellPlayerId = 0, rankingRegularSeason = 0;
     std::vector<Team> teamsPlayOff;
     std::vector<Team> teamsPlayOut;
@@ -421,7 +397,7 @@ void GameEngine::run(){
 }
 
 void GameEngine::acceptTransferMethod(sf::RenderWindow &window, const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack,
-                                 sf::Vector2i &mousePos) {
+                                 const sf::Vector2i &mousePos) {
     window.clear();
     window.draw(gameMenuBackgroundSprite);
     onlyBack.draw(window, mousePos);
@@ -447,7 +423,7 @@ void GameEngine::acceptTransferMethod(sf::RenderWindow &window, const sf::Sprite
 
 void
 GameEngine::refuseTransferMethod(sf::RenderWindow &window, const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack,
-                                 unsigned int transferTeamId, unsigned int transferPlayerId, sf::Vector2i &mousePos) {
+                                 unsigned int transferTeamId, unsigned int transferPlayerId, const sf::Vector2i &mousePos) {
     window.clear();
     window.draw(gameMenuBackgroundSprite);
     onlyBack.draw(window, mousePos);
@@ -569,9 +545,8 @@ void GameEngine::buyPlayerMethod(sf::RenderWindow &window, const sf::Sprite &gam
     putText(window, "Value: " + teams[transferTeamId].getPlayers()[transferPlayerId].valueString(), 80, 300, 30, false, sf::Color::White);
 }
 
-void
-GameEngine::buyPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack, unsigned int transferTeamId,
-                             sf::Vector2i &mousePos, sf::RenderWindow &window, unsigned int &transferPlayerId) {
+void GameEngine::buyPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack, unsigned int transferTeamId,
+                             const sf::Vector2i &mousePos, sf::RenderWindow &window, unsigned int &transferPlayerId) {
     std::vector<ListObject> transferPlayers;
     createListOfPlayers(transferPlayers, transferTeamId);
     window.clear();
@@ -609,7 +584,7 @@ GameEngine::buyPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &o
 }
 
 void GameEngine::sellConfirmMethod(sf::RenderWindow &window, const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack,
-                                   sf::Vector2i &mousePos) {
+                                   const sf::Vector2i &mousePos) {
     window.clear();
     window.draw(gameMenuBackgroundSprite);
     onlyBack.draw(window, mousePos);
@@ -634,7 +609,7 @@ void GameEngine::sellConfirmMethod(sf::RenderWindow &window, const sf::Sprite &g
     }
 }
 
-void GameEngine::sellPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack, sf::Vector2i &mousePos,
+void GameEngine::sellPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &onlyBack, const sf::Vector2i &mousePos,
                                    sf::RenderWindow &window, unsigned int &sellPlayerId) {
     std::vector<ListObject> transferPlayers;
     createListOfPlayers(transferPlayers, playerTeamID);
@@ -676,7 +651,7 @@ void GameEngine::sellPlayersMethod(const sf::Sprite &gameMenuBackgroundSprite, M
 }
 
 void GameEngine::sellPlayerMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu &transferMarketMenu,
-                                  int *playersChecked, unsigned int sellPlayerId, sf::Vector2i &mousePos,
+                                  int *playersChecked, unsigned int sellPlayerId, const sf::Vector2i &mousePos,
                                   sf::RenderWindow &window, [[maybe_unused]]int &noChecked, std::vector<std::string> &first11) {
     window.clear();
     window.draw(gameMenuBackgroundSprite);
@@ -832,7 +807,7 @@ void GameEngine::menuMethod(const sf::Text &title, const sf::Sprite &chooseTeamB
                             std::vector<sf::Sprite> &checkboxPlayersSprite,
                             std::vector<sf::Sprite> &checkboxMentalitySprite, std::vector<sf::Sprite> &checkboxFormationSprite,
                             const int size50, int *playersChecked, int *mentalityChecked, int *formationsChecked,
-                            sf::Vector2i &mousePos, sf::RenderWindow &window, unsigned int &week, bool &finish,
+                            const sf::Vector2i &mousePos, sf::RenderWindow &window, unsigned int &week, bool &finish,
                             int &noChecked, int &mentalityNoChecked, int &formationsNoChecked, std::vector<std::string> &first11) {
     week = 0;
     finish = false;
@@ -1339,16 +1314,16 @@ void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite
                         mentalityChecked[cnt] = 1;
                         mentalityNoChecked++;
                         if (cnt == 0) {
-                            DefensiveTactic defensiveTactic{static_cast<unsigned int>(playerTeamID)};
-                            defensiveTactic.applyTactic(teams, 2);
+                            DefensiveTactic defensiveTactic{2};
+                            teams[playerTeamID].setTactic(defensiveTactic.clone());
                         }
                         else if (cnt == 1){
-                            BalancedTactic balancedTactic{static_cast<unsigned int>(playerTeamID)};
-                            balancedTactic.applyTactic(teams, 1);
+                            BalancedTactic balancedTactic{1};
+                            teams[playerTeamID].setTactic(balancedTactic.clone());
                         }
                         else{
-                            OffensiveTactic offensiveTactic{static_cast<unsigned int>(playerTeamID)};
-                            offensiveTactic.applyTactic(teams, 2);
+                            OffensiveTactic offensiveTactic{2};
+                            teams[playerTeamID].setTactic(offensiveTactic.clone());
                         }
                     }
                     else if (mentalityChecked[cnt] == 1){
@@ -1356,18 +1331,19 @@ void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite
                         mentalityChecked[cnt] = 0;
                         mentalityNoChecked--;
                         if (cnt == 0) {
-                            DefensiveTactic defensiveTactic{static_cast<unsigned int>(playerTeamID)};
-                            defensiveTactic.applyTactic(teams, -2);
+                            DefensiveTactic defensiveTactic{-2};
+                            teams[playerTeamID].setTactic(defensiveTactic.clone());
                         }
                         else if (cnt == 1){
-                            BalancedTactic balancedTactic{static_cast<unsigned int>(playerTeamID)};
-                            balancedTactic.applyTactic(teams, -1);
+                            BalancedTactic balancedTactic{-1};
+                            teams[playerTeamID].setTactic(balancedTactic.clone());
                         }
                         else{
-                            OffensiveTactic offensiveTactic{static_cast<unsigned int>(playerTeamID)};
-                            offensiveTactic.applyTactic(teams, -2);
+                            OffensiveTactic offensiveTactic{-2};
+                            teams[playerTeamID].setTactic(offensiveTactic.clone());
                         }
                     }
+                    teams[playerTeamID].applyTactic();
                 }
                 cnt++;
             }

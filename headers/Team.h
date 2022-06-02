@@ -4,9 +4,11 @@
 #include <iostream>
 #include <vector>
 #include "../headers/Player.h"
+#include "../headers/Tactic.h"
 
 class Team{
-    unsigned int id = 0;
+    unsigned int id;
+    static unsigned int contor;
     std::string name;
     unsigned int ranking = 0;
     unsigned int rating = 0;
@@ -18,8 +20,9 @@ class Team{
     unsigned int draws = 0;
     unsigned int loses = 0;
     unsigned int lastMatchResult = 1;
+    std::shared_ptr<Tactic> tactic;
 public:
-    Team(unsigned int id, const std::string &name, int budget, const std::vector<Player> &players);
+    Team(const std::string &name, int budget, const std::vector<Player> &players);
     Team();
     Team(const Team& other);
     Team& operator=(const Team& other);
@@ -37,6 +40,7 @@ public:
     void modifyBudget(int transferSum);
     void addPlayer(const Player& player);
     void deletePlayer(const Player& player);
+    void applyTactic();
 
     unsigned int getRating() const;
     int getBudget() const;
@@ -52,6 +56,7 @@ public:
     unsigned int getDraws() const;
     unsigned int getLoses() const;
 
+    void setTactic(std::shared_ptr<Tactic> tactic_);
     void setRating(unsigned int rating_);
     void setPoints(int points_);
     void setRanking(unsigned int ranking);

@@ -8,9 +8,16 @@
 #include "Tactic.h"
 
 class OffensiveTactic : public Tactic{
+    void afisare(std::ostream &os) const override;
 public:
-    explicit OffensiveTactic(unsigned int team);
-    void applyTactic(std::vector<Team>&teams, int points) override;
+    explicit OffensiveTactic(int points);
+    OffensiveTactic (const OffensiveTactic& other);
+    OffensiveTactic& operator=(OffensiveTactic other);
+    friend void swap(OffensiveTactic& obj1, OffensiveTactic& obj2);
+    void applyTactic(Team& team) override;
+    [[nodiscard]] std::shared_ptr<Tactic> clone() const override;
+    friend std::ostream &operator<<(std::ostream &os, const OffensiveTactic &tactic);
+    virtual ~OffensiveTactic();
 };
 
 

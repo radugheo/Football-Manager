@@ -226,7 +226,7 @@ jobs:
 
       - name: Cppcheck
         if: runner.os == 'Linux' && matrix.cxx == 'clang++-11'
-        run: cppcheck --enable=all --project=build/compile_commands.json -ibuild --suppress='*:build/*' --suppress='*:ext/*' --suppress=missingIncludeSystem --suppress=unmatchedSuppression --error-exitcode=1
+        run: cppcheck --enable=all --project=build/compile_commands.json -ibuild --suppress=useStlAlgorithm --suppress='*:build/*' --suppress='*:ext/*' --suppress=missingIncludeSystem --suppress=unmatchedSuppression --error-exitcode=1
 
       - name: Clang-tidy
         if: runner.os == 'Linux' && matrix.cxx == 'clang++-12'
@@ -330,7 +330,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-            name: ${{ env.BUILD_TYPE }}_${{ env.TAG_NAME }}_${{ matrix.os }}_${{ matrix.cxx }}.zip
+            name: ${{ env.BUILD_TYPE }}_${{ env.TAG_NAME }}_${{ matrix.os }}_${{ matrix.cxx }}
             path: artifacts
             retention-days: 10
 
@@ -338,6 +338,14 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         # trim prefix from ref to get tag name
         run: echo "TAG_NAME=${GITHUB_REF#'refs/tags/'}" >> $GITHUB_ENV
+
+      - name: Copy missing dlls
+        if: runner.os == 'Windows' && matrix.cxx == 'cl'
+        run: |
+          cp $(where ucrtbased.dll) artifacts/bin/
+          cp $(where VCRUNTIME140_1D.dll) artifacts/bin/
+          cp $(where MSVCP140D.dll) artifacts/bin/
+          cp $(where VCRUNTIME140D.dll) artifacts/bin/
 
       - name: Archive Release
         uses: thedoctor0/zip-release@master

@@ -28,25 +28,36 @@
   - [X] funcții virtuale (pure), constructori virtuali (clone)
   - [X] apelarea constructorului din clasa de bază 
   - [X] smart pointers
-  - [X] `dynamic_cast`
+  - [ ] `dynamic_cast`
 - [X] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
-- [ ] excepții
-  - [ ] ierarhie proprie (cu baza `std::exception` sau derivată din `std::exception`)
-  - [ ] utilizare cu sens: de exemplu, `throw` în constructor, `try`/`catch` în `main`
-- [ ] funcții și atribute `static`
+- [X] excepții
+  - [X] ierarhie proprie (cu baza `std::exception` sau derivată din `std::exception`)
+  - [X] utilizare cu sens: de exemplu, `throw` în constructor, `try`/`catch` în `main`
+- [X] funcții și atribute `static`
 - [X] STL
 - [X] cât mai multe `const`
-- [ ] tag de `git`: de exemplu `v0.2`
+- [X] tag de `git`: de exemplu `v0.2`
 
 ## Tema 3
 
 #### Cerințe
-- [ ] 2 șabloane de proiectare (design patterns)
+- [X] 2 șabloane de proiectare (design patterns)
 - [ ] o funcție șablon (template) cu sens; minim 2 instanțieri
 - [ ] o clasă șablon cu sens; minim 2 instanțieri
 - [ ] o specializare pe funcție/clasă șablon
 - [ ] tag de `git`: de exemplu `v0.3` sau `v1.0`
 
-## Resurse
+##Football Manager
 
-- adăugați trimiteri către resursele externe care v-au ajutat sau pe care le-ați folosit
+<h3>How to play</h3>
+<p>After you choose your team, you can adjust the squad and the desired tactics for the next game, sell or buy players from the transfer market, and of course, simulate the next match.</p>
+<p>If you are in top 6 when the regular season ends, you qualify for the Play-Offs. Else, it's the Play-Outs.</p>
+<h3>About</h3>
+<p>The results of the matches are not entire randomly generated. They depend on the squad and tactics chosen for every match. I tried to get as close as I could to get realistic scores. </p>
+<p>Players'value is calculated based on their OVR and age. The younger the player, the higher the price. Of course, the OVR matters too.</p>
+<h3>Resources</h3>
+<ul>
+  <li><a href="https://github.com/effolkronium/random/">Effolkronium Random</a> - Random for modern C++ with convenient API</li>
+  <li><a href="https://www.fifacm.com/">FifaCM</a> - for player stats</li>
+  <li>Google Pictures for backgrounds and team logos.</li>
+</ul>
