@@ -948,13 +948,9 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
                 cnt++;
             }
             rankingRegularSeason = teams[playerTeamID].getRanking();
-            std::cout <<"ranking: " << rankingRegularSeason << '\n';
             if (rankingRegularSeason <= 6) {
                 League playOff{teamsPlayOffInt};
                 playOff.makeFixtures();
-                std::cout << "\n-----------------\n";
-                std::cout << playOff << '\n';
-                std::cout << "\n-----------------\n";
                 homeTeams = playOff.getFixturesTeam1();
                 awayTeams = playOff.getFixturesTeam2();
                 weekNumber = playOff.getFixturesWeek();
@@ -962,9 +958,6 @@ void GameEngine::advanceMethod(const sf::Sprite &gameMenuBackgroundSprite, Menu 
             else{
                 League playOut(teamsPlayOutInt);
                 playOut.makeFixtures();
-                std::cout << "\n-----------------\n";
-                std::cout << playOut << '\n';
-                std::cout << "\n-----------------\n";
                 homeTeams = playOut.getFixturesTeam1();
                 awayTeams = playOut.getFixturesTeam2();
                 weekNumber = playOut.getFixturesWeek();
@@ -1289,7 +1282,6 @@ void GameEngine::teamManagementMethod(const sf::Sprite &gameMenuBackgroundSprite
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             ///*-------------PLAYERS------------*///
             cnt = 0;
-            std::cout << "\n----------------------\n";
             for (auto listItem : listOfPlayers){
                 if (listItem.checkHover(mousePos)){
                     if (playersChecked[cnt] == 0 && noChecked <= 10) {
