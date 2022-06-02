@@ -221,8 +221,8 @@ jobs:
       - name: Copy stdlib (MinGW)
         if: runner.os == 'Windows' && matrix.cxx == 'g++'
         run: |
-          cp gcc/mingw64/bin/libstdc++-6.dll $GITHUB_WORKSPACE/artifacts
-          cp gcc/mingw64/bin/libgcc_s_seh-1.dll $GITHUB_WORKSPACE/artifacts
+          cp gcc/mingw64/bin/libstdc++-6.dll $GITHUB_WORKSPACE/artifacts/bin
+          cp gcc/mingw64/bin/libgcc_s_seh-1.dll $GITHUB_WORKSPACE/artifacts/bin
 
       - name: Cppcheck
         if: runner.os == 'Linux' && matrix.cxx == 'clang++-11'
